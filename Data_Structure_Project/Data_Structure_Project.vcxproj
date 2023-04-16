@@ -127,7 +127,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\CPP\process.cpp" />
+    <ClCompile Include="..\CPP\processor.cpp" />
+    <ClCompile Include="..\CPP\proFCFS.cpp" />
+    <ClCompile Include="..\CPP\ProRoundRobin.cpp" />
+    <ClCompile Include="..\CPP\Schedular.cpp" />
     <ClCompile Include="Data_Structure_Project.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Headers\LinkedList.h" />
+    <ClInclude Include="..\Headers\Node.h" />
+    <ClInclude Include="..\Headers\process.h" />
+    <ClInclude Include="..\Headers\processor.h" />
+    <ClInclude Include="..\Headers\proFCFS.h" />
+    <ClInclude Include="..\Headers\ProRoundRobin.h" />
+    <ClInclude Include="..\Headers\ProSJB.h" />
+    <ClInclude Include="..\Headers\Schedular.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
