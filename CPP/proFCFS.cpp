@@ -1,7 +1,9 @@
-#include "ProFCFS.h"
+
+#include "../Headers/proFCFS.h"
+#include "../Headers/schedular.h"
 
 
-ProFCFS::ProFCFS(scheduler* p) :processor(p)
+ProFCFS::ProFCFS(schedular* p) :processor(p)
 {
 	timer = 0;
 

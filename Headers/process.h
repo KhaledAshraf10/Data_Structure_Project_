@@ -14,6 +14,7 @@ private:
     int WT;
     int TWT;
     LinkedList IO_RD;
+    int remainingtime; //time left to be processed by the cpu
 
 public:
     Process(int id, int at, int rt, int ct, int tt, int trt, int wt, int twt, LinkedList io_rd);
@@ -38,5 +39,7 @@ public:
     int calculateTurnaroundDuration() const;
     int calculateWaitingTime() const;
     void incrementTotalWaitingTime();
+    int getremainingtime();
+    void decremainingtime();
 };
 
