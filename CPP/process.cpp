@@ -1,4 +1,7 @@
-#include "Process.h"
+#include "../Headers/LinkedList.h"
+#include "../Headers/Process.h"
+
+
 
 Process::Process(int id, int at, int rt, int ct, int tt, int trt, int wt, int twt, LinkedList io_rd) {
     ID = id;
@@ -74,3 +77,15 @@ int Process::calculateWaitingTime() const {
 void Process::incrementTotalWaitingTime() {
     TWT++;
 }
+
+int Process::getremainingtime() {
+
+    return remainingtime;
+
+};
+void Process::decremainingtime() {
+
+
+    remainingtime--;
+
+};

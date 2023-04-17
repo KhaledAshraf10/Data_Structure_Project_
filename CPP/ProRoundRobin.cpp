@@ -1,11 +1,14 @@
-#include "ProRoundRobin.h"
+
+#include "../Headers/ProRoundRobin.h"
+#include "../Headers/Schedular.h"
+
 
 
 
 
 //sdfa
 
-ProRoundRobin::ProRoundRobin(scheduler* p) :processor(p)
+ProRoundRobin::ProRoundRobin(Schedular* p) :processor(p)
 {
 	timer = 0;
 	RUNLIST = nullptr;
