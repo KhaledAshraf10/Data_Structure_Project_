@@ -1,4 +1,4 @@
-#include "Schedular.h"
+#include "../Headers/Schedular.h"
 
 Schedular::Schedular()
 {
@@ -19,5 +19,17 @@ void Schedular::load()
 	nProcess => number of process
 	*/
 	//sss
+	for (int i = 0; i < 5; i++)
+	{
+		arr[i] = new Process(1,1,1,1,1,1,1,1);
+	}
 	inputfile.close();
+}
+
+Schedular::~Schedular()
+{
+	for (int i = 0; i < 5; i++) {
+		delete arr[i]; // Deallocate the memory for each Process object
+	}
+	delete[] arr; // Deallocate the memory for the array of pointers
 }
