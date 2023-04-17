@@ -13,11 +13,11 @@ private:
     int TRT;
     int WT;
     int TWT;
-    LinkedList IO_RD;
+    //LinkedList IO_RD;
     int remainingtime; //time left to be processed by the cpu
 
 public:
-    Process(int id, int at, int rt, int ct, int tt, int trt, int wt, int twt, LinkedList io_rd);
+    Process(int id, int at, int rt, int ct, int tt, int trt, int wt, int twt/*, LinkedList io_rd*/);
     int getId() const;
     int getArrivalTime() const;
     int getResponseTime() const;
@@ -26,7 +26,7 @@ public:
     int getTurnaroundDuration() const;
     int getWaitingTime() const;
     int getTotalWaitingTime() const;
-    LinkedList getIO_RD() const;
+    //LinkedList getIO_RD() const;
     void setId(int id);
     void setArrivalTime(int at);
     void setResponseTime(int rt);
@@ -35,7 +35,7 @@ public:
     void setTurnaroundDuration(int trt);
     void setWaitingTime(int wt);
     void setTotalWaitingTime(int twt);
-    void setIO_RD(LinkedList io_rd);
+    //void setIO_RD(LinkedList io_rd);
     int calculateTurnaroundDuration() const;
     int calculateWaitingTime() const;
     void incrementTotalWaitingTime();
