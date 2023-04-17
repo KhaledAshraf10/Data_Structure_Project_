@@ -133,6 +133,7 @@
     <ClCompile Include="..\CPP\ProRoundRobin.cpp" />
     <ClCompile Include="..\CPP\Schedular.cpp" />
     <ClCompile Include="Data_Structure_Project.cpp" />
+    <ClCompile Include="Queue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Headers\LinkedList.h" />
@@ -143,6 +144,7 @@
     <ClInclude Include="..\Headers\ProRoundRobin.h" />
     <ClInclude Include="..\Headers\ProSJB.h" />
     <ClInclude Include="..\Headers\Schedular.h" />
+    <ClInclude Include="Queue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

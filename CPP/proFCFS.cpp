@@ -22,10 +22,10 @@ bool ProFCFS::ScheduleAlgo()
 void ProFCFS::forkingrequest(int AT, int RT)
 {}
 
-void ProFCFS::inctimer(int time)
+void ProFCFS::inctimer(Process* p)
 {}
 
-void ProFCFS::dectimer(int time)
+void ProFCFS::dectimer(Process* p)
 {}
 
 void ProFCFS::add_process(Process* p)
