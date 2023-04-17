@@ -3,7 +3,7 @@
 #include "../Headers/schedular.h"
 
 
-ProFCFS::ProFCFS(schedular* p) :processor(p)
+ProFCFS::ProFCFS(Schedular* p) :processor(p)
 {
 	timer = 0;
 
@@ -17,20 +17,45 @@ int ProFCFS::gettimer() const
 {}
 
 bool ProFCFS::ScheduleAlgo()
-{}
+{
+	if (RUNLIST = nullptr) {
+
+		  Plist.getbeg(RUNLIST);
+
+	}else
+		if (RUNLIST->getremainingtime() != 0) {
+			return;
+		}
+		else 
+			if (RUNLIST->getremainingtime() == 0) {
+
+				//pS->//move to TRM;
+				RUNLIST = nullptr;
+
+
+			}
+
+
+
+
+}
 
 void ProFCFS::forkingrequest(int AT, int RT)
 {}
 
 void ProFCFS::inctimer(Process* p)
-{}
+{
+	timer += p->getremainingtime();
+}
 
 void ProFCFS::dectimer(Process* p)
-{}
+{
+	timer -= p->getremainingtime();
+}
 
 void ProFCFS::add_process(Process* p)
 {
-	inctimer(p->getCpuTime());
+	Plist.InsertEnd(p);
 
 
 }

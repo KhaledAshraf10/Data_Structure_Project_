@@ -10,10 +10,13 @@ protected:
 	Schedular* pS;
 	int timer; // a sum for all CTs in the processor's rdy list
 	bool flag; // a flag to determine whether the processor is IDLE(=1) or BUSY(=0)
-	Process* RUNLIST; 
+	Process*  RUNLIST; 
 
 public:
-	processor(Schedular* p) { pS = p };
+	processor(Schedular* p) {
+		pS = p;
+		
+	};
 	virtual ~processor() {};
 	virtual bool ScheduleAlgo() = 0;
 	virtual int gettimer() const {};

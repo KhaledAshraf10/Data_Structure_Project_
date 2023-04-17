@@ -6,9 +6,10 @@
 
 
 
+
 //sdfa
 
-ProRoundRobin::ProRoundRobin(Schedular* p) :processor(p)
+ ProRoundRobin::ProRoundRobin(Schedular* p) :processor(p)
 {
 	timer = 0;
 	RUNLIST = nullptr;
@@ -29,8 +30,8 @@ bool ProRoundRobin::ScheduleAlgo()
 
 	if (RUNLIST == nullptr) {
 
-		RUNLIST = Plist.dequeue();
-
+		Plist.dequeue(RUNLIST);
+		
 		dectimer(RUNLIST);
 
 	}
@@ -47,7 +48,7 @@ bool ProRoundRobin::ScheduleAlgo()
 		else
 
 		{
-			Plist.Queue(RUNLIST);
+			Plist.enqueue(RUNLIST);
 			inctimer(RUNLIST);
 			RUNLIST = nullptr;
 
