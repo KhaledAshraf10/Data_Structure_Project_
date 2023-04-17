@@ -1,9 +1,15 @@
-#include "processor.h"
 #pragma once
+
+#include "processor.h"
+
+
+#include "../Data_Structure_Project/Queue.h"
+
+
 class ProRoundRobin : public processor
 {
 private:
-	Queue Plist;
+	Queue<Process*> Plist;
 
 	int RTF; //a thershold to be used in migration functionality
      int timeslice;    //the timeslice for RR algorithm(to be loaded from the input file)
@@ -16,7 +22,7 @@ private:
 
 public:
 
-	ProRoundRobin(Schedular* p);
+	 ProRoundRobin(Schedular* p);
 
 	virtual ~ProRoundRobin();
 
@@ -26,7 +32,7 @@ public:
 	virtual void inctimer(Process* p) override;
 	virtual void dectimer(Process* p) override;
 
-	virtual void add_process(Process* p) override
+	virtual void add_process(Process* p) override;
 
 
 

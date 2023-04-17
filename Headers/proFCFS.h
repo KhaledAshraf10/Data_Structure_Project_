@@ -4,7 +4,7 @@
 class ProFCFS : public processor
 {
 private:
-	LinkedList<Process> Plist;
+	LinkedList<Process*> Plist;
 
 public:
 

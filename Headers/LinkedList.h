@@ -3,6 +3,7 @@
 
 #include "Node.h"
 #include <iostream>
+
 using namespace std;
 
 
@@ -94,6 +95,21 @@ public:
 			P = P->getNext();
 		}
 		P->setNext(R);
+	}
+
+	void getbeg(const T& data) {
+
+		T = Head->getItem();
+
+		DeleteNode(T);
+
+
+
+
+
+
+
+
 	}
 	
 	//[2]Find 
