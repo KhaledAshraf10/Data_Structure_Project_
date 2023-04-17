@@ -17,8 +17,8 @@ public:
 	virtual ~processor() {};
 	virtual bool ScheduleAlgo() = 0;
 	virtual int gettimer() const {};
-	virtual void inctimer(int timestep) = 0;
-	virtual void dectimer(int timestep) = 0;
+	virtual void inctimer(Process* p) = 0;
+	virtual void dectimer(Process* p) = 0;
 	virtual void add_process(Process* p) = 0;
 
 
