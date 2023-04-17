@@ -73,3 +73,10 @@ void ProRoundRobin::dectimer(Process *p)
 
 }
 
+void ProRoundRobin::add_process(Process* p) {
+
+
+	Plist.enqueue(p);
+
+
+}

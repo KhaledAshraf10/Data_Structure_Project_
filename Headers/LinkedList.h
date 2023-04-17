@@ -96,6 +96,21 @@ public:
 		}
 		P->setNext(R);
 	}
+
+	void getbeg(const T& data) {
+
+		T = Head->getItem();
+
+		DeleteNode(T);
+
+
+
+
+
+
+
+
+	}
 	
 	//[2]Find 
 	//searches for a given value in the list, returns true if found; false otherwise.
