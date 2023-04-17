@@ -14,7 +14,10 @@ ProFCFS::~ProFCFS()
 {}
 
 int ProFCFS::gettimer() const
-{}
+{
+	return timer;
+
+}
 
 bool ProFCFS::ScheduleAlgo()
 {

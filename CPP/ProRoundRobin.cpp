@@ -21,7 +21,10 @@ ProRoundRobin::~ProRoundRobin()
 
 
 int ProRoundRobin::gettimer() const
-{}
+{
+	return timer;
+
+}
 
 
 bool ProRoundRobin::ScheduleAlgo()
