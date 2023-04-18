@@ -1,5 +1,7 @@
 #include "../Headers/Schedular.h"
 #include "../Headers/proFCFS.h"
+#include "../Headers/ProRoundRobin.h"
+
 
 Schedular::Schedular()
 {
@@ -53,7 +55,7 @@ void Schedular::Add_To_arr_Processor()
 	//}
 	for (int i = 0; i < nRR; i++)
 	{
-		arr_Processor[i] = new ProFCFS(this);
+		arr_Processor[i] = new ProRoundRobin(this);
 	}
 }
 
