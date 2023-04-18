@@ -105,12 +105,12 @@ void ProRoundRobin::ScheduleAlgo()
 			counter == 0;
 
 		}
-		else if (RUNLIST->getremainingtime() == 0) {
+		//else if (RUNLIST->getremainingtime() == 0) {
 
-			//Ps->move to TRM(RUNLIST);
-			RUNLIST = nullptr;
+		//	//Ps->move to TRM(RUNLIST);
+		//	RUNLIST = nullptr;
 
-		}
+		//}
 
 
 

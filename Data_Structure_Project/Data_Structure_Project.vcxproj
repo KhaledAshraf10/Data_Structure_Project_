@@ -134,6 +134,7 @@
     <ClCompile Include="..\CPP\Schedular.cpp" />
     <ClCompile Include="..\CPP\VLinkedList.cpp" />
     <ClCompile Include="Data_Structure_Project.cpp" />
+    <ClCompile Include="ProSJB.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Headers\LinkedList.h" />

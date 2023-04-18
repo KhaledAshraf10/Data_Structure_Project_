@@ -3,6 +3,7 @@
 #include "../Headers/Process.h"
 #include "../Headers/proFCFS.h"
 #include"../Headers/ProRoundRobin.h"
+#include"../Headers/ProSJB.h"
 using namespace std;
 //int main()
 //{
@@ -53,23 +54,24 @@ int main() {
 	//pro->ScheduleAlgo();
 	//pro->PrintRDY();
 	//pro->PrintRUN();
-	ProRoundRobin * RR = new ProRoundRobin(S);
-	RR->add_process(p1);
-	RR->add_process(p2);
-	RR->add_process(p3);
-	RR->PrintRDY();
-	RR->PrintRUN();
-	RR->ScheduleAlgo();
-	RR->PrintRDY();
-	RR->PrintRUN();
-	RR->ScheduleAlgo();
-	RR->PrintRDY();
-	RR->PrintRUN();
-	RR->ScheduleAlgo();
-	RR->PrintRDY();
-	RR->PrintRUN();
-	RR->ScheduleAlgo();
-	
+	/*ProSJB * SJ = new ProSJB(S);
+	SJ->add_process(p1);
+	SJ->add_process(p2);
+	SJ->add_process(p3);
+	SJ->PrintRDY();*/
+	//RR->PrintRUN();
+	//RR->ScheduleAlgo();
+	//RR->PrintRDY();
+	//RR->PrintRUN();
+	//RR->ScheduleAlgo();
+	//RR->PrintRDY();
+	//RR->PrintRUN();
+	//RR->ScheduleAlgo();
+	//RR->PrintRDY();
+	//RR->PrintRUN();
+	//RR->ScheduleAlgo();
+	//
+
 
 
 

@@ -217,7 +217,7 @@ public:
 	};
 
 
-	bool enqueue(Process* newEntry) {
+	virtual bool enqueue(Process* newEntry) {
 
 
 
@@ -265,6 +265,20 @@ public:
 
 	};
 
+
+	int count() {    //count elements within thr Queue
+
+		Node<Process*>* Tfrnt1 = frontPtr;
+		int counter = 0;
+		while (Tfrnt1) {
+			Tfrnt1 = Tfrnt1->getNext();
+			counter++;
+
+		}
+		return counter;
+
+
+	}
 	void Printlistid() {
 		Node<Process*>* Tfrnt1 = frontPtr;
 		Node<Process*>* Tfrnt2 = frontPtr;
@@ -316,4 +330,65 @@ public:
 
 
 	};
+};
+
+
+
+class PriorityQueue:public Queue<Process*>
+{
+private:
+	Node<Process*>* backPtr;
+	Node<Process*>* frontPtr;
+public:
+	bool enqueue(Process* newEntry) {
+
+
+
+
+		Node<Process*>* newNodePtr = new Node<Process*>(newEntry);
+		// Insert the new node
+		if (isEmpty())	//special case if this is the first node to insert
+			frontPtr = newNodePtr; // The queue is empty
+		else
+			backPtr->setNext(newNodePtr); // The queue was not empty
+
+		backPtr = newNodePtr; // New node is the last node now
+		return true;
+
+		//sort everytime enqueue is called
+		 int x = this->count();
+		Process** AUXARR=new Process* [x];
+		for (int i = 0; i < this->count(); i++) {
+			this->dequeue(AUXARR[i]);
+
+		}
+		//buuble sort the array
+		for (int i = 0; i < x-2; i++)
+		{
+			for (int j = 0; j < x - 2 - i; j++)
+			{
+
+				if (AUXARR[j + 1]->getremainingtime() < AUXARR[j]->getremainingtime())
+				{
+					Process* temp = AUXARR[j];
+
+					AUXARR[j] = AUXARR[j + 1];
+					AUXARR[j + 1] = AUXARR[j];
+
+				}
+			}
+
+		}
+		//now we have a sorted array
+		//enqueue ut back to the original Queue
+		for (int i = 0; i < x; i++) {
+			
+			this->enqueue(AUXARR[i]);
+		}
+
+		delete* AUXARR;
+		delete AUXARR;
+
+	};
+
 };
