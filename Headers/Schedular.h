@@ -5,6 +5,7 @@
 #include "LinkedList.h"
 #include <fstream>
 #include "../Headers/process.h"
+#include "../Data_Structure_Project/Queue.h"
 
 //#include "../Headers/processor.h"
 //#include "../Headers/proFCFS.h"
@@ -14,6 +15,7 @@ class processor;
 class Schedular
 {
 private:
+	Queue<Process*> BLK1;
 	Process** NEW;
 	processor** arr_Processor;
 	LinkedList<Process*> BLK;
@@ -35,7 +37,7 @@ public:
 	void Add_To_arr_Processor();
 	void Phase_1_Simulation();
 	processor** getProcessorList();
-	LinkedList<Process*> getBLKList();
+	Queue<Process*> getBLKList();
 	LinkedList<Process*> getTRMList();
 	bool CheckTimeStep(int ArrivalTime);
 	int getnFCFS();

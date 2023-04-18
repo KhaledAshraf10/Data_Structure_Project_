@@ -6,6 +6,7 @@
 Schedular::Schedular()
 {
 	load();
+	
 	Process** NEW = new Process * [nProcess];
 	processor** arr_Processor = new processor * [nFCFS+nSJF+nRR];
 }
@@ -57,7 +58,7 @@ void Schedular::Add_To_arr_Processor()
 	//{
 	//	arr_Processor[i] = new ProFCFS(this);
 	//}
-	for (int i = nFCFS+1; i < nRR+ nFCFS; i++)
+	for (int i = 0; i < nRR; i++)
 	{
 		arr_Processor[i] = new ProRoundRobin(this);
 	}
@@ -96,7 +97,7 @@ void Schedular::Phase_1_Simulation()
 }
 void Schedular::Add_To_BLK(Process* n)
 {
-	BLK.InsertEnd(n);
+	BLK1.enqueue(n);
 }
 void Schedular::Add_To_TRM(Process* n)
 {
@@ -107,9 +108,9 @@ processor** Schedular::getProcessorList()
 {
 	return arr_Processor;
 }
-LinkedList<Process*> Schedular::getBLKList()
+Queue<Process*> Schedular::getBLKList()
 {
-	return BLK;
+	return BLK1;
 }
 LinkedList<Process*> Schedular::getTRMList()
 {
@@ -147,7 +148,10 @@ void Schedular::IncreamentTimeStep()
 	TimeStep++;
 	if (randomNumber < 10)
 	{
-		//arr_Processor[1]->add_process(//BLK.Dequeu()) //BLK.Dequeu() should return process
+		Process* temp;
+
+		BLK1.dequeue(temp);
+		arr_Processor[1]->add_process(temp); //BLK.Dequeu() should return process
 		
 	}
 }
