@@ -11,8 +11,8 @@ class processor;
 class Schedular
 {
 private:
-	Process** arr_Process;
-	processor** arr_Processor = new processor*;
+	Process** NEW;
+	processor** arr_Processor;
 	LinkedList<Process*> BLK;
 	LinkedList<Process*> TRM;
 
@@ -28,7 +28,7 @@ private:
 public:
 	Schedular();
 	void load();
-	void Add_To_NEW();
+	void Add_To_NEW(); // add process to new list
 	void Add_To_arr_Processor();
 	void ShortRDY(); // should return Shortest rdy queue => by looping on all proccesor 
 	//void Add_To_RDY();

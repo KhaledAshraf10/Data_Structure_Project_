@@ -6,7 +6,8 @@
 Schedular::Schedular()
 {
 	load();
-	Process** arr_Process = new Process * [nProcess];
+	Process** NEW = new Process * [nProcess];
+	processor** arr_Processor = new processor * [nFCFS+nSJF+nRR];
 }
 
 void Schedular::load()
@@ -34,13 +35,13 @@ void Schedular::Add_To_NEW()
 	for (int i = 0; i < nProcess; i++)
 	{
 		inputfile >> AT >> PID >> CT >> NIO;
-		arr_Process[i] = new Process(AT, PID, CT);
+		NEW[i] = new Process(AT, PID, CT);
 		for (int i = 0; i < NIO; i++)
 		{
 			char garbage;
 			int IO_R, IO_D;
 			inputfile >> garbage >> IO_R >> garbage >> IO_D >> garbage >> garbage;
-			arr_Process[i]->Add_To_IOList(IO_R, IO_D);
+			NEW[i]->Add_To_IOList(IO_R, IO_D);
 		}
 	}
 }
@@ -62,11 +63,6 @@ void Schedular::Add_To_arr_Processor()
 	}
 }
 
-
-
-
-
-
 void Schedular::Phase_1_Simulation()
 {
 	if (TimeStep == 0)
@@ -82,10 +78,10 @@ void Schedular::Phase_1_Simulation()
 		int counter = 0;
 		for (int i = 0; i < nProcess; i++)
 		{
-			int ArrivalTime = arr_Process[i]->getArrivalTime();
+			int ArrivalTime = NEW[i]->getArrivalTime();
 			if (ArrivalTime == TimeStep)
 			{
-				arr_Processor[counter]->add_process(arr_Process[i]);
+				arr_Processor[counter]->add_process(NEW[i]);
 				counter++;
 			}
 		}
@@ -122,7 +118,9 @@ LinkedList<Process*> Schedular::getTRMList()
 Schedular::~Schedular()
 {
 	for (int i = 0; i < 5; i++) {
-		delete arr_Process[i]; // Deallocate the memory for each Process object
+		delete NEW[i]; // Deallocate the memory for each Process object
+		delete arr_Processor[i];
 	}
-	delete[] arr_Process; // Deallocate the memory for the array of pointers
+	delete[] NEW; // Deallocate the memory for the array of pointers
+	delete[]arr_Processor;
 }
