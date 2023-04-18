@@ -20,10 +20,12 @@ public:
 	void  forkingrequest(int AT, int RT);
 
 	virtual void inctimer(Process* p) override;
+	virtual void inctimer(int time);
 	virtual void dectimer(Process* p) override;
 	virtual void add_process(Process* p) override;
 	virtual bool RandomKiller();
-
+	virtual bool PrintRDY() override;
+	virtual bool PrintRUN() override;
 
 	// ana esmy eyad
 

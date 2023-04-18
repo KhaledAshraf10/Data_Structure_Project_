@@ -88,6 +88,11 @@ void ProFCFS::inctimer(Process* p)
 	timer += p->getremainingtime();
 }
 
+void ProFCFS::inctimer(int time)
+{
+	timer += time;
+}
+
 void ProFCFS::dectimer(Process* p)
 {
 	timer -= p->getremainingtime();
@@ -104,17 +109,51 @@ void ProFCFS::add_process(Process* p)
 bool ProFCFS::RandomKiller() {
 	srand(time(0));
 	int x = 1 + (rand() % 999);
-	if (RUNLIST->getId() == x) {
-		//Ps->move to TRM
-		RUNLIST = nullptr;
-		return true;
-	}
-	
-	
+	 
+
+     int time= Plist.DeleteNodeR(x);
+	  if (time < 0) {
+		  return false;
+	  }
+	  else {
+		  inctimer(time);
+
+	  }
 
 
 
 
 }
+
+bool ProFCFS::PrintRUN() {
+	if (RUNLIST != nullptr) {
+		cout << RUNLIST->getId();
+		return true;
+
+	}
+	else {
+		return false;
+	}
+
+
+}
+
+bool ProFCFS::PrintRDY() {
+	if (timer <= 0) {
+		return false;
+	}
+	else {
+
+
+
+	}
+
+
+
+}
+
+
+
+
 
 
