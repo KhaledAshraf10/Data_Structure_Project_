@@ -7,7 +7,7 @@ class UI {
 public:
     void printProcessIDs(Schedular* schedular) {
         LinkedList<Process*> trmList = schedular->getTRMList();
-        LinkedList<Process*> blkList = schedular->getBLKList();
+        Queue<Process*> blkList = schedular->getBLKList();
         processor** processorList = schedular->getProcessorList();
         int nFCFS = schedular->getnFCFS();
         int nSJF = schedular->getnSJF();
@@ -31,8 +31,8 @@ public:
         }
 
         cout << "------------- BLK Processes ---------------" << endl;
-        for (int i = 0; i < blkList.size(); i++) {
-            blkList.PrintListid();
+        for (int i = 0; i < blkList.count(); i++) {
+            blkList.Printlistid();
         }
 
 
