@@ -12,12 +12,11 @@ void Scheduler::load()
 	/*
 	nFCFS , nSJF, nRR stand for number of processor for each type
 	TS => time slice for RR
-	RTF =>
+	RTF => 
 	MaxW =>
-	STL => check stealing action every STL
+	STL => check stealing action every STL 
 	FP => fork probability
 	nProcess => number of process
 	*/
-	//sss
 	inputfile.close();
 }

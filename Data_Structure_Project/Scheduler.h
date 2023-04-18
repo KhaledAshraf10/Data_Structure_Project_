@@ -7,7 +7,6 @@ private:
 	LinkedList<int>* processorList; // int must replace by proessor data type from  sou3dy 
 	LinkedList<int>* processList;	// int must replace by process data type from  abstar
 	ifstream inputfile;
-	
 public:
 	Scheduler();
 	void load();
@@ -20,8 +19,9 @@ public:
 	void STLA(); // stealing action should done every STL, 
 	void SigKill(); //take list of signal kill that is sorted acc and at time equal sig kill it should move this process to TRM, check : process should in FCFS => RUN or RDY
 
-
+	
 
 
 
 };
+
