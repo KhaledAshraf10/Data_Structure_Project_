@@ -38,6 +38,7 @@ public:
 	int getnFCFS();
 	int getnSJF();
 	int getnRR();
+	void IncreamentTimeStep();
 
 	void ShortRDY(); // should return Shortest rdy queue => by looping on all proccesor 
 	//void Add_To_RDY();
