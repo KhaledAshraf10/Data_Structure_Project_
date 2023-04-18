@@ -16,6 +16,7 @@ private:
 
 
 	int counter;   // used to monitor the timeslice of the RR algorithm
+	int nop; //no of processors inside the rdy list
 
 	
 
@@ -27,12 +28,14 @@ public:
 	virtual ~ProRoundRobin();
 
 	virtual  int gettimer() const override;
-	virtual bool ScheduleAlgo() override;
+	virtual void ScheduleAlgo() override;
 
 	virtual void inctimer(Process* p) override;
 	virtual void dectimer(Process* p) override;
 
 	virtual void add_process(Process* p) override;
+	bool PrintRDY() override;
+	bool PrintRUN() override;
 
 
 

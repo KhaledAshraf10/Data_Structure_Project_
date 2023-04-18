@@ -127,23 +127,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\CPP\process.cpp" />
+    <ClCompile Include="..\CPP\Process.cpp" />
     <ClCompile Include="..\CPP\processor.cpp" />
     <ClCompile Include="..\CPP\proFCFS.cpp" />
     <ClCompile Include="..\CPP\ProRoundRobin.cpp" />
     <ClCompile Include="..\CPP\Schedular.cpp" />
+    <ClCompile Include="..\CPP\VLinkedList.cpp" />
     <ClCompile Include="Data_Structure_Project.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Headers\LinkedList.h" />
     <ClInclude Include="..\Headers\Node.h" />
-    <ClInclude Include="..\Headers\process.h" />
+    <ClInclude Include="..\Headers\Process.h" />
     <ClInclude Include="..\Headers\processor.h" />
     <ClInclude Include="..\Headers\proFCFS.h" />
     <ClInclude Include="..\Headers\ProRoundRobin.h" />
     <ClInclude Include="..\Headers\ProSJB.h" />
     <ClInclude Include="..\Headers\Schedular.h" />
+    <ClInclude Include="..\Headers\VLinkedList.h" />
     <ClInclude Include="Queue.h" />
+    <ClInclude Include="UI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Input_Files\File_1.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
