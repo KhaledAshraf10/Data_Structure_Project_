@@ -19,6 +19,17 @@ void Schedular::load()
 	nProcess => number of process
 	*/
 	//sss
+	
+	inputfile.close();
+	for (int i = 0; i < nFCFS; i++)
+	{
+		arr_Processor[i] = new ProFCFS(this);
+	}
+	inputfile.close();
+}
+
+void Schedular::Add_To_NEW()
+{
 	for (int i = 0; i < nProcess; i++)
 	{
 		inputfile >> AT >> PID >> CT >> NIO;
@@ -31,13 +42,12 @@ void Schedular::load()
 			arr_Process[i]->Add_To_IOList(IO_R, IO_D);
 		}
 	}
-	inputfile.close();
-	for (int i = 0; i < nFCFS; i++)
-	{
-		arr_Processor[i] = new ProFCFS(this);
-	}
-	inputfile.close();
 }
+
+void Schedular::ShortRDY()
+{
+}
+
 
 Schedular::~Schedular()
 {

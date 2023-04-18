@@ -51,6 +51,7 @@ public:
 	flow/simulation
 	create list of proccessor w process => atl3 short rdy w ab3t liy procc
 	*/
+	void Phase_1_Simulation();
 	~Schedular();
 
 
