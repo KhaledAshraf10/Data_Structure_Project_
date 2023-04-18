@@ -6,7 +6,7 @@ VLinkedList::VLinkedList() {
 }
 
 void VLinkedList::insert(int val1, int val2) {
-    Node* newNode = new Node;
+    Node2* newNode = new Node2;
     newNode->value1 = val1;
     newNode->value2 = val2;
     newNode->next = nullptr;
@@ -15,7 +15,7 @@ void VLinkedList::insert(int val1, int val2) {
         head = newNode;
     }
     else {
-        Node* curr = head;
+        Node2* curr = head;
         while (curr->next != nullptr) {
             curr = curr->next;
         }
@@ -24,7 +24,7 @@ void VLinkedList::insert(int val1, int val2) {
 }
 
 void VLinkedList::printList() {
-    Node* curr = head;
+    Node2* curr = head;
     while (curr != nullptr) {
         std::cout << curr->value1 << " " << curr->value2 << std::endl;
         curr = curr->next;

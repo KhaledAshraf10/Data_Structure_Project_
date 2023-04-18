@@ -1,14 +1,14 @@
 #pragma once
 
-struct Node {
+struct Node2 {
     int value1;
     int value2;
-    Node* next;
+    Node2* next;
 };
 
 class VLinkedList {
 private:
-    Node* head;
+    Node2* head;
 
 public:
     VLinkedList();

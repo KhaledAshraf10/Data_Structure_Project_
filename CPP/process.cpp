@@ -1,20 +1,21 @@
-#include "../Headers/LinkedList.h"
+#include "../Headers/VLinkedList.h"
 #include "../Headers/Process.h"
 
 
 
-Process::Process(int id, int at, int rt, int ct, int tt, int trt, int wt, int twt /*,LinkedList io_rd*/) {
+Process::Process(int id, int at,/* int rt,*/ int ct/*, int tt, int trt, int wt, int twt,LinkedList io_rd*/) {
     ID = id;
     AT = at;
-    RT = rt;
+    //RT = rt;
     CT = ct;
-    TT = tt;
+    /*TT = tt;
     TRT = trt;
     WT = wt;
-    TWT = twt;
+    TWT = twt;*/
 
     //IO_RD = io_rd;
-    remainingtime = ct;
+    //remainingtime = ct;
+
 
 
 }
@@ -42,9 +43,9 @@ int Process::getWaitingTime() const {
 int Process::getTotalWaitingTime() const {
     return TWT;
 }
-//LinkedList Process::getIO_RD() const {
-//    return IO_RD;
-//}
+VLinkedList Process::getIO_RD() const {
+    return IO_RD;
+}
 void Process::setId(int id) {
     ID = id;
 }
@@ -69,9 +70,9 @@ void Process::setWaitingTime(int wt) {
 void Process::setTotalWaitingTime(int twt) {
     TWT = twt;
 }
-//void Process::setIO_RD(LinkedList io_rd) {
-//    IO_RD = io_rd;
-//}
+void Process::setIO_RD(VLinkedList io_rd) {
+    IO_RD = io_rd;
+}
 int Process::calculateTurnaroundDuration() const {
     return TT - AT;
 }
@@ -92,4 +93,8 @@ void Process::decremainingtime() {
 
     remainingtime--;
 
+}
+void Process::Add_To_IOList(int IO_R, int IO_D)
+{
+    IO_RD.insert(IO_R, IO_D);
 };
