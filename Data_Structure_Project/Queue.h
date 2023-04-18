@@ -1,5 +1,6 @@
 #pragma once
 #include "../Headers/Node.h"
+#include<vector>
 /*
 This is a program that implements the queue abstract data type using a linked list.
 The queue is implemented as a chain of linked nodes that has two pointers,
@@ -339,7 +340,7 @@ class PriorityQueue:public Queue<Process*>
 {
 
 public:
-	bool enqueue(Process* newEntry) {
+	bool enqueueS(Process* newEntry) {
 
 
 
@@ -359,10 +360,13 @@ public:
 		//sort everytime enqueue is called
 		 int x = this->count();
 		 if (x < 2) { return true; }
-		 
+		 Process* temp = nullptr;
+		 vector<Process*> myV;
 		Process** AUXARR=new Process* [x];
 		for (int i = 0; i < x; i++) {
-			this->dequeue(AUXARR[i]);
+			this->dequeue(temp);
+			myV.push_back(temp);
+			/*AUXARR[i+1] = temp;*/
 
 		}
 		//buuble sort the array
@@ -371,12 +375,12 @@ public:
 			for (int j = 0; j < x-i-1; j++)
 			{
 
-				if (AUXARR[j + 1]->getremainingtime() > AUXARR[j]->getremainingtime())
+				if (myV[j + 1]->getremainingtime() < myV[j]->getremainingtime())
 				{
-					Process* temp = AUXARR[j];
+					Process* temp = myV[j+1];
 
-					AUXARR[j] = AUXARR[j + 1];
-					AUXARR[j + 1] = temp;
+					myV[j+1] = myV[j ];
+					myV[j ] = temp;
 
 				}
 			}
@@ -386,7 +390,7 @@ public:
 		//enqueue ut back to the original Queue
 		for (int i = 0; i < x; i++) {
 			
-			this->enqueue(AUXARR[i]);
+			this->enqueue(myV[i]);
 		}
 
 		

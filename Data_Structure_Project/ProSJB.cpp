@@ -62,7 +62,7 @@ void ProSJB::ScheduleAlgo()
 	}
 	else if (20 <= x && x <= 30) {
 
-		Plist.enqueue(RUNLIST);
+		Plist.enqueueS(RUNLIST);
 		inctimer(RUNLIST);
 		RUNLIST = nullptr;
 	
@@ -120,7 +120,7 @@ void ProSJB::dectimer(Process* p)
 void ProSJB::add_process(Process* p) {
 
 	inctimer(p);
-	Plist.enqueue(p);
+	Plist.enqueueS(p);
 
 
 

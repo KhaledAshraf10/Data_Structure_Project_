@@ -42,6 +42,12 @@ using namespace std;
 
 
 int main() {
+	
+
+
+
+
+
 	Schedular* S = new Schedular();
 	Process* p1=new Process (20, 20, 20);
 	Process* p2 = new Process(18, 18, 18);
