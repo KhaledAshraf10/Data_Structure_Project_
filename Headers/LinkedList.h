@@ -254,7 +254,7 @@ public:
 	* Parameters:
 	*	- data : The value to be stored in the new node.
 	*/
-	void InsertBeg(const Process*& data)
+	void InsertBeg( Process*& data)
 	{
 		Node<Process*>* R = new Node<Process*>(data);
 		R->setNext(Head);
@@ -283,7 +283,7 @@ public:
 
 	//[1]InsertEnd 
 	//inserts a new node at end if the list
-	void InsertEnd(const Process*& data)
+	void InsertEnd( Process*& data)
 	{
 		Node<Process*>* R = new Node<Process*>(data);
 		Node<Process*>* P = Head;
