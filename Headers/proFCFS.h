@@ -1,6 +1,9 @@
-#include "processor.h"
-#include "LinkedList.h"
 #pragma once
+#include "../Headers/processor.h"
+#include "../Headers/Schedular.h"
+#include "LinkedList.h"
+class processor;
+class Schedular;
 class ProFCFS : public processor
 {
 private:

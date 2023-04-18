@@ -3,6 +3,7 @@
 #include <fstream>
 #include "../Headers/process.h"
 #include "../Headers/processor.h"
+#include "../Headers/proFCFS.h"
 class processor;
 class Schedular
 {

@@ -31,6 +31,11 @@ void Schedular::load()
 		}
 	}
 	inputfile.close();
+	for (int i = 0; i < nFCFS; i++)
+	{
+		arr_Processor[i] = new ProFCFS(this);
+	}
+	inputfile.close();
 }
 
 Schedular::~Schedular()
