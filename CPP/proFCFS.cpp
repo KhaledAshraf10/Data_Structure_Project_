@@ -107,21 +107,21 @@ void ProFCFS::add_process(Process* p)
 }
 
 bool ProFCFS::RandomKiller() {
-	srand(time(0));
-	int x = 1 + (rand() % 999);
-	 
+	//srand(time(0));
+	//int x = 1 + (rand() % 999);
+	// 
 
-     int time= Plist.DeleteNodeR(x);
-	  if (time < 0) {
-		  return false;
-	  }
-	  else {
-		  inctimer(time);
+ //    int time= Plist.DeleteNodeR(x);
+	//  if (time < 0) {
+	//	  return false;
+	//  }
+	//  else {
+	//	  inctimer(time);
 
-	  }
+	//  }
 
 
-
+	return true;
 
 }
 

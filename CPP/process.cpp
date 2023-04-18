@@ -13,7 +13,7 @@ Process::Process(int id, int at, int rt, int ct, int tt, int trt, int wt, int tw
     WT = wt;
     TWT = twt;
 
-    IO_RD = io_rd;
+    //IO_RD = io_rd;
     remainingtime = ct;
 
 
