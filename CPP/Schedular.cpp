@@ -21,13 +21,13 @@ void Schedular::load()
 	for (int i = 0; i < nProcess; i++)
 	{
 		inputfile >> AT >> PID >> CT >> NIO;
-		//arr[i] = new Process(AT, PID, CT);
+		arr[i] = new Process(AT, PID, CT);
 		for (int i = 0; i < NIO; i++)
 		{
 			char garbage;
 			int IO_R, IO_D;
 			inputfile >> garbage >> IO_R >> garbage >> IO_D >> garbage >> garbage;
-			//arr[i]->Add_To_IOList(IO_R, IO_D);
+			arr[i]->Add_To_IOList(IO_R, IO_D);
 		}
 	}
 	inputfile.close();
