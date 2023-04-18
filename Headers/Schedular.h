@@ -2,30 +2,46 @@
 #include "LinkedList.h"
 #include <fstream>
 #include "../Headers/process.h"
+
 //#include "../Headers/processor.h"
 //#include "../Headers/proFCFS.h"
 class ProFCFS;
 class processor;
+
 class Schedular
 {
 private:
-	Process** arr_Process = new Process*;
-	processor** arr_Processor = new processor*;
+	Process** NEW;
+	processor** arr_Processor;
+	LinkedList<Process*> BLK;
+	LinkedList<Process*> TRM;
+
+	//Queue<Process*> BLK;
+
 	//LinkedList<int>* processorList; // int must replace by proessor data type from  sou3dy 
 	//LinkedList<int>* processList;	// int must replace by process data type from  abstar
 	ifstream inputfile;
 	int nFCFS, nSJF, nRR, TS, RTF, MaxW, STL, FP, nProcess/*,process dataType,kill datatype*/;
 	int AT, PID, CT, NIO; // data of process taken form file 
+	int TimeStep, BLKCount;
 	
 public:
 	Schedular();
 	void load();
-	void Add_To_NEW();
+	void Add_To_NEW(); // add process to new list
+	void Add_To_arr_Processor();
+	void Phase_1_Simulation();
+	processor** getProcessorList();
+	LinkedList<Process*> getBLKList();
+	LinkedList<Process*> getTRMList();
+	bool CheckTimeStep(int ArrivalTime);
+
 	void ShortRDY(); // should return Shortest rdy queue => by looping on all proccesor 
-	void Add_To_RDY();
-	void Add_To_BLK();
-	void Add_To_TRM();
-	void Add_To_RUN();
+	//void Add_To_RDY();
+	void Add_To_BLK(Process*);
+	void Add_To_TRM(Process*);
+	
+	//void Add_To_RUN();
 
 	void Check_Every_TimeStep(); //kol time step processor ha3mlha 
 
@@ -51,6 +67,7 @@ public:
 	flow/simulation
 	create list of proccessor w process => atl3 short rdy w ab3t liy procc
 	*/
+	
 	~Schedular();
 
 
