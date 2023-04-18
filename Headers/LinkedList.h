@@ -97,11 +97,11 @@ public:
 		P->setNext(R);
 	}
 
-	void getbeg(const T& data) {
+	void getbeg( T& data) {
 
-		T = Head->getItem();
+		data = Head->getItem();
 
-		DeleteNode(T);
+		DeleteNode(data);
 
 
 

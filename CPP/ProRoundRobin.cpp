@@ -27,7 +27,7 @@ int ProRoundRobin::gettimer() const
 }
 
 
-bool ProRoundRobin::ScheduleAlgo()
+void ProRoundRobin::ScheduleAlgo()
 {
 
 
@@ -38,21 +38,73 @@ bool ProRoundRobin::ScheduleAlgo()
 		dectimer(RUNLIST);
 
 	}
+	
+	else if (RUNLIST->getremainingtime() ==0) {
+
+		//Ps->move to TRM(RUNLIST);
+
+	}
 
 	else
 		if (counter <= timeslice) {
-
+            srand(time(0));
+			int x = 1 + (rand() % 100);
 
 			RUNLIST->decremainingtime();
 
 			counter++;
+
+			
+
+			if (1 <= x <= 15)
+
+			{
+
+				//Ps->move to BLK(RUNLIST)		
+				RUNLIST = nullptr;
+
+			}
+			else if (20 <= x <= 30) {
+
+				Plist.enqueue(RUNLIST);
+				inctimer(RUNLIST);
+				RUNLIST = nullptr;
+				counter == 0;
+
+			}
+			else if (50 <= x <= 60) {
+
+
+				//pS->//move to TRM;
+				RUNLIST = nullptr;
+
+			}
+
+
+
+
+
+
+
+
+
+
+
+
 		}
 
-		else
+		else if(counter>=timeslice)
 
 		{
 			Plist.enqueue(RUNLIST);
 			inctimer(RUNLIST);
+			RUNLIST = nullptr;
+			counter == 0;
+
+		}
+		else if (RUNLIST->getremainingtime() == 0) {
+
+			//Ps->move to TRM(RUNLIST);
 			RUNLIST = nullptr;
 
 		}
