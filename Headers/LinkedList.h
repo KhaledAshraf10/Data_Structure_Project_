@@ -105,14 +105,8 @@ public:
 
 		DeleteNode(data);
 
-
-
-
-
-
-
-
 	}
+
 
 	//[2]Find 
 	//searches for a given value in the list, returns true if found; false otherwise.
