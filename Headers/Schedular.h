@@ -11,6 +11,7 @@ class Schedular
 private:
 	Process** arr_Process = new Process*;
 	processor** arr_Processor = new processor*;
+
 	//LinkedList<int>* processorList; // int must replace by proessor data type from  sou3dy 
 	//LinkedList<int>* processList;	// int must replace by process data type from  abstar
 	ifstream inputfile;
@@ -21,6 +22,7 @@ public:
 	Schedular();
 	void load();
 	void Add_To_NEW();
+	void Add_To_arr_Processor();
 	void ShortRDY(); // should return Shortest rdy queue => by looping on all proccesor 
 	void Add_To_RDY();
 	void Add_To_BLK();
@@ -52,6 +54,7 @@ public:
 	create list of proccessor w process => atl3 short rdy w ab3t liy procc
 	*/
 	void Phase_1_Simulation();
+	processor** getProcessorList();
 	~Schedular();
 
 

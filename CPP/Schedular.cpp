@@ -21,11 +21,8 @@ void Schedular::load()
 	//sss
 	
 	inputfile.close();
-	for (int i = 0; i < nFCFS; i++)
-	{
-		arr_Processor[i] = new ProFCFS(this);
-	}
-	inputfile.close();
+	
+	
 }
 
 void Schedular::Add_To_NEW()
@@ -44,10 +41,32 @@ void Schedular::Add_To_NEW()
 	}
 }
 
-void Schedular::ShortRDY()
+void Schedular::Add_To_arr_Processor()
 {
+	for (int i = 0; i < nFCFS; i++)
+	{
+		arr_Processor[i] = new ProFCFS(this);
+	}
+	//for (int i = 0; i < nSJF; i++)
+	//{
+	//	arr_Processor[i] = new ProFCFS(this);
+	//}
+	for (int i = 0; i < nRR; i++)
+	{
+		arr_Processor[i] = new ProFCFS(this);
+	}
 }
 
+void Schedular::ShortRDY()
+{
+
+}
+
+
+processor** Schedular::getProcessorList()
+{
+	return arr_Processor;
+}
 
 Schedular::~Schedular()
 {
