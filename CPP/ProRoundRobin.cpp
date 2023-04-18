@@ -10,7 +10,8 @@
 //sdfa
 
  ProRoundRobin::ProRoundRobin(Schedular* p) :processor(p)
-{
+ {
+	 nop = 0;
 	 counter=0;
 	timer = 0;
 	RUNLIST = nullptr;
@@ -105,12 +106,12 @@ void ProRoundRobin::ScheduleAlgo()
 			counter == 0;
 
 		}
-		else if (RUNLIST->getremainingtime() == 0) {
+		//else if (RUNLIST->getremainingtime() == 0) {
 
-			//Ps->move to TRM(RUNLIST);
-			RUNLIST = nullptr;
+		//	//Ps->move to TRM(RUNLIST);
+		//	RUNLIST = nullptr;
 
-		}
+		//}
 
 
 
