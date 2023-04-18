@@ -1,5 +1,6 @@
 #include <iostream>
 #include "process.h"
+#include "Schedular.h"
 using namespace std;
 
 
@@ -18,8 +19,8 @@ public:
 		
 	};
 	virtual ~processor() {};
-	virtual bool ScheduleAlgo() = 0;
-	virtual int gettimer() const {};
+	virtual void ScheduleAlgo() = 0;
+	virtual int gettimer() const = 0;
 	virtual void inctimer(Process* p) = 0;
 	virtual void dectimer(Process* p) = 0;
 	virtual void add_process(Process* p) = 0;

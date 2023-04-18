@@ -27,7 +27,7 @@ public:
 	virtual ~ProRoundRobin();
 
 	virtual  int gettimer() const override;
-	virtual bool ScheduleAlgo() override;
+	virtual void ScheduleAlgo() override;
 
 	virtual void inctimer(Process* p) override;
 	virtual void dectimer(Process* p) override;
