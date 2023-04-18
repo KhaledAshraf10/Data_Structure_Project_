@@ -4,6 +4,7 @@
 #include "Schedular.h"
 using namespace std;
 
+
 class Schedular;
 
 class processor
@@ -16,8 +17,7 @@ protected:
 
 public:
 	processor(Schedular* p) {
-		pS = p;
-		
+	
 	};
 	virtual ~processor() {};
 	virtual void ScheduleAlgo() = 0;

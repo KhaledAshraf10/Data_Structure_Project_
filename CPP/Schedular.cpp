@@ -1,4 +1,5 @@
 #include "../Headers/Schedular.h"
+#include "../Headers/proFCFS.h"
 
 Schedular::Schedular()
 {

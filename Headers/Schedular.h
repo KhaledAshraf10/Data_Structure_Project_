@@ -2,8 +2,9 @@
 #include "LinkedList.h"
 #include <fstream>
 #include "../Headers/process.h"
-#include "../Headers/processor.h"
-#include "../Headers/proFCFS.h"
+//#include "../Headers/processor.h"
+//#include "../Headers/proFCFS.h"
+class ProFCFS;
 class processor;
 class Schedular
 {

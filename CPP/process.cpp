@@ -14,7 +14,7 @@ Process::Process(int id, int at,/* int rt,*/ int ct/*, int tt, int trt, int wt, 
     TWT = twt;*/
 
     //IO_RD = io_rd;
-    //remainingtime = ct;
+    remainingtime = ct;
 
 
 

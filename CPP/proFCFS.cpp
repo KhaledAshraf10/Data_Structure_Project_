@@ -1,4 +1,4 @@
-
+#pragma once
 #include "../Headers/proFCFS.h"
 #include "../Headers/schedular.h"
 #include <time.h>
@@ -23,11 +23,13 @@ int ProFCFS::gettimer() const
 
 void ProFCFS::ScheduleAlgo()
 {
-	if (RUNLIST = nullptr) {
+	if (RUNLIST == nullptr) {
 
 		  Plist.getbeg(RUNLIST);
+		  dectimer(RUNLIST);
+
 		  noP--;
-		 
+		  
 
 	}else
 		if (RUNLIST->getremainingtime() != 0) {
@@ -102,23 +104,24 @@ void ProFCFS::add_process(Process* p)
 {
 	Plist.InsertEnd(p);
 	noP++;
+	inctimer(p);
 
 
 }
 
 bool ProFCFS::RandomKiller() {
-	//srand(time(0));
-	//int x = 1 + (rand() % 999);
-	// 
+	srand(time(0));
+	int x = 1 + (rand() % 999);
+	 
 
- //    int time= Plist.DeleteNodeR(x);
-	//  if (time < 0) {
-	//	  return false;
-	//  }
-	//  else {
-	//	  inctimer(time);
-
-	//  }
+     int time= Plist.DeleteNodeR(x);
+	  if (time < 0) {
+		  return false;
+	  }
+	  else {
+		  inctimer(time);
+		  noP--;
+	  }
 
 
 	return true;
@@ -139,14 +142,13 @@ bool ProFCFS::PrintRUN() {
 }
 
 bool ProFCFS::PrintRDY() {
-	if (timer <= 0) {
-		return false;
-	}
-	else {
+
+	 
+		Plist.PrintListid();
+		return true;
 
 
-
-	}
+	
 
 
 

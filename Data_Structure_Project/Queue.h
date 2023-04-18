@@ -189,101 +189,131 @@ Queue<T>::~Queue()
 
 
 
-//template<>
-//class Queue<Process*>
-//{
-//private:
-//	Node<Process*>* backPtr;
-//	Node<Process*>* frontPtr;
-//public:
-//	Queue() {
-//
-//
-//
-//
-//		backPtr = nullptr;
-//		frontPtr = nullptr;
-//
-//
-//	};
-//	bool isEmpty() const {
-//
-//
-//
-//		return (frontPtr == nullptr);
-//
-//
-//
-//	};
-//
-//
-//	bool enqueue(Process* newEntry) {
-//
-//
-//
-//
-//		Node<Process*>* newNodePtr = new Node<Process*>(newEntry);
-//		// Insert the new node
-//		if (isEmpty())	//special case if this is the first node to insert
-//			frontPtr = newNodePtr; // The queue is empty
-//		else
-//			backPtr->setNext(newNodePtr); // The queue was not empty
-//
-//		backPtr = newNodePtr; // New node is the last node now
-//		return true;
-//	};
-//	bool dequeue(Process* frntEntry) {
-//
-//		if (isEmpty())
-//			return false;
-//
-//		Node<Process*>* nodeToDeletePtr = frontPtr;
-//		frntEntry = frontPtr->getItem();
-//		frontPtr = frontPtr->getNext();
-//		// Queue is not empty; remove front
-//		if (nodeToDeletePtr == backPtr)	 // Special case: last node in the queue
-//			backPtr = nullptr;
-//
-//		// Free memory reserved for the dequeued node
-//		delete nodeToDeletePtr;
-//
-//		return true;
-//
-//
-//	};
-//	bool peek(Process* frntEntry)  const {
-//
-//		if (isEmpty())
-//			return false;
-//
-//		frntEntry = frontPtr->getItem();
-//		return true;
-//
-//
-//
-//
-//
-//	};
-//
-//
-//
-//
-//	~Queue() {
-//
-//
-//
-//	//	//Note that the cout statements here is just for learning purpose
-//	////They should be normally removed from the destructor
-//	//	cout << "\nStarting LinkedQueue destructor...";
-//	//	cout << "\nFreeing all nodes in the queue...";
-//
-//		//Free all nodes in the queue
-//		Process* temp;
-//		while (dequeue(temp));
-//
-//		cout << "\n Is LinkedQueue Empty now?? ==> " << boolalpha << isEmpty();
-//		cout << "\nEnding LinkedQueue destructor..." << endl;
-//
-//
-//	};
-//};
+template<>
+class Queue<Process*>
+{
+private:
+	Node<Process*>* backPtr;
+	Node<Process*>* frontPtr;
+public:
+	Queue() {
+
+
+
+
+		backPtr = nullptr;
+		frontPtr = nullptr;
+
+
+	};
+	bool isEmpty() const {
+
+
+
+		return (frontPtr == nullptr);
+
+
+
+	};
+
+
+	bool enqueue(Process* newEntry) {
+
+
+
+
+		Node<Process*>* newNodePtr = new Node<Process*>(newEntry);
+		// Insert the new node
+		if (isEmpty())	//special case if this is the first node to insert
+			frontPtr = newNodePtr; // The queue is empty
+		else
+			backPtr->setNext(newNodePtr); // The queue was not empty
+
+		backPtr = newNodePtr; // New node is the last node now
+		return true;
+	};
+	bool dequeue(Process*& frntEntry) {
+
+		if (isEmpty())
+			return false;
+
+		Node<Process*>* nodeToDeletePtr = frontPtr;
+		frntEntry = frontPtr->getItem();
+		frontPtr = frontPtr->getNext();
+		// Queue is not empty; remove front
+		if (nodeToDeletePtr == backPtr)	 // Special case: last node in the queue
+			backPtr = nullptr;
+
+		// Free memory reserved for the dequeued node
+		delete nodeToDeletePtr;
+
+		return true;
+
+
+	};
+	bool peek(Process* frntEntry)  const {
+
+		if (isEmpty())
+			return false;
+
+		frntEntry = frontPtr->getItem();
+		return true;
+
+
+
+
+
+	};
+
+	void Printlistid() {
+		Node<Process*>* Tfrnt1 = frontPtr;
+		Node<Process*>* Tfrnt2 = frontPtr;
+		Node<Process*>* Tbck = backPtr;
+		if (frontPtr == nullptr) {
+
+			cout << 0 << "  RDY:" << endl;
+			return;
+		}
+
+		int counter = 0;
+		while (Tfrnt1) {
+			Tfrnt1 = Tfrnt1->getNext();
+			counter++;
+
+		}
+		cout << counter << " RDY";
+		while (Tfrnt2) {
+
+			cout << "  " << Tfrnt2->getItem()->getId() << "  ";
+
+			Tfrnt2 = Tfrnt2->getNext();
+
+
+		}
+		cout << "*\n";
+
+
+	}
+
+
+
+
+	~Queue() {
+
+
+
+	//	//Note that the cout statements here is just for learning purpose
+	////They should be normally removed from the destructor
+	//	cout << "\nStarting LinkedQueue destructor...";
+	//	cout << "\nFreeing all nodes in the queue...";
+
+		//Free all nodes in the queue
+		Process* temp = nullptr;;
+		while (dequeue(temp));
+
+		cout << "\n Is LinkedQueue Empty now?? ==> " << boolalpha << isEmpty();
+		cout << "\nEnding LinkedQueue destructor..." << endl;
+
+
+	};
+};

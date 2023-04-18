@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Headers/VLinkedList.h"
+class Processor;
 using namespace std;
 
 class Process {
