@@ -78,17 +78,18 @@ void Schedular::Phase_1_Simulation()
 		int counter = 0;
 		for (int i = 0; i < nProcess; i++)
 		{
-			int ArrivalTime = NEW[i]->getArrivalTime();
-			if (ArrivalTime == TimeStep)
+			int ArrivalTime = NEW[i]->getArrivalTime();// get arrival time of first process that should sort ascendingly
+			while (CheckTimeStep(ArrivalTime) == 0) 
 			{
-				arr_Processor[counter]->add_process(NEW[i]);
-				counter++;
+				TimeStep++; // increment till time step be equal arrival time
 			}
+			arr_Processor[i]->add_process(NEW[i]); // for e.x it will add first process to first processor 
+			
 		}
-		TimeStep++;
+		
 		for (int j = 0;j < nFCFS+nRR/*+nSJF*/; j++)
 		{
-			arr_Processor[j]->ScheduleAlgo();
+			arr_Processor[j]->ScheduleAlgo(); // it excute each processor to run 
 		}
 		
 	}
@@ -113,6 +114,17 @@ LinkedList<Process*> Schedular::getBLKList()
 LinkedList<Process*> Schedular::getTRMList()
 {
 	return TRM;
+}
+
+void Schedular::Check_Every_TimeStep()
+{
+}
+
+bool Schedular::CheckTimeStep(int ArrivalTime)
+{
+	if (ArrivalTime == TimeStep) return true;
+	else return false;
+
 }
 
 Schedular::~Schedular()

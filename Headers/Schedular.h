@@ -30,6 +30,12 @@ public:
 	void load();
 	void Add_To_NEW(); // add process to new list
 	void Add_To_arr_Processor();
+	void Phase_1_Simulation();
+	processor** getProcessorList();
+	LinkedList<Process*> getBLKList();
+	LinkedList<Process*> getTRMList();
+	bool CheckTimeStep(int ArrivalTime);
+
 	void ShortRDY(); // should return Shortest rdy queue => by looping on all proccesor 
 	//void Add_To_RDY();
 	void Add_To_BLK(Process*);
@@ -61,10 +67,7 @@ public:
 	flow/simulation
 	create list of proccessor w process => atl3 short rdy w ab3t liy procc
 	*/
-	void Phase_1_Simulation();
-	processor** getProcessorList();
-	LinkedList<Process*> getBLKList();
-	LinkedList<Process*> getTRMList();
+	
 	~Schedular();
 
 
