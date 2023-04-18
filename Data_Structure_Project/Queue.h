@@ -1,3 +1,4 @@
+#pragma once
 #include "../Headers/Node.h"
 /*
 This is a program that implements the queue abstract data type using a linked list.
@@ -192,7 +193,7 @@ Queue<T>::~Queue()
 template<>
 class Queue<Process*>
 {
-private:
+protected:
 	Node<Process*>* backPtr;
 	Node<Process*>* frontPtr;
 public:
@@ -336,9 +337,7 @@ public:
 
 class PriorityQueue:public Queue<Process*>
 {
-private:
-	Node<Process*>* backPtr;
-	Node<Process*>* frontPtr;
+
 public:
 	bool enqueue(Process* newEntry) {
 
@@ -347,33 +346,37 @@ public:
 
 		Node<Process*>* newNodePtr = new Node<Process*>(newEntry);
 		// Insert the new node
-		if (isEmpty())	//special case if this is the first node to insert
+		if (isEmpty()) //special case if this is the first node to insert
 			frontPtr = newNodePtr; // The queue is empty
+		
+		
 		else
 			backPtr->setNext(newNodePtr); // The queue was not empty
 
 		backPtr = newNodePtr; // New node is the last node now
-		return true;
+	
 
 		//sort everytime enqueue is called
 		 int x = this->count();
+		 if (x < 2) { return true; }
+		 
 		Process** AUXARR=new Process* [x];
-		for (int i = 0; i < this->count(); i++) {
+		for (int i = 0; i < x; i++) {
 			this->dequeue(AUXARR[i]);
 
 		}
 		//buuble sort the array
-		for (int i = 0; i < x-2; i++)
+		for (int i = 0; i < x; i++)
 		{
-			for (int j = 0; j < x - 2 - i; j++)
+			for (int j = 0; j < x-i-1; j++)
 			{
 
-				if (AUXARR[j + 1]->getremainingtime() < AUXARR[j]->getremainingtime())
+				if (AUXARR[j + 1]->getremainingtime() > AUXARR[j]->getremainingtime())
 				{
 					Process* temp = AUXARR[j];
 
 					AUXARR[j] = AUXARR[j + 1];
-					AUXARR[j + 1] = AUXARR[j];
+					AUXARR[j + 1] = temp;
 
 				}
 			}
@@ -386,8 +389,9 @@ public:
 			this->enqueue(AUXARR[i]);
 		}
 
-		delete* AUXARR;
-		delete AUXARR;
+		
+		delete[] AUXARR;
+		return true;
 
 	};
 

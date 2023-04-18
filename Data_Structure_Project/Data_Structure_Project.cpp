@@ -43,11 +43,25 @@ using namespace std;
 
 int main() {
 	Schedular* S = new Schedular();
-	Process* p1=new Process (10, 20, 30);
-	Process* p2 = new Process(20, 20, 40);
-	Process* p3 = new Process(30, 20, 50);
+	Process* p1=new Process (20, 20, 20);
+	Process* p2 = new Process(18, 18, 18);
+	Process* p3 = new Process(30, 30, 30);
 
-	ProFCFS* pro = new ProFCFS(S);
+
+	ProSJB* pro = new ProSJB(S);
+	ProRoundRobin* proR = new ProRoundRobin(S);
+	pro->add_process(p1);
+		pro->add_process(p2);
+		pro->add_process(p3);
+		pro->add_process(p1);
+		pro->add_process(p2);
+		pro->add_process(p3);
+		pro->PrintRDY();
+		//proR->add_process(p1);
+		//proR->add_process(p2);
+		//proR->add_process(p3);
+		//proR->PrintRDY();
+
 
 	//pro->add_process(p1);
 	//pro->PrintRDY();

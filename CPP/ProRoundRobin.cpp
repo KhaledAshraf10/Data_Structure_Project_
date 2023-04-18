@@ -10,7 +10,8 @@
 //sdfa
 
  ProRoundRobin::ProRoundRobin(Schedular* p) :processor(p)
-{
+ {
+	 nop = 0;
 	 counter=0;
 	timer = 0;
 	RUNLIST = nullptr;
