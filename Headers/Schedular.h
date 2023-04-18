@@ -35,6 +35,9 @@ public:
 	LinkedList<Process*> getBLKList();
 	LinkedList<Process*> getTRMList();
 	bool CheckTimeStep(int ArrivalTime);
+	int getnFCFS();
+	int getnSJF();
+	int getnRR();
 
 	void ShortRDY(); // should return Shortest rdy queue => by looping on all proccesor 
 	//void Add_To_RDY();

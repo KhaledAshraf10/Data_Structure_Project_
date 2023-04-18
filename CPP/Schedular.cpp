@@ -125,8 +125,21 @@ bool Schedular::CheckTimeStep(int ArrivalTime)
 	if (ArrivalTime == TimeStep) return true;
 	else return false;
 
+} 
+int Schedular::getnFCFS()
+{
+	return nFCFS;
 }
 
+int Schedular::getnSJF()
+{
+	return nSJF;
+}
+
+int Schedular::getnRR()
+{
+	return nRR;
+}
 Schedular::~Schedular()
 {
 	for (int i = 0; i < 5; i++) {

@@ -134,6 +134,7 @@
     <ClCompile Include="..\CPP\Schedular.cpp" />
     <ClCompile Include="..\CPP\VLinkedList.cpp" />
     <ClCompile Include="Data_Structure_Project.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Headers\LinkedList.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="..\Headers\Schedular.h" />
     <ClInclude Include="..\Headers\VLinkedList.h" />
     <ClInclude Include="Queue.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Input_Files\File_1.txt" />

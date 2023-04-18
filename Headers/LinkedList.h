@@ -298,7 +298,15 @@ public:
 
 	//////////////     Requirements   ///////////////////
 	
-	
+	int size() const {
+		int count = 0;
+		Node<Process*>* curr = Head;
+		while (curr != nullptr) {
+			count++;
+			curr = curr->getNext();
+		}
+		return count;
+	}
 
 	
 	void InsertEnd( Process*& data)
