@@ -140,6 +140,10 @@ int Schedular::getnRR()
 {
 	return nRR;
 }
+void Schedular::IncreamentTimeStep()
+{
+	TimeStep++;
+}
 Schedular::~Schedular()
 {
 	for (int i = 0; i < 5; i++) {
