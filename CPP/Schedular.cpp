@@ -57,7 +57,7 @@ void Schedular::Add_To_arr_Processor()
 	//{
 	//	arr_Processor[i] = new ProFCFS(this);
 	//}
-	for (int i = 0; i < nRR; i++)
+	for (int i = nFCFS+1; i < nRR+ nFCFS; i++)
 	{
 		arr_Processor[i] = new ProRoundRobin(this);
 	}
@@ -142,7 +142,14 @@ int Schedular::getnRR()
 }
 void Schedular::IncreamentTimeStep()
 {
+	srand(time(NULL)); // seed the random number generator with the current time
+	int randomNumber = rand() % 100 + 1; // generate a random number between 1 to 100
 	TimeStep++;
+	if (randomNumber < 10)
+	{
+		//arr_Processor[1]->add_process(//BLK.Dequeu()) //BLK.Dequeu() should return process
+		
+	}
 }
 Schedular::~Schedular()
 {

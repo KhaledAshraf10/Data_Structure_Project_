@@ -1,4 +1,7 @@
 #pragma once
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
 #include "LinkedList.h"
 #include <fstream>
 #include "../Headers/process.h"
