@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\CPP\process.cpp" />
+    <ClCompile Include="..\CPP\Process.cpp" />
     <ClCompile Include="..\CPP\processor.cpp" />
     <ClCompile Include="..\CPP\proFCFS.cpp" />
     <ClCompile Include="..\CPP\ProRoundRobin.cpp" />
@@ -137,7 +137,7 @@
   <ItemGroup>
     <ClInclude Include="..\Headers\LinkedList.h" />
     <ClInclude Include="..\Headers\Node.h" />
-    <ClInclude Include="..\Headers\process.h" />
+    <ClInclude Include="..\Headers\Process.h" />
     <ClInclude Include="..\Headers\processor.h" />
     <ClInclude Include="..\Headers\proFCFS.h" />
     <ClInclude Include="..\Headers\ProRoundRobin.h" />

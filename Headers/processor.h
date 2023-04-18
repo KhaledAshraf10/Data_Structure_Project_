@@ -1,10 +1,11 @@
+#pragma once
 #include <iostream>
 #include "process.h"
 #include "Schedular.h"
 using namespace std;
 
+class Schedular;
 
-#pragma once
 class processor
 {
 protected:
