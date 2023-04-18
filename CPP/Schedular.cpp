@@ -5,6 +5,8 @@
 
 Schedular::Schedular()
 {
+	load();
+	Process** arr_Process = new Process * [nProcess];
 }
 
 void Schedular::load()
@@ -48,6 +50,7 @@ void Schedular::Add_To_arr_Processor()
 	for (int i = 0; i < nFCFS; i++)
 	{
 		arr_Processor[i] = new ProFCFS(this);
+		
 	}
 	//for (int i = 0; i < nSJF; i++)
 	//{
@@ -59,15 +62,61 @@ void Schedular::Add_To_arr_Processor()
 	}
 }
 
-void Schedular::ShortRDY()
+
+
+
+
+
+void Schedular::Phase_1_Simulation()
 {
-
+	if (TimeStep == 0)
+	{
+		load();
+		Add_To_NEW();
+		Add_To_arr_Processor();
+		TimeStep++;
+		
+	}
+	else
+	{
+		int counter = 0;
+		for (int i = 0; i < nProcess; i++)
+		{
+			int ArrivalTime = arr_Process[i]->getArrivalTime();
+			if (ArrivalTime == TimeStep)
+			{
+				arr_Processor[counter]->add_process(arr_Process[i]);
+				counter++;
+			}
+		}
+		TimeStep++;
+		for (int j = 0;j < nFCFS+nRR/*+nSJF*/; j++)
+		{
+			arr_Processor[j]->ScheduleAlgo();
+		}
+		
+	}
 }
-
+void Schedular::Add_To_BLK(Process* n)
+{
+	BLK.InsertEnd(n);
+}
+void Schedular::Add_To_TRM(Process* n)
+{
+	TRM.InsertEnd(n);
+}
 
 processor** Schedular::getProcessorList()
 {
 	return arr_Processor;
+}
+LinkedList<Process*> Schedular::getBLKList()
+{
+	return BLK;
+}
+LinkedList<Process*> Schedular::getTRMList()
+{
+	return TRM;
 }
 
 Schedular::~Schedular()

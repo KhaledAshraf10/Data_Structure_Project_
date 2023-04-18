@@ -69,7 +69,7 @@ int main() {
 	RR->PrintRDY();
 	RR->PrintRUN();
 	RR->ScheduleAlgo();
-	
+	Schedular d;
 
 
 
