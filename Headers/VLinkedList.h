@@ -1,0 +1,17 @@
+#pragma once
+
+struct Node {
+    int value1;
+    int value2;
+    Node* next;
+};
+
+class VLinkedList {
+private:
+    Node* head;
+
+public:
+    VLinkedList();
+    void insert(int val1, int val2);
+    void printList();
+};
