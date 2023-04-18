@@ -3,12 +3,14 @@
 #include <fstream>
 #include "../Headers/process.h"
 #include "../Headers/processor.h"
+class processor;
 class Schedular
 {
 private:
-	Process** arr = new Process*;
-	LinkedList<int>* processorList; // int must replace by proessor data type from  sou3dy 
-	LinkedList<int>* processList;	// int must replace by process data type from  abstar
+	Process** arr_Process = new Process*;
+	processor** arr_Processor = new processor*;
+	//LinkedList<int>* processorList; // int must replace by proessor data type from  sou3dy 
+	//LinkedList<int>* processList;	// int must replace by process data type from  abstar
 	ifstream inputfile;
 	int nFCFS, nSJF, nRR, TS, RTF, MaxW, STL, FP, nProcess/*,process dataType,kill datatype*/;
 	int AT, PID, CT, NIO; // data of process taken form file 

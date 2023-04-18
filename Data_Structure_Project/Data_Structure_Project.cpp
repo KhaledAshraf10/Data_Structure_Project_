@@ -5,26 +5,26 @@ using namespace std;
 int main()
 {
 	fstream inputfile;
-	inputfile.open("inputFile.txt"); // it can use function from UI to enter file name and then i should make check if file name exist or not 
+	inputfile.open("File_1.txt"); // it can use function from UI to enter file name and then i should make check if file name exist or not 
 	if (inputfile)
 	{
 		int nFCFS, nSJF, nRR, TS, RTF, MaxW, STL, FP, nProcess/*,process dataType,kill datatype*/;
 		int AT, PID, CT, NIO; // data of process taken form file 
-		Process** arr = new Process*;
+		//Process** arr = new Process*;
 		inputfile >> nFCFS >> nSJF >> nRR >> TS >> RTF >> MaxW >> STL >> FP >> nProcess;
 		cout << nFCFS << nSJF << nRR << TS << RTF << MaxW << STL << FP << nProcess;
 		for (int i = 0; i < nProcess; i++)
 		{
 			inputfile >> AT >> PID >> CT >> NIO;
 			cout << AT << PID << CT << NIO;
-			arr[i] = new Process(AT, PID, CT);
+			//arr[i] = new Process(AT, PID, CT);
 			for (int i = 0; i < NIO; i++)
 			{
 				char garbage;
 				int IO_R, IO_D;
 				inputfile >> garbage >> IO_R >> garbage >> IO_D >> garbage >> garbage;
 				cout << IO_R << IO_D;
-				arr[i]->Add_To_IOList(IO_R, IO_D);
+				//arr[i]->Add_To_IOList(IO_R, IO_D);
 			}
 		}
 		inputfile.close();
