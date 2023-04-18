@@ -6,12 +6,12 @@ struct Node {
     Node* next;
 };
 
-class LinkedList {
+class VLinkedList {
 private:
     Node* head;
 
 public:
-    LinkedList();
+    VLinkedList();
     void insert(int val1, int val2);
     void printList();
 };

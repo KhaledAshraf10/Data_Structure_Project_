@@ -7,7 +7,6 @@ Schedular::Schedular()
 void Schedular::load()
 {
 	inputfile.open("inputFile.txt"); // it can use function from UI to enter file name and then i should make check if file name exist or not 
-	int nFCFS, nSJF, nRR, TS, RTF, MaxW, STL, FP, nProcess/*,process dataType,kill datatype*/;
 	inputfile >> nFCFS >> nSJF >> nRR >> TS >> RTF >> MaxW >> STL >> FP >> nProcess;
 	/*
 	nFCFS , nSJF, nRR stand for number of processor for each type
@@ -19,9 +18,14 @@ void Schedular::load()
 	nProcess => number of process
 	*/
 	//sss
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < nProcess; i++)
 	{
-		arr[i] = new Process(1,1,1,1,1,1,1,1);
+		inputfile >> AT >> PID >> CT >> NIO;
+		arr[i] = new Process(AT, PID, CT);
+		/*for (int i = 0; i < NIO; i++)
+		{
+			arr[i].;
+		}*/
 	}
 	inputfile.close();
 }

@@ -2,15 +2,20 @@
 #include "LinkedList.h"
 #include <fstream>
 #include "../Headers/process.h"
+#include "../Headers/processor.h"
 class Schedular
 {
 private:
 
-	LinkedList<int>* processorList; // int must replace by proessor data type from  sou3dy 
-	LinkedList<Process*> processList;	// int must replace by process data type from  abstar
+	Process** arr = new Process*;
 
+
+	LinkedList<processor*> processorList; // int must replace by proessor data type from  sou3dy 
+
+	
 	ifstream inputfile;
-	int nFCFS, nSJF, nRR, TS, RTF, MaxW, STL, FP, nProcess/*,process dataType,kill datatype*/;
+	int nFCFS, nSJF, nRR, TS, RTF, MaxW, STL, FP, nProcess/*,process dataType,kill datatype*/; 
+	int AT, PID, CT, NIO; // data of process taken form file 
 
 public:
 	Schedular();
@@ -46,6 +51,7 @@ public:
 	flow/simulation
 	create list of proccessor w process => atl3 short rdy w ab3t liy procc
 	*/
+	~Schedular();
 
 
 
