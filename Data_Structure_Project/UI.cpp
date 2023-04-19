@@ -37,15 +37,18 @@
         cout << "\n---------- RUN Processes ------------ " << endl;
         for (int i = 0; i < nFCFS; i++) {
             cout << "Processor " << i + 1 << " FCFS ";
-            cout << processorList[i]->PrintRUN() << endl;
+            processorList[i]->PrintRUN();
+                 cout << endl;
         }
         for (int i = nFCFS; i < nSJF + nFCFS; i++) {
             cout << "Processor " << i + 1 << " SJF ";
-            cout << processorList[i]->PrintRUN() << endl;
+            processorList[i]->PrintRUN();
+            cout << endl;
         }
         for (int i = nSJF + nFCFS; i < nSJF + nFCFS + nRR; i++) {
             cout << "Processor " << i + 1 << " RR ";
-            cout << processorList[i]->PrintRUN() << endl;
+            processorList[i]->PrintRUN();
+            cout << endl;
         }
         cout << "-------------- TRM Processes -------------" << endl;
 

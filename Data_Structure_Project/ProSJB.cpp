@@ -27,6 +27,7 @@ void ProSJB::ScheduleAlgo()
 
 
 	if (RUNLIST == nullptr) {
+		if (Plist.count() == 0) { return; }
 
 		Plist.dequeue(RUNLIST);
 
@@ -56,7 +57,7 @@ void ProSJB::ScheduleAlgo()
 
 	{
 
-		//Ps->move to BLK(RUNLIST)		
+		pS->Add_To_BLK(RUNLIST);
 		RUNLIST = nullptr;
 
 	}
@@ -71,7 +72,7 @@ void ProSJB::ScheduleAlgo()
 	else if (50 <= x && x <= 60) {
 
 
-		//pS->//move to TRM;
+		pS->Add_To_TRM(RUNLIST);
 		RUNLIST = nullptr;
 
 	}
@@ -89,12 +90,12 @@ void ProSJB::ScheduleAlgo()
 
 
 
-	//else if (RUNLIST->getremainingtime() == 0) {
+	else if (RUNLIST->getremainingtime() == 0) {
 
-	//	//Ps->move to TRM(RUNLIST);
-	//	RUNLIST = nullptr;
+		pS->Add_To_TRM(RUNLIST);
+		RUNLIST = nullptr;
 
-	//}
+	}
 
 
 

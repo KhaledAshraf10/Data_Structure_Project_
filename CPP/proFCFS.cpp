@@ -24,6 +24,7 @@ int ProFCFS::gettimer() const
 void ProFCFS::ScheduleAlgo()
 {
 	if (RUNLIST == nullptr) {
+		if (Plist.size() == 0) { return; }
 
 		  Plist.getbeg(RUNLIST);
 		  dectimer(RUNLIST);
@@ -40,7 +41,8 @@ void ProFCFS::ScheduleAlgo()
 			
 			{
 			  
-                 //Ps->move to BLK(RUNLIST)		
+				pS->Add_To_BLK(RUNLIST);
+
 				RUNLIST = nullptr;
 			
 			}
@@ -56,7 +58,7 @@ void ProFCFS::ScheduleAlgo()
 			else if (50 <= x <= 60) {
 
 
-				//pS->//move to TRM;
+				pS->Add_To_TRM(RUNLIST);
 				RUNLIST = nullptr;
 
 			}
@@ -71,7 +73,7 @@ void ProFCFS::ScheduleAlgo()
 		else 
 			if (RUNLIST->getremainingtime() == 0) {
 
-				//pS->//move to TRM;
+				pS->Add_To_TRM(RUNLIST);
 				RUNLIST = nullptr;
 
 

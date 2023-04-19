@@ -5,8 +5,9 @@
 
 
 Schedular::Schedular()
-{
+{ NEW = new Process * [nProcess];
 	load();
+	
 	arr_Processor = new processor * [nFCFS + nSJF + nRR];
 	
 	
@@ -17,6 +18,7 @@ void Schedular::load()
 {
 	inputfile.open("File_1.txt"); // it can use function from UI to enter file name and then i should make check if file name exist or not 
 	inputfile >> nFCFS >> nSJF >> nRR >> TS >> RTF >> MaxW >> STL >> FP >> nProcess;
+	
 
 	/*
 	nFCFS , nSJF, nRR stand for number of processor for each type
@@ -28,22 +30,19 @@ void Schedular::load()
 	nProcess => number of process
 	*/
 	//sss
-	Process** NEW = new Process * [nProcess];
-	for (int i = 0; i < nProcess-1; i++)
+
+	for (int i = 0; i < nProcess ; i++)
 	{
+		
+		int AT=0, PID=0, CT=0, NIO=0;
 		inputfile >> AT >> PID >> CT >> NIO;
-		Process obj(PID, AT, CT);
-		NEW[i] = &obj;
-		//for (int i = 0; i < NIO; i++)
-		//{
-		//	char garbage;
-		//	int IO_R, IO_D;
-		//	inputfile >> garbage >> IO_R >> garbage >> IO_D >> garbage >> garbage;
-		//	NEW[i]->Add_To_IOList(IO_R, IO_D);
-		//}
+		
+		NEW[i] = new Process(PID, AT, CT);
 	}
+
+
 	
-	inputfile.close();
+	/*inputfile.close();*/
 	
 	
 }
@@ -98,13 +97,13 @@ void Schedular::Phase_1_Simulation()
 		
 	}
 	else
-	{
+	{int ArrivalTime;
 		int counter = 0;
 		for (int i = 0; i < nProcess; i++)
 		{
+			
 
-
-			int ArrivalTime = NEW[i]->getArrivalTime();// get arrival time of first process that should sort ascendingly
+			 ArrivalTime = NEW[i]->getArrivalTime();// get arrival time of first process that should sort ascendingly
 			//while (CheckTimeStep(ArrivalTime) == 0) 
 			//{
 			//	TimeStep++; // increment till time step be equal arrival time
@@ -113,19 +112,19 @@ void Schedular::Phase_1_Simulation()
 			
 		}
 		
-		for (int j = 0;j < nFCFS+nRR/*+nSJF*/; j++)
+		for (int j = 0;j < nFCFS+nRR+nSJF; j++)
 		{
 			arr_Processor[j]->ScheduleAlgo(); // it excute each processor to run 
 
 		}
-		
+		userUI.printProcessIDs(this);
 	}
 }
 void Schedular::Add_To_BLK(Process* n)
 {
 
 	BLK1.enqueue(n);
-
+	//BLK.InsertBeg(n);
 }
 void Schedular::Add_To_TRM(Process* n)
 {

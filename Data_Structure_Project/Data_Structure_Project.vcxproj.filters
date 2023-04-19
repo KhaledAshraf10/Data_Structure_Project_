@@ -1,97 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="..\CPP\Process.cpp" />
+    <ClCompile Include="..\CPP\processor.cpp" />
+    <ClCompile Include="..\CPP\proFCFS.cpp" />
+    <ClCompile Include="..\CPP\ProRoundRobin.cpp" />
+    <ClCompile Include="..\CPP\Schedular.cpp" />
+    <ClCompile Include="..\CPP\VLinkedList.cpp" />
+    <ClCompile Include="Data_Structure_Project.cpp" />
+    <ClCompile Include="UI.cpp" />
+    <ClCompile Include="ProSJB.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Data_Structure_Project.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CPP\process.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CPP\processor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CPP\proFCFS.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CPP\ProRoundRobin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CPP\Schedular.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CPP\VLinkedList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-
-
-    <ClCompile Include="UI.cpp">
-
-    <ClCompile Include="ProSJB.cpp">
-
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="..\Headers\LinkedList.h" />
+    <ClInclude Include="..\Headers\Node.h" />
+    <ClInclude Include="..\Headers\Process.h" />
+    <ClInclude Include="..\Headers\processor.h" />
+    <ClInclude Include="..\Headers\proFCFS.h" />
+    <ClInclude Include="..\Headers\ProRoundRobin.h" />
+    <ClInclude Include="..\Headers\ProSJB.h" />
+    <ClInclude Include="..\Headers\Schedular.h" />
+    <ClInclude Include="..\Headers\VLinkedList.h" />
+    <ClInclude Include="Queue.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Headers\LinkedList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Headers\Node.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Headers\process.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Headers\processor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Headers\proFCFS.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Headers\ProSJB.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Headers\ProRoundRobin.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Headers\Schedular.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Headers\VLinkedList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Queue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-
-
-    <ClInclude Include="UI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-
-    <ClInclude Include="..\Headers\VLinkedList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\Input_Files\File_1.txt" />
-
-
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\Input_Files\File_1.txt" />
+    <Text Include="File_1.txt" />
   </ItemGroup>
 </Project>
