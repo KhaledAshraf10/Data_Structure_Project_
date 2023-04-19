@@ -43,12 +43,10 @@
         trmList.PrintListid();
         cout << "------------- BLK Processes ---------------" << endl;
        // for (int i = 0; i < blkList.size(); i++) {
-            blkList.PrintListid();
+            blkList.Printlistid();
         //}
 
 
 
 
     }
-
-

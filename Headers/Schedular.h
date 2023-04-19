@@ -1,7 +1,12 @@
 #pragma once
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
 #include "LinkedList.h"
 #include <fstream>
 #include "../Headers/process.h"
+#include "../Data_Structure_Project/Queue.h"
+
 
 //#include "../Headers/processor.h"
 //#include "../Headers/proFCFS.h"
@@ -11,6 +16,7 @@ class processor;
 class Schedular
 {
 private:
+	Queue<Process*> BLK1;
 	Process** NEW;
 	processor** arr_Processor;
 	LinkedList<Process*> BLK;
@@ -30,7 +36,17 @@ public:
 	void load();
 	void Add_To_NEW(); // add process to new list
 	void Add_To_arr_Processor();
-	//void Add_To_arr_Processor();
+
+	void Phase_1_Simulation();
+	processor** getProcessorList();
+	Queue<Process*> getBLKList();
+	LinkedList<Process*> getTRMList();
+	bool CheckTimeStep(int ArrivalTime);
+	int getnFCFS();
+	int getnSJF();
+	int getnRR();
+	void IncreamentTimeStep();
+  
 	void ShortRDY(); // should return Shortest rdy queue => by looping on all proccesor 
 	//void Add_To_RDY();
 	void Add_To_BLK(Process*);
@@ -62,14 +78,7 @@ public:
 	flow/simulation
 	create list of proccessor w process => atl3 short rdy w ab3t liy procc
 	*/
-	void Phase_1_Simulation();
-	processor** getProcessorList();
-	LinkedList<Process*> getBLKList();
-	int getnFCFS();
-	int getnSJF();
-	int getnRR();
-	int gettimestep();
-	LinkedList<Process*> getTRMList();
+
 	~Schedular();
 
 

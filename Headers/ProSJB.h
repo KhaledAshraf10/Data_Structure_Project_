@@ -1,25 +1,30 @@
-//#include"processor.h"
-//#pragma once
-//class ProSJB : public processor
-//{
-//private:
-//	MinHeap Plist;
-//
-//public:
-//
-//	ProSJB(scheduler* p);
-//
-//	virtual ~ProSJB();
-//
-//	virtual  int gettimer() const override;
-//	virtual bool ScheduleAlgo() override;
-//
-//	virtual void inctimer(int time) override;
-//	virtual void dectimer(int time) override;
-//
-//	virtual void add_process(Process* p) override;
-//
-//
-//
-//
-//};
+#pragma once
+#include"processor.h"
+#include"../Data_Structure_Project/Queue.h"
+
+class ProSJB : public processor
+{
+private:
+	PriorityQueue  Plist;
+	int nop; //no of processes in RDY LIST
+
+public:
+
+	ProSJB(Schedular* p);
+
+	virtual ~ProSJB();
+
+	virtual  int gettimer() const override;
+	virtual void ScheduleAlgo() override;
+
+	virtual void inctimer(Process* p) override;
+	virtual void dectimer(Process* p) override;
+
+	virtual void add_process(Process* p) override;
+	bool PrintRDY() override;
+	bool PrintRUN() override;
+
+
+
+
+};

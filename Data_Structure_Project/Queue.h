@@ -1,4 +1,6 @@
+#pragma once
 #include "../Headers/Node.h"
+#include<vector>
 /*
 This is a program that implements the queue abstract data type using a linked list.
 The queue is implemented as a chain of linked nodes that has two pointers,
@@ -192,7 +194,9 @@ Queue<T>::~Queue()
 template<>
 class Queue<Process*>
 {
-private:
+
+protected:
+
 	Node<Process*>* backPtr;
 	Node<Process*>* frontPtr;
 public:
@@ -217,7 +221,9 @@ public:
 	};
 
 
-	bool enqueue(Process* newEntry) {
+
+	virtual bool enqueue(Process* newEntry) {
+
 
 
 
@@ -264,6 +270,23 @@ public:
 
 
 	};
+
+
+
+
+	int count() {    //count elements within thr Queue
+
+		Node<Process*>* Tfrnt1 = frontPtr;
+		int counter = 0;
+		while (Tfrnt1) {
+			Tfrnt1 = Tfrnt1->getNext();
+			counter++;
+
+		}
+		return counter;
+
+
+	}
 
 	void Printlistid() {
 		Node<Process*>* Tfrnt1 = frontPtr;
@@ -317,3 +340,72 @@ public:
 
 	};
 };
+
+
+
+
+class PriorityQueue:public Queue<Process*>
+{
+
+public:
+	bool enqueueS(Process* newEntry) {
+
+
+
+
+		Node<Process*>* newNodePtr = new Node<Process*>(newEntry);
+		// Insert the new node
+		if (isEmpty()) //special case if this is the first node to insert
+			frontPtr = newNodePtr; // The queue is empty
+		
+		
+		else
+			backPtr->setNext(newNodePtr); // The queue was not empty
+
+		backPtr = newNodePtr; // New node is the last node now
+	
+
+		//sort everytime enqueue is called
+		 int x = this->count();
+		 if (x < 2) { return true; }
+		 Process* temp = nullptr;
+		 vector<Process*> myV;
+		Process** AUXARR=new Process* [x];
+		for (int i = 0; i < x; i++) {
+			this->dequeue(temp);
+			myV.push_back(temp);
+			/*AUXARR[i+1] = temp;*/
+
+		}
+		//buuble sort the array
+		for (int i = 0; i < x; i++)
+		{
+			for (int j = 0; j < x-i-1; j++)
+			{
+
+				if (myV[j + 1]->getremainingtime() < myV[j]->getremainingtime())
+				{
+					Process* temp = myV[j+1];
+
+					myV[j+1] = myV[j ];
+					myV[j ] = temp;
+
+				}
+			}
+
+		}
+		//now we have a sorted array
+		//enqueue ut back to the original Queue
+		for (int i = 0; i < x; i++) {
+			
+			this->enqueue(myV[i]);
+		}
+
+		
+		delete[] AUXARR;
+		return true;
+
+	};
+
+};
+

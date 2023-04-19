@@ -2,8 +2,11 @@
 #include <fstream>
 #include "../Headers/Process.h"
 #include "../Headers/proFCFS.h"
+
 #include"UI.h"
 #include"../Headers/ProRoundRobin.h"
+#include"../Headers/ProSJB.h"
+
 using namespace std;
 //int main()
 //{
@@ -40,9 +43,72 @@ using namespace std;
 //}
 
 
+   
+
+
 
 int main() {
-   
+	
+
+
+
+
+
+	Schedular* S = new Schedular();
+	Process* p1=new Process (20, 20, 20);
+	Process* p2 = new Process(18, 18, 18);
+	Process* p3 = new Process(30, 30, 30);
+
+
+	ProSJB* pro = new ProSJB(S);
+	ProRoundRobin* proR = new ProRoundRobin(S);
+	pro->add_process(p1);
+		pro->add_process(p2);
+		pro->add_process(p3);
+		pro->add_process(p1);
+		pro->add_process(p2);
+		pro->add_process(p3);
+		pro->PrintRDY();
+		//proR->add_process(p1);
+		//proR->add_process(p2);
+		//proR->add_process(p3);
+		//proR->PrintRDY();
+
+
+	//pro->add_process(p1);
+	//pro->PrintRDY();
+	//pro->ScheduleAlgo();
+	//pro->PrintRDY();
+	//pro->PrintRUN();
+	/*ProSJB * SJ = new ProSJB(S);
+	SJ->add_process(p1);
+	SJ->add_process(p2);
+	SJ->add_process(p3);
+	SJ->PrintRDY();*/
+	//RR->PrintRUN();
+	//RR->ScheduleAlgo();
+	//RR->PrintRDY();
+	//RR->PrintRUN();
+	//RR->ScheduleAlgo();
+	//RR->PrintRDY();
+	//RR->PrintRUN();
+	//RR->ScheduleAlgo();
+	//RR->PrintRDY();
+	//RR->PrintRUN();
+	//RR->ScheduleAlgo();
+	//
+
+
+
+
+	
+
+
+
+
+
+
+
 }
 
 

@@ -6,6 +6,7 @@
 Schedular::Schedular()
 {
 	load();
+
 	Process** NEW = new Process * [nProcess];
 	processor** arr_Processor = new processor * [nFCFS+nSJF+nRR];
 }
@@ -53,11 +54,14 @@ void Schedular::Add_To_arr_Processor()
 		arr_Processor[i] = new ProFCFS(this);
 		
 	}
-	//for (int i = nFCFS; i < nSJF+nFCFS; i++)
+
+
+	//for (int i = 0; i < nSJF; i++)
 	//{
 	//	arr_Processor[i] = new ProFCFS(this);
 	//}
-	for (int i = nSJF+nFCFS; i < nRR+ nSJF + nFCFS; i++)
+	for (int i = 0; i < nRR; i++)
+
 	{
 		arr_Processor[i] = new ProRoundRobin(this);
 	}
@@ -78,24 +82,30 @@ void Schedular::Phase_1_Simulation()
 		int counter = 0;
 		for (int i = 0; i < nProcess; i++)
 		{
-			int ArrivalTime = NEW[i]->getArrivalTime();
-			if (ArrivalTime == TimeStep)
+
+
+			int ArrivalTime = NEW[i]->getArrivalTime();// get arrival time of first process that should sort ascendingly
+			while (CheckTimeStep(ArrivalTime) == 0) 
 			{
-				arr_Processor[counter]->add_process(NEW[i]);
-				counter++;
+				TimeStep++; // increment till time step be equal arrival time
 			}
+			arr_Processor[i]->add_process(NEW[i]); // for e.x it will add first process to first processor 
+			
 		}
-		TimeStep++;
+		
 		for (int j = 0;j < nFCFS+nRR/*+nSJF*/; j++)
 		{
-			arr_Processor[j]->ScheduleAlgo();
+			arr_Processor[j]->ScheduleAlgo(); // it excute each processor to run 
+
 		}
 		
 	}
 }
 void Schedular::Add_To_BLK(Process* n)
 {
-	BLK.InsertEnd(n);
+
+	BLK1.enqueue(n);
+
 }
 void Schedular::Add_To_TRM(Process* n)
 {
@@ -106,10 +116,28 @@ processor** Schedular::getProcessorList()
 {
 	return arr_Processor;
 }
-LinkedList<Process*> Schedular::getBLKList()
+
+
+Queue<Process*> Schedular::getBLKList()
 {
-	return BLK;
+	return BLK1;
 }
+LinkedList<Process*> Schedular::getTRMList()
+{
+	return TRM;
+}
+
+void Schedular::Check_Every_TimeStep()
+{
+}
+
+bool Schedular::CheckTimeStep(int ArrivalTime)
+{
+	if (ArrivalTime == TimeStep) return true;
+	else return false;
+
+} 
+
 int Schedular::getnFCFS()
 {
 	return nFCFS;
@@ -125,14 +153,20 @@ int Schedular::getnRR()
 	return nRR;
 }
 
-int Schedular::gettimestep()
-{
-	return TimeStep;
-}
 
-LinkedList<Process*> Schedular::getTRMList()
+void Schedular::IncreamentTimeStep()
 {
-	return TRM;
+	srand(time(NULL)); // seed the random number generator with the current time
+	int randomNumber = rand() % 100 + 1; // generate a random number between 1 to 100
+	TimeStep++;
+	if (randomNumber < 10)
+	{
+		Process* temp;
+
+		BLK1.dequeue(temp);
+		arr_Processor[1]->add_process(temp); //BLK.Dequeu() should return process
+		
+	}
 }
 
 Schedular::~Schedular()

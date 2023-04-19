@@ -103,18 +103,14 @@ public:
 
 	void getbeg(T& data) {
 
+
 		data = Head->getItem();
 
 		DeleteNode(data);
 
-
-
-
-
-
-
-
 	}
+
+
 
 	//[2]Find 
 	//searches for a given value in the list, returns true if found; false otherwise.
@@ -248,7 +244,10 @@ public:
 		Node<Process*>* p = Head;
 		Node<Process*>* Tp = Head;
 		if (Head == nullptr) {
-			cout << 0  << endl;
+
+
+			cout << 0 << "  RDY:" << endl;
+
 			return;
 
 		}
@@ -299,6 +298,7 @@ public:
 	}
 
 	//////////////     Requirements   ///////////////////
+
 	int size() const {
 		int count = 0;
 		Node<Process*>* curr = Head;
@@ -308,7 +308,7 @@ public:
 		}
 		return count;
 	}
-	
+
 
 	
 	void InsertEnd( Process*& data)
