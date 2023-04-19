@@ -50,11 +50,20 @@ using namespace std;
 int main() {
 	
 
-	Schedular S;
+	Queue<Process*> BLK;
+	Process* p = new Process(10, 10, 20);
+	BLK.enqueue(p);
+	BLK.Printlistid();
+
+
+	//Schedular S;
 
 
 
-	S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//
 	
 
 	

@@ -31,7 +31,7 @@ private:
 	//LinkedList<int>* processList;	// int must replace by process data type from  abstar
 	ifstream inputfile;
 	int nFCFS, nSJF, nRR, TS, RTF, MaxW, STL, FP, nProcess/*,process dataType,kill datatype*/;
-	int AT, PID, CT, NIO; // data of process taken form file 
+	/*int AT, PID, CT, NIO;*/ // data of process taken form file 
 	int TimeStep, BLKCount;
 	
 public:
