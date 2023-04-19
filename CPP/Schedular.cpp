@@ -3,18 +3,21 @@
 #include "../Headers/ProRoundRobin.h"
 
 
+
 Schedular::Schedular()
 {
 	load();
-
+	
 	Process** NEW = new Process * [nProcess];
 	processor** arr_Processor = new processor * [nFCFS+nSJF+nRR];
+	
 }
 
 void Schedular::load()
 {
 	inputfile.open("File_1.txt"); // it can use function from UI to enter file name and then i should make check if file name exist or not 
 	inputfile >> nFCFS >> nSJF >> nRR >> TS >> RTF >> MaxW >> STL >> FP >> nProcess;
+
 	/*
 	nFCFS , nSJF, nRR stand for number of processor for each type
 	TS => time slice for RR
@@ -25,14 +28,6 @@ void Schedular::load()
 	nProcess => number of process
 	*/
 	//sss
-	
-	inputfile.close();
-	
-	
-}
-
-void Schedular::Add_To_NEW()
-{
 	for (int i = 0; i < nProcess; i++)
 	{
 		inputfile >> AT >> PID >> CT >> NIO;
@@ -45,6 +40,26 @@ void Schedular::Add_To_NEW()
 			NEW[i]->Add_To_IOList(IO_R, IO_D);
 		}
 	}
+	
+	inputfile.close();
+	
+	
+}
+
+void Schedular::Add_To_NEW()
+{
+	/*for (int i = 0; i < nProcess; i++)
+	{
+		inputfile >> AT >> PID >> CT >> NIO;
+		NEW[i] = new Process(AT, PID, CT);
+		for (int i = 0; i < NIO; i++)
+		{
+			char garbage;
+			int IO_R, IO_D;
+			inputfile >> garbage >> IO_R >> garbage >> IO_D >> garbage >> garbage;
+			NEW[i]->Add_To_IOList(IO_R, IO_D);
+		}
+	}*/
 }
 
 void Schedular::Add_To_arr_Processor()
@@ -56,11 +71,11 @@ void Schedular::Add_To_arr_Processor()
 	}
 
 
-	//for (int i = 0; i < nSJF; i++)
-	//{
-	//	arr_Processor[i] = new ProFCFS(this);
-	//}
-	for (int i = 0; i < nRR; i++)
+	for (int i = nFCFS; i < nSJF+nFCFS; i++)
+	{
+		arr_Processor[i] = new ProFCFS(this);
+	}
+	for (int i = nSJF + nFCFS; i < nSJF + nFCFS + nRR; i++)
 
 	{
 		arr_Processor[i] = new ProRoundRobin(this);
@@ -71,10 +86,13 @@ void Schedular::Phase_1_Simulation()
 {
 	if (TimeStep == 0)
 	{
-		load();
+		/*load();*/
 		Add_To_NEW();
 		Add_To_arr_Processor();
 		TimeStep++;
+		
+		userUI.printProcessIDs(this);
+		
 		
 	}
 	else
@@ -85,10 +103,10 @@ void Schedular::Phase_1_Simulation()
 
 
 			int ArrivalTime = NEW[i]->getArrivalTime();// get arrival time of first process that should sort ascendingly
-			while (CheckTimeStep(ArrivalTime) == 0) 
-			{
-				TimeStep++; // increment till time step be equal arrival time
-			}
+			//while (CheckTimeStep(ArrivalTime) == 0) 
+			//{
+			//	TimeStep++; // increment till time step be equal arrival time
+			//}
 			arr_Processor[i]->add_process(NEW[i]); // for e.x it will add first process to first processor 
 			
 		}

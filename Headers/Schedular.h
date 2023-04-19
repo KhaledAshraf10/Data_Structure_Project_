@@ -6,6 +6,8 @@
 #include <fstream>
 #include "../Headers/process.h"
 #include "../Data_Structure_Project/Queue.h"
+#include"../Data_Structure_Project/UI.h"
+class UI;
 
 
 //#include "../Headers/processor.h"
@@ -21,6 +23,7 @@ private:
 	processor** arr_Processor;
 	LinkedList<Process*> BLK;
 	LinkedList<Process*> TRM;
+	UI userUI;
 
 	//Queue<Process*> BLK;
 

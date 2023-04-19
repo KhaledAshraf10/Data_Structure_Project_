@@ -50,25 +50,32 @@ using namespace std;
 int main() {
 	
 
+	Schedular S;
 
 
 
+	S.Phase_1_Simulation();
+	
 
-	Schedular* S = new Schedular();
-	Process* p1=new Process (20, 20, 20);
-	Process* p2 = new Process(18, 18, 18);
-	Process* p3 = new Process(30, 30, 30);
+	
 
 
-	ProSJB* pro = new ProSJB(S);
-	ProRoundRobin* proR = new ProRoundRobin(S);
-	pro->add_process(p1);
-		pro->add_process(p2);
-		pro->add_process(p3);
-		pro->add_process(p1);
-		pro->add_process(p2);
-		pro->add_process(p3);
-		pro->PrintRDY();
+
+	//Schedular* S = new Schedular();
+	//Process* p1=new Process (20, 20, 20);
+	//Process* p2 = new Process(18, 18, 18);
+	//Process* p3 = new Process(30, 30, 30);
+
+
+	//ProSJB* pro = new ProSJB(S);
+	//ProRoundRobin* proR = new ProRoundRobin(S);
+	//pro->add_process(p1);
+	//	pro->add_process(p2);
+	//	pro->add_process(p3);
+	//	pro->add_process(p1);
+	//	pro->add_process(p2);
+	//	pro->add_process(p3);
+	//	pro->PrintRDY();
 		//proR->add_process(p1);
 		//proR->add_process(p2);
 		//proR->add_process(p3);
