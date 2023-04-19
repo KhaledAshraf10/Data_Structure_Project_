@@ -86,35 +86,13 @@ void ProRoundRobin::ScheduleAlgo()
 				RUNLIST = nullptr;
 
 			}
-
-
-
-
-
-
-
-
-
-
-	//}
-	srand(time(0));
-	int x = 1 + (rand() % 100);
-	
-		//if (counter <= timeslice) {
-  //          srand(time(0));
-		//	int x = 1 + (rand() % 100);
-
-
-		else if(counter>=timeslice)
-
-		{
-			Plist.enqueue(RUNLIST);
-			inctimer(RUNLIST);
-			RUNLIST = nullptr;
-			counter == 0;
-
-
-		}
+			else if(counter>=timeslice)
+			{
+				Plist.enqueue(RUNLIST);
+				inctimer(RUNLIST);
+				RUNLIST = nullptr;
+				counter == 0;
+			}
 		//else if (RUNLIST->getremainingtime() == 0) {
 
 		//	//Ps->move to TRM(RUNLIST);

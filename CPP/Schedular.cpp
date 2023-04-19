@@ -153,6 +153,11 @@ int Schedular::getnRR()
 	return nRR;
 }
 
+int Schedular::getTimeStep()
+{
+	return TimeStep;
+}
+
 
 void Schedular::IncreamentTimeStep()
 {

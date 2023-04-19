@@ -8,12 +8,12 @@
 
   void UI:: printProcessIDs(Schedular* schedular) {
         LinkedList<Process*> trmList = schedular->getTRMList();
-        LinkedList<Process*> blkList = schedular->getBLKList();
+        Queue<Process*> blkList = schedular->getBLKList();
         processor** processorList = schedular->getProcessorList();
         int nFCFS = schedular->getnFCFS();
         int nSJF = schedular->getnSJF();
         int nRR = schedular->getnRR();
-        cout << "CurrentTimeStep" << schedular->gettimestep() << endl;
+        cout << "CurrentTimeStep" << schedular->getTimeStep() << endl;
         cout << "---------- RDY Processes ------------ " << endl;
         for (int i = 0; i < nFCFS ; i++){
             cout << "Processor " << i + 1 << "FCFS" << processorList[i]->PrintRDY();
