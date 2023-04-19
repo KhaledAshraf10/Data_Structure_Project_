@@ -131,9 +131,9 @@ void ProRoundRobin::add_process(Process* p) {
 }
 
 
-bool ProRoundRobin::PrintRDY() {
+void ProRoundRobin::PrintRDY() {
 	Plist.Printlistid();
-	return true;
+	
 
 
 }

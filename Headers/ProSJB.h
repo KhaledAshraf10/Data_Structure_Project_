@@ -21,7 +21,7 @@ public:
 	virtual void dectimer(Process* p) override;
 
 	virtual void add_process(Process* p) override;
-	bool PrintRDY() override;
+	void PrintRDY() override;
 	bool PrintRUN() override;
 
 

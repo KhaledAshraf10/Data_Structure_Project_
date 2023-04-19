@@ -25,7 +25,7 @@ public:
 	virtual void inctimer(Process* p) = 0;
 	virtual void dectimer(Process* p) = 0;
 	virtual void add_process(Process* p) = 0;
-	virtual bool PrintRDY() = 0;
+	virtual void PrintRDY() = 0;
 	virtual bool PrintRUN() = 0;
 
 

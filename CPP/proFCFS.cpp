@@ -141,11 +141,11 @@ bool ProFCFS::PrintRUN() {
 
 }
 
-bool ProFCFS::PrintRDY() {
+void ProFCFS::PrintRDY() {
 
 	 
 		Plist.PrintListid();
-		return true;
+		 
 
 
 	

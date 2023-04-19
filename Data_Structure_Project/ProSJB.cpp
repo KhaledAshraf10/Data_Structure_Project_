@@ -127,9 +127,9 @@ void ProSJB::add_process(Process* p) {
 }
 
 
-bool ProSJB::PrintRDY() {
+void ProSJB::PrintRDY() {
 	Plist.Printlistid();
-	return true;
+	
 
 
 }

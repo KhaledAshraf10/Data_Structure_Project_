@@ -13,38 +13,42 @@
         int nFCFS = schedular->getnFCFS();
         int nSJF = schedular->getnSJF();
         int nRR = schedular->getnRR();
-        cout << "CurrentTimeStep" << schedular->getTimeStep() << endl;
+        cout << "CurrentTimeStep : " << schedular->getTimeStep() << endl;
         cout << "---------- RDY Processes ------------ " << endl;
         for (int i = 0; i < nFCFS ; i++){
-            Process* dd=new Process(1, 3, 4);
+           /* Process* dd=new Process(1, 3, 4);
             ProSJB* pro = new ProSJB(schedular);
-            pro->add_process(dd);
+            pro->add_process(dd);*/
             
-            cout << "Processor " << i + 1 << " FCFS" << pro->PrintRDY();
-            //cout << "Processor " << i + 1 << "FCFS" << processorList[i]->PrintRDY();
+            //cout << "Processor " << i + 1 << " FCFS" << pro->PrintRDY();
+            cout << "Processor " << i + 1 << " FCFS ";
+            processorList[i]->PrintRDY();
 }
         for (int i = nFCFS; i < nSJF+nFCFS; i++) {
-            cout << "Processor " << i + 1 << " SJF" << processorList[i]->PrintRDY();
+            cout << "Processor " << i + 1 << " SJF " ;
+            processorList[i]->PrintRDY();
         }
         for (int i = nSJF + nFCFS; i < nSJF + nFCFS+ nRR; i++) {
-            cout << "Processor " << i + 1 << " SJF" << processorList[i]->PrintRDY();
+            cout << "Processor " << i + 1 << " RR ";
+            processorList[i]->PrintRDY();
         }
 
 
-        cout << "---------- RUN Processes ------------ " << endl;
+        cout << "\n---------- RUN Processes ------------ " << endl;
         for (int i = 0; i < nFCFS; i++) {
-            cout << "Processor " << i + 1 << "FCFS" << processorList[i]->PrintRUN() << endl;
+            cout << "Processor " << i + 1 << " FCFS ";
+            cout << processorList[i]->PrintRUN() << endl;
         }
         for (int i = nFCFS; i < nSJF + nFCFS; i++) {
-            cout << "Processor " << i + 1 << "SJF" << processorList[i]->PrintRUN() << endl;
+            cout << "Processor " << i + 1 << " SJF ";
+            cout << processorList[i]->PrintRUN() << endl;
         }
         for (int i = nSJF + nFCFS; i < nSJF + nFCFS + nRR; i++) {
-            cout << "Processor " << i + 1 << "SJF" << processorList[i]->PrintRUN() << endl;
+            cout << "Processor " << i + 1 << " RR ";
+            cout << processorList[i]->PrintRUN() << endl;
         }
         cout << "-------------- TRM Processes -------------" << endl;
-        /*for (int i = 0; i < trmList.size(); i++) {
-            trmList.PrintListid();
-        }*/
+
         trmList.PrintListid();
         cout << "------------- BLK Processes ---------------" << endl;
        // for (int i = 0; i < blkList.size(); i++) {

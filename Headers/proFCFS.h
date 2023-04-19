@@ -29,7 +29,7 @@ public:
 	 void dectimer(Process* p) override;
 	 void add_process(Process* p) override;
 	 bool RandomKiller() ;
-	 bool PrintRDY() override;
+	 void PrintRDY() override;
 	 bool PrintRUN() override;
 
 	// ana esmy eyad

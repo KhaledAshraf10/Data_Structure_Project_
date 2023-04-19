@@ -257,7 +257,7 @@ public:
 			Tp=Tp->getNext();
 			counter++;
 		}
-		cout << counter << "  RDY:";
+		//cout << counter << "  RDY:";
 		while (p)
 		{
 
