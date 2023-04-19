@@ -37,6 +37,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
 
+
     <ClCompile Include="UI.cpp">
 
     <ClCompile Include="ProSJB.cpp">
@@ -76,6 +77,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
 
+
     <ClInclude Include="UI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -86,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Input_Files\File_1.txt" />
+
 
   </ItemGroup>
   <ItemGroup>

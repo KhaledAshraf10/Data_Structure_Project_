@@ -27,6 +27,7 @@ public:
 	{
 		DeleteAll();
 	}
+
 	
 	/*
 	* Function: PrintList.
@@ -64,6 +65,7 @@ public:
 	* Function: DeleteAll.
 	* Deletes all nodes of the list.
 	*/
+	
 	void DeleteAll()
 	{
 		Node<T> *P = Head;
@@ -101,11 +103,13 @@ public:
 
 	void getbeg(T& data) {
 
+
 		data = Head->getItem();
 
 		DeleteNode(data);
 
 	}
+
 
 
 	//[2]Find 
@@ -240,7 +244,10 @@ public:
 		Node<Process*>* p = Head;
 		Node<Process*>* Tp = Head;
 		if (Head == nullptr) {
+
+
 			cout << 0 << "  RDY:" << endl;
+
 			return;
 
 		}
@@ -291,7 +298,7 @@ public:
 	}
 
 	//////////////     Requirements   ///////////////////
-	
+
 	int size() const {
 		int count = 0;
 		Node<Process*>* curr = Head;
@@ -301,6 +308,7 @@ public:
 		}
 		return count;
 	}
+
 
 	
 	void InsertEnd( Process*& data)

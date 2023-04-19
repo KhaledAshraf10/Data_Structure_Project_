@@ -10,7 +10,8 @@
 //sdfa
 
  ProRoundRobin::ProRoundRobin(Schedular* p) :processor(p)
- {
+
+{
 	 nop = 0;
 	 counter=0;
 	timer = 0;
@@ -43,6 +44,8 @@ void ProRoundRobin::ScheduleAlgo()
 	}
 	
 	//else if (RUNLIST->getremainingtime() ==0) {
+
+
 
 	//	//Ps->move to TRM(RUNLIST);
 
@@ -93,9 +96,14 @@ void ProRoundRobin::ScheduleAlgo()
 
 
 
+	//}
+	srand(time(0));
+	int x = 1 + (rand() % 100);
+	
+		//if (counter <= timeslice) {
+  //          srand(time(0));
+		//	int x = 1 + (rand() % 100);
 
-
-		
 
 		else if(counter>=timeslice)
 
@@ -104,6 +112,7 @@ void ProRoundRobin::ScheduleAlgo()
 			inctimer(RUNLIST);
 			RUNLIST = nullptr;
 			counter == 0;
+
 
 		}
 		//else if (RUNLIST->getremainingtime() == 0) {

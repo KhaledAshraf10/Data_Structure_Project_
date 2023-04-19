@@ -194,7 +194,9 @@ Queue<T>::~Queue()
 template<>
 class Queue<Process*>
 {
+
 protected:
+
 	Node<Process*>* backPtr;
 	Node<Process*>* frontPtr;
 public:
@@ -219,7 +221,9 @@ public:
 	};
 
 
+
 	virtual bool enqueue(Process* newEntry) {
+
 
 
 
@@ -268,6 +272,8 @@ public:
 	};
 
 
+
+
 	int count() {    //count elements within thr Queue
 
 		Node<Process*>* Tfrnt1 = frontPtr;
@@ -281,6 +287,7 @@ public:
 
 
 	}
+
 	void Printlistid() {
 		Node<Process*>* Tfrnt1 = frontPtr;
 		Node<Process*>* Tfrnt2 = frontPtr;
@@ -333,6 +340,7 @@ public:
 
 	};
 };
+
 
 
 
@@ -400,3 +408,4 @@ public:
 	};
 
 };
+

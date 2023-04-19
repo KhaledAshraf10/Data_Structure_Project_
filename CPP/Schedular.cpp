@@ -6,7 +6,7 @@
 Schedular::Schedular()
 {
 	load();
-	
+
 	Process** NEW = new Process * [nProcess];
 	processor** arr_Processor = new processor * [nFCFS+nSJF+nRR];
 }
@@ -54,11 +54,14 @@ void Schedular::Add_To_arr_Processor()
 		arr_Processor[i] = new ProFCFS(this);
 		
 	}
+
+
 	//for (int i = 0; i < nSJF; i++)
 	//{
 	//	arr_Processor[i] = new ProFCFS(this);
 	//}
 	for (int i = 0; i < nRR; i++)
+
 	{
 		arr_Processor[i] = new ProRoundRobin(this);
 	}
@@ -79,6 +82,8 @@ void Schedular::Phase_1_Simulation()
 		int counter = 0;
 		for (int i = 0; i < nProcess; i++)
 		{
+
+
 			int ArrivalTime = NEW[i]->getArrivalTime();// get arrival time of first process that should sort ascendingly
 			while (CheckTimeStep(ArrivalTime) == 0) 
 			{
@@ -91,13 +96,16 @@ void Schedular::Phase_1_Simulation()
 		for (int j = 0;j < nFCFS+nRR/*+nSJF*/; j++)
 		{
 			arr_Processor[j]->ScheduleAlgo(); // it excute each processor to run 
+
 		}
 		
 	}
 }
 void Schedular::Add_To_BLK(Process* n)
 {
+
 	BLK1.enqueue(n);
+
 }
 void Schedular::Add_To_TRM(Process* n)
 {
@@ -108,6 +116,8 @@ processor** Schedular::getProcessorList()
 {
 	return arr_Processor;
 }
+
+
 Queue<Process*> Schedular::getBLKList()
 {
 	return BLK1;
@@ -127,6 +137,7 @@ bool Schedular::CheckTimeStep(int ArrivalTime)
 	else return false;
 
 } 
+
 int Schedular::getnFCFS()
 {
 	return nFCFS;
@@ -141,6 +152,8 @@ int Schedular::getnRR()
 {
 	return nRR;
 }
+
+
 void Schedular::IncreamentTimeStep()
 {
 	srand(time(NULL)); // seed the random number generator with the current time
@@ -155,6 +168,7 @@ void Schedular::IncreamentTimeStep()
 		
 	}
 }
+
 Schedular::~Schedular()
 {
 	for (int i = 0; i < 5; i++) {

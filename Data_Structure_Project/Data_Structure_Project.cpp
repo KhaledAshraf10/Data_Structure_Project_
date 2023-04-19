@@ -2,8 +2,11 @@
 #include <fstream>
 #include "../Headers/Process.h"
 #include "../Headers/proFCFS.h"
+
+#include"UI.h"
 #include"../Headers/ProRoundRobin.h"
 #include"../Headers/ProSJB.h"
+
 using namespace std;
 //int main()
 //{
@@ -38,6 +41,9 @@ using namespace std;
 //	}
 //	
 //}
+
+
+   
 
 
 
@@ -102,7 +108,20 @@ int main() {
 
 
 
+
 }
+
+
+
+
+
+	
+
+
+
+
+
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
