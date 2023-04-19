@@ -7,9 +7,9 @@
 Schedular::Schedular()
 {
 	load();
+	arr_Processor = new processor * [nFCFS + nSJF + nRR];
 	
-	Process** NEW = new Process * [nProcess];
-	processor** arr_Processor = new processor * [nFCFS+nSJF+nRR];
+	
 	
 }
 
@@ -28,17 +28,19 @@ void Schedular::load()
 	nProcess => number of process
 	*/
 	//sss
-	for (int i = 0; i < nProcess; i++)
+	Process** NEW = new Process * [nProcess];
+	for (int i = 0; i < nProcess-1; i++)
 	{
 		inputfile >> AT >> PID >> CT >> NIO;
-		NEW[i] = new Process(AT, PID, CT);
-		for (int i = 0; i < NIO; i++)
-		{
-			char garbage;
-			int IO_R, IO_D;
-			inputfile >> garbage >> IO_R >> garbage >> IO_D >> garbage >> garbage;
-			NEW[i]->Add_To_IOList(IO_R, IO_D);
-		}
+		Process obj(PID, AT, CT);
+		NEW[i] = &obj;
+		//for (int i = 0; i < NIO; i++)
+		//{
+		//	char garbage;
+		//	int IO_R, IO_D;
+		//	inputfile >> garbage >> IO_R >> garbage >> IO_D >> garbage >> garbage;
+		//	NEW[i]->Add_To_IOList(IO_R, IO_D);
+		//}
 	}
 	
 	inputfile.close();
@@ -64,12 +66,12 @@ void Schedular::Add_To_NEW()
 
 void Schedular::Add_To_arr_Processor()
 {
+	
 	for (int i = 0; i < nFCFS; i++)
 	{
 		arr_Processor[i] = new ProFCFS(this);
 		
 	}
-
 
 	for (int i = nFCFS; i < nSJF+nFCFS; i++)
 	{
@@ -194,10 +196,10 @@ void Schedular::IncreamentTimeStep()
 
 Schedular::~Schedular()
 {
-	for (int i = 0; i < 5; i++) {
-		delete NEW[i]; // Deallocate the memory for each Process object
-		delete arr_Processor[i];
-	}
-	delete[] NEW; // Deallocate the memory for the array of pointers
-	delete[]arr_Processor;
+	//for (int i = 0; i < 5; i++) {
+	//	delete NEW[i]; // Deallocate the memory for each Process object
+	//	delete arr_Processor[i];
+	//}
+	//delete[] NEW; // Deallocate the memory for the array of pointers
+	//delete[]arr_Processor;
 }

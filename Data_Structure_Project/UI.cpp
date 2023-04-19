@@ -3,7 +3,7 @@
 #include"../Headers/processor.h"
 #include "../Headers/Schedular.h"
 #include"UI.h"
-
+#include "../Headers/ProSJB.h"
 
 
   void UI:: printProcessIDs(Schedular* schedular) {
@@ -16,13 +16,18 @@
         cout << "CurrentTimeStep" << schedular->getTimeStep() << endl;
         cout << "---------- RDY Processes ------------ " << endl;
         for (int i = 0; i < nFCFS ; i++){
-            cout << "Processor " << i + 1 << "FCFS" << processorList[i]->PrintRDY();
+            Process* dd=new Process(1, 3, 4);
+            ProSJB* pro = new ProSJB(schedular);
+            pro->add_process(dd);
+            
+            cout << "Processor " << i + 1 << " FCFS" << pro->PrintRDY();
+            //cout << "Processor " << i + 1 << "FCFS" << processorList[i]->PrintRDY();
 }
         for (int i = nFCFS; i < nSJF+nFCFS; i++) {
-            cout << "Processor " << i + 1 << "SJF" << processorList[i]->PrintRDY();
+            cout << "Processor " << i + 1 << " SJF" << processorList[i]->PrintRDY();
         }
         for (int i = nSJF + nFCFS; i < nSJF + nFCFS+ nRR; i++) {
-            cout << "Processor " << i + 1 << "SJF" << processorList[i]->PrintRDY();
+            cout << "Processor " << i + 1 << " SJF" << processorList[i]->PrintRDY();
         }
 
 
