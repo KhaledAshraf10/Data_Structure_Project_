@@ -50,19 +50,81 @@ using namespace std;
 int main() {
 	
 
-	Queue<Process*> BLK;
+	/*Queue<Process*> BLK;
 	Process* p = new Process(10, 10, 20);
 	BLK.enqueue(p);
-	BLK.Printlistid();
+	BLK.Printlistid();*/
 
 
-	//Schedular S;
+
+	//Process* p = new Process(10, 10, 10);
+	//LinkedList < Process*> list;
+	//list.PrintListid();
+	//list.InsertBeg(p);
+	//list.PrintListid();
+	//list.PrintListid();
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+	Schedular S;
+
+	string T;
+	T = "s";
+	
+
+	while (cin >> T) {
+		S.Phase_1_Simulation();
+	}
 
 	//S.Phase_1_Simulation();
 	//S.Phase_1_Simulation();
 	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+	//S.Phase_1_Simulation();
+
+
 	//
 	
 

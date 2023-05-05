@@ -35,9 +35,10 @@ void ProFCFS::ScheduleAlgo()
 	}else
 		if (RUNLIST->getremainingtime() != 0) {
 			srand(time(0));
-			int x = 1 + (rand() % 100);
+			/*int x = 1 + (rand() % 100);*/
+			int x = 15;
 
-			if(1<=x<=15)
+			if(1<=x && x<=15)
 			
 			{
 			  
@@ -46,7 +47,7 @@ void ProFCFS::ScheduleAlgo()
 				RUNLIST = nullptr;
 			
 			}
-			else if (20 <= x <= 30) {
+			else if (20 <= x && x <= 30) {
 
 				Plist.InsertEnd(RUNLIST);
 				inctimer(RUNLIST);
@@ -55,7 +56,7 @@ void ProFCFS::ScheduleAlgo()
 				
 				
 			}
-			else if (50 <= x <= 60) {
+			else if (50 <= x && x <= 60) {
 
 
 				pS->Add_To_TRM(RUNLIST);

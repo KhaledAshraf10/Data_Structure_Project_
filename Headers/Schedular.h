@@ -23,7 +23,9 @@ private:
 	processor** arr_Processor;
 	LinkedList<Process*> BLK;
 	LinkedList<Process*> TRM;
-	UI userUI;
+	UI userUI = { this };
+	Schedular* me;
+	
 
 	//Queue<Process*> BLK;
 

@@ -6,14 +6,17 @@
 #include "../Headers/ProSJB.h"
 
 
-  void UI:: printProcessIDs(Schedular* schedular) {
-        LinkedList<Process*> trmList = schedular->getTRMList();
-        Queue<Process*> blkList = schedular->getBLKList();
-        processor** processorList = schedular->getProcessorList();
-        int nFCFS = schedular->getnFCFS();
-        int nSJF = schedular->getnSJF();
-        int nRR = schedular->getnRR();
-        cout << "CurrentTimeStep : " << schedular->getTimeStep() << endl;
+  void UI:: printProcessIDs(/*Schedular* schedular*/) {
+        LinkedList<Process*> trmList = PS->getTRMList();
+        Queue<Process*> blkList = PS->getBLKList();
+        processor** processorList = PS->getProcessorList();
+        int nFCFS = PS->getnFCFS();
+        int nSJF = PS->getnSJF();
+        int nRR = PS->getnRR();
+
+
+        cout << "the current Timestep  " << timestep;
+        timestep++;
         cout << "---------- RDY Processes ------------ " << endl;
         for (int i = 0; i < nFCFS ; i++){
            /* Process* dd=new Process(1, 3, 4);
