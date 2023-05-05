@@ -31,6 +31,22 @@ public:
 	 bool RandomKiller() ;
 	 void PrintRDY() override;
 	 bool PrintRUN() override;
+	 Process* getprocess(Schedular* S) {
+		 if (RUNLIST != nullptr) {
+			 return RUNLIST;
+
+
+
+		 }
+		 else {
+			 Process* p3;
+			 p3 = new Process(1, 2, 3);
+			 return p3;
+		 }
+
+
+
+	 }
 
 	// ana esmy eyad
 

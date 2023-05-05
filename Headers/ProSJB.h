@@ -23,6 +23,17 @@ public:
 	virtual void add_process(Process* p) override;
 	void PrintRDY() override;
 	bool PrintRUN() override;
+	Process* getprocess(Schedular* S) {
+		if (RUNLIST != nullptr) {
+			return RUNLIST;
+
+
+
+		}
+
+
+
+	}
 
 
 

@@ -253,11 +253,12 @@ public:
 		}
 		
 		int counter = 0;
-		while (Tp) {
+		while (Tp->getNext()) {
 			Tp=Tp->getNext();
-			counter++;
+			counter+=2;
 		}
 		//cout << counter << "  RDY:";
+		 
 		while (p)
 		{
 

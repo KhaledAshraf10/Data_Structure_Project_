@@ -6,9 +6,12 @@
 
 Schedular::Schedular()
 { NEW = new Process * [nProcess];
+
 	load();
-	
+	TimeStep = 0;
 	arr_Processor = new processor * [nFCFS + nSJF + nRR];
+
+	me = this;
 	
 	
 	
@@ -85,6 +88,7 @@ void Schedular::Add_To_arr_Processor()
 
 void Schedular::Phase_1_Simulation()
 {
+	
 	if (TimeStep == 0)
 	{
 		/*load();*/
@@ -92,7 +96,8 @@ void Schedular::Phase_1_Simulation()
 		Add_To_arr_Processor();
 		TimeStep++;
 		
-		userUI.printProcessIDs(this);
+		/*userUI.printProcessIDs(this);*/
+		userUI.printProcessIDs();
 		
 		
 	}
@@ -108,23 +113,30 @@ void Schedular::Phase_1_Simulation()
 			//{
 			//	TimeStep++; // increment till time step be equal arrival time
 			//}
-			arr_Processor[i]->add_process(NEW[i]); // for e.x it will add first process to first processor 
-			
+			 if (ArrivalTime == TimeStep) {          //should be changed to allow all precsses to get scheduled
+				 arr_Processor[(ArrivalTime-1)%11]->add_process(NEW[i]);                                                        //!! processes should be deleted from new 
+				 /*arr_Processor[(ArrivalTime-1)%11]->setrecent();*/
+				 counter++;// for e.x it will add first process to first processor 
+			 }
 		}
 		
 		for (int j = 0;j < nFCFS+nRR+nSJF; j++)
 		{
+		 
+			
 			arr_Processor[j]->ScheduleAlgo(); // it excute each processor to run 
-
+		/*	if (arr_Processor[j]->isrecent()) { arr_Processor[j]->unsetrecent(); }*/
 		}
-		userUI.printProcessIDs(this);
+		/*userUI.printProcessIDs(this);*/
+		userUI.printProcessIDs(); 
+		TimeStep++;
 	}
+	
 }
 void Schedular::Add_To_BLK(Process* n)
 {
 
 	BLK1.enqueue(n);
-	//BLK.InsertBeg(n);
 }
 void Schedular::Add_To_TRM(Process* n)
 {

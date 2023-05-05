@@ -301,18 +301,21 @@ public:
 		int counter = 0;
 		while (Tfrnt1) {
 			Tfrnt1 = Tfrnt1->getNext();
-			counter++;
+			counter += 1;
+			cout << "Im here!";
 
 		}
 		cout << counter << " RDY";
-		while (Tfrnt2) {
+		//while (Tfrnt2) {
 
-			cout << "  " << Tfrnt2->getItem()->getId() << "  ";
+		//	cout << "  " << Tfrnt2->getItem()->getId() << "  ";
+		//	if (Tfrnt2->getNext())
+		//		Tfrnt2 = Tfrnt2->getNext();
+		//	else
+		//		break;
 
-			Tfrnt2 = Tfrnt2->getNext();
 
-
-		}
+		//}
 		cout << "*\n";
 
 
