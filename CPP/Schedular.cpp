@@ -214,6 +214,23 @@ void Schedular::IncreamentTimeStep()
 		
 	}
 }
+auto Schedular::PicksShortRDY()
+{
+	auto* ShortRDY = arr_Processor[0];
+	for (int i = 0; i < nFCFS + nSJF + nRR; i++)
+	{
+		if (arr_Processor[i]->gettimer() > arr_Processor[i + 1]->gettimer())
+		{
+			ShortRDY = arr_Processor[i + 1];
+		}
+	}
+	return ShortRDY;
+}
+void Schedular::Add_To_RDY()
+{
+	
+
+}
 
 Schedular::~Schedular()
 {
