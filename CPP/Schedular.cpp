@@ -188,6 +188,58 @@ int Schedular::getTimeStep()
 {
 	return TimeStep;
 }
+void Schedular::RUNtoBLK(Process* P1) {
+	
+	for (int i = 0; i < nFCFS + nSJF + nRR; i++) {
+		processor* processorPtr = arr_Processor[i]; 
+		Process* runList = processorPtr->getRUNList();
+		for (int j = 0; j < sizeof(runList); j++) {
+			if (runList[j].getIO_RD().containsValue1(TimeStep)) {
+				Process* p = &runList[j]; 
+				Add_To_BLK(p);
+			}
+		}
+		
+
+	}
+}
+void Schedular::RUNtoTRM(Process* P1) {
+
+	for (int i = 0; i < nFCFS + nSJF + nRR; i++) {
+		processor* processorPtr = arr_Processor[i]; 
+
+		Process* runList = processorPtr->getRUNList();
+		for (int j = 0; j < sizeof(runList); j++) {
+			if (runList[j].getTerminationTime()==TimeStep) {
+				Process* p = &runList[j]; 
+				Add_To_TRM(p);
+			}
+		}
+
+
+	}
+}
+void Schedular::SigKill(Process* p) {
+	
+	for (int i = 0; i < nFCFS; i++) {
+		processor* processorPtr = arr_Processor[i];
+		Process* runList = processorPtr->getRUNList();
+
+		
+		for (int j = 0; j < sizeof(runList); j++) {
+			if (runList[j].getId() == p->getId()) {
+				
+				Add_To_TRM(p);
+
+				
+				return;
+			}
+		}
+	}
+}
+
+
+
 
 
 void Schedular::IncreamentTimeStep()
@@ -204,6 +256,7 @@ void Schedular::IncreamentTimeStep()
 		
 	}
 }
+
 
 Schedular::~Schedular()
 {

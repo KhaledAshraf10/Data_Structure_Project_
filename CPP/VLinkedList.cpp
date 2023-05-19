@@ -30,3 +30,64 @@ void VLinkedList::printList() {
         curr = curr->next;
     }
 }
+int VLinkedList::getValue1At(int position) {
+    if (position < 0) {
+        throw std::out_of_range("Invalid position");
+    }
+
+    Node2* curr = head;
+    int currentPosition = 0;
+
+    while (curr != nullptr && currentPosition < position) {
+        curr = curr->next;
+        currentPosition++;
+    }
+
+    if (curr == nullptr) {
+        throw std::out_of_range("Position out of range");
+    }
+
+    return curr->value1; // Return the desired value (e.g., value1)
+}
+int VLinkedList::getValue2At(int position) {
+    if (position < 0) {
+        throw std::out_of_range("Invalid position");
+    }
+
+    Node2* curr = head;
+    int currentPosition = 0;
+
+    while (curr != nullptr && currentPosition < position) {
+        curr = curr->next;
+        currentPosition++;
+    }
+
+    if (curr == nullptr) {
+        throw std::out_of_range("Position out of range");
+    }
+
+    return curr->value2; // Return the desired value (e.g., value1)
+}
+int VLinkedList::getSize() {
+    int count = 0;
+    Node2* curr = head;
+
+    while (curr != nullptr) {
+        count++;
+        curr = curr->next;
+    }
+
+    return count;
+}
+bool VLinkedList::containsValue1(int value) {
+    Node2* curr = head;
+    while (curr != nullptr) {
+        if (curr->value1 == value) {
+            return true; // Found a node with value1 equal to the given value
+        }
+        curr = curr->next;
+    }
+    return false; // No node with value1 equal to the given value found
+}
+
+
