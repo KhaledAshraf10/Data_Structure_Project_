@@ -217,8 +217,10 @@ public:
 	}
 
 		~LinkedList()
+
 	{
 		DeleteAll();
+		cout << "LINKEDLIST DESTRUCTOR !!";
 	}
 
 	/*
@@ -257,7 +259,7 @@ public:
 			Tp=Tp->getNext();
 			counter+=2;
 		}
-		//cout << counter << "  RDY:";
+		cout << counter << "  RDY:";
 		 
 		while (p)
 		{

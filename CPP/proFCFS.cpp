@@ -25,7 +25,7 @@ int ProFCFS::gettimer() const
 void ProFCFS::ScheduleAlgo()
 {
 	if (RUNLIST == nullptr) {
-		if (Plist.size() == 0) { return; }
+		if (noP == 0) { return; }
 
 		  Plist.getbeg(RUNLIST);
 		  dectimer(RUNLIST);
@@ -145,6 +145,7 @@ bool ProFCFS::PrintRUN() {
 
 }
 
+
 void ProFCFS::KillSig()
 {
 	MyStruct s1, tempp;
@@ -178,6 +179,14 @@ void ProFCFS::KillSig()
 		}
 
 	}
+
+Process* ProFCFS::getRUNList()
+{
+	return RUNLIST;
+}
+
+void ProFCFS::PrintRDY() {
+
 
 }
 
