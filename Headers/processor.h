@@ -35,6 +35,11 @@ public:
 	virtual bool isrecent() { return recent; }
 	virtual void setrecent() { recent = true; }
 	virtual void unsetrecent() { recent = false; }
+	virtual bool IsInRDY(int id) = 0;
+	virtual bool IsInRUN(int id) = 0;
+	virtual string getType() = 0;
+	virtual Process* getRdyProcess(int id) = 0;
+	
 
 		
 

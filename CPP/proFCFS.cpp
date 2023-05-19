@@ -3,13 +3,14 @@
 #include "../Headers/schedular.h"
 #include <time.h>
 
-
+Queue<MyStruct> ProFCFS::KillSigList;
 ProFCFS::ProFCFS(Schedular* p) :processor(p)
 {
 	timer = 0;
 	noP = 0;
 
 	RUNLIST = nullptr;
+	
 }
 
 ProFCFS::~ProFCFS()
@@ -144,6 +145,41 @@ bool ProFCFS::PrintRUN() {
 
 }
 
+
+void ProFCFS::KillSig()
+{
+	MyStruct s1, tempp;
+	int TimeStep = pS->getTimeStep();
+	int nFCFS = pS->getnFCFS();
+	processor** arr_Processor = pS->getProcessorList();
+	pS->LoadSigKillList();
+	KillSigList.peek(s1);
+	if (s1.KillTime != TimeStep)
+	{
+		return;
+	}
+	while (KillSigList.peek(s1))
+	{
+		if (s1.KillTime == TimeStep)
+		{
+			for (int i = 0; i < nFCFS; i++) // ana mout2kd en list of processor awl hagat feha hya fcfs
+			{
+				if (arr_Processor[i]->IsInRUN(s1.ID) && arr_Processor[i]->getType() == "ProFCFS")
+				{
+					//arr_Processor[i]->KillProcess(s1.ID);
+					KillSigList.dequeue(tempp);
+					pS->Add_To_TRM(arr_Processor[i]->getprocess(pS));
+				}
+				else if (arr_Processor[i]->IsInRDY(s1.ID) && arr_Processor[i]->getType() == "ProFCFS")
+				{
+					KillSigList.dequeue(tempp);
+					pS->Add_To_TRM(arr_Processor[i]->getRdyProcess(s1.ID));
+				}
+			}
+		}
+
+	}
+
 Process* ProFCFS::getRUNList()
 {
 	return RUNLIST;
@@ -151,15 +187,38 @@ Process* ProFCFS::getRUNList()
 
 void ProFCFS::PrintRDY() {
 
-	 
-		Plist.PrintListid();
-		 
 
+}
 
+void ProFCFS::EnqueuEelements(const MyStruct& element)
+{
+	KillSigList.enqueue(element);
+}
+
+bool ProFCFS::IsInRDY(int id)
+{
 	
+	return Plist.Check(id);
+}
+Process* ProFCFS::getRdyProcess(int id)
+{
+	return Plist.getRdyProcessFL(id);
+}
+
+bool ProFCFS::IsInRUN(int id)
+{	
+	return RUNLIST->getId() == id;
+}
+
+string ProFCFS::getType()
+{
+	return "ProFCFS";
+}
 
 
-
+void ProFCFS::PrintRDY() 
+{
+		Plist.PrintListid();
 }
 
 

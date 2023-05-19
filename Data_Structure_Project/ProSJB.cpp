@@ -152,8 +152,29 @@ bool ProSJB::PrintRUN() {
 
 }
 
+
+bool ProSJB::IsInRDY(int id)
+{
+	return false;
+}
+
+bool ProSJB::IsInRUN(int id)
+{
+	return false;
+}
+
+string ProSJB::getType()
+{
+	return "ProSJB";
+}
+
+Process* ProSJB::getRdyProcess(int id)
+{
+	return nullptr;
+
 Process* ProSJB::getRUNList()
 {
 	return RUNLIST;
+
 }
 
