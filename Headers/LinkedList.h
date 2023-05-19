@@ -328,21 +328,26 @@ public:
 		P->setNext(R);
 	}
 
-	void getbeg( Process*& data) {
-
+	void getbeg( Process*& data) 
+	{
 		data = Head->getItem();
-
 		DeleteNode(data);
-
-
-
-
-
-
-
-
-
-
+	}
+	Process* getRdyProcessFL(int id)
+	{
+		Node<Process*>* curptr = Head;
+		Node<Process*>* prevptr = nullptr;
+		Process* result = nullptr;
+		while (curptr->getNext())
+		{
+			if (curptr->getItem()->getId() == id)
+			{
+				result = curptr->getItem();
+				prevptr->setNext(curptr->getNext());
+				delete curptr;
+			}
+		}
+		return result;
 	}
 
 	
@@ -353,6 +358,21 @@ public:
 		while (P)
 		{
 			if (P->getItem() == data)
+			{
+				counter++;
+			}
+			P = P->getNext();
+		}
+		if (counter) return true;
+		else return false;
+	}
+	bool Check(int data)
+	{
+		Node<Process*>* P = Head;
+		int counter = 0;
+		while (P)
+		{
+			if (P->getItem()->getId() == data)
 			{
 				counter++;
 			}

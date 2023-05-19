@@ -47,6 +47,10 @@ public:
 
 
 	}
+	bool IsInRDY(int id) override;
+	bool IsInRUN(int id) override;
+	string getType() override;
+	Process* getRdyProcess(int id) override;
 
 
 
