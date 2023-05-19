@@ -101,4 +101,13 @@ void Process::decremainingtime() {
 void Process::Add_To_IOList(int IO_R, int IO_D)
 {
     IO_RD.insert(IO_R, IO_D);
-};
+}
+int Process::getNOIO()
+{
+    return NOIO;
+}
+void Process::setNOIO(int NIO)
+{
+    NOIO = NIO;
+}
+

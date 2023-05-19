@@ -5,7 +5,8 @@
 
 
 Schedular::Schedular()
-{ NEW = new Process * [nProcess];
+{ 
+	//NEW = new Process * [nProcess];
 
 	load();
 	TimeStep = 0;
@@ -39,8 +40,11 @@ void Schedular::load()
 		
 		int AT=0, PID=0, CT=0, NIO=0;
 		inputfile >> AT >> PID >> CT >> NIO;
+
+		// if i put Process id in New list or process 
+		Process* P = new Process(AT, PID, CT); // it should contain NIO
+		NEW.enqueue(P);
 		
-		NEW[i] = new Process(PID, AT, CT);
 	}
 
 
@@ -102,19 +106,21 @@ void Schedular::Phase_1_Simulation()
 		
 	}
 	else
-	{int ArrivalTime;
+	{
+		Process* P;
+		int ArrivalTime;
 		int counter = 0;
 		for (int i = 0; i < nProcess; i++)
 		{
-			
-
-			 ArrivalTime = NEW[i]->getArrivalTime();// get arrival time of first process that should sort ascendingly
+			NEW.dequeue(P);// get arrival time of first process that should sort ascendingly
+			ArrivalTime = P->getArrivalTime();
+			 
 			//while (CheckTimeStep(ArrivalTime) == 0) 
 			//{
 			//	TimeStep++; // increment till time step be equal arrival time
 			//}
 			 if (ArrivalTime == TimeStep) {          //should be changed to allow all precsses to get scheduled
-				 arr_Processor[(ArrivalTime-1)%11]->add_process(NEW[i]);                                                        //!! processes should be deleted from new 
+				 arr_Processor[(ArrivalTime-1)%11]->add_process(P);                                                        //!! processes should be deleted from new 
 				 /*arr_Processor[(ArrivalTime-1)%11]->setrecent();*/
 				 counter++;// for e.x it will add first process to first processor 
 			 }
@@ -140,7 +146,7 @@ void Schedular::Add_To_BLK(Process* n)
 }
 void Schedular::Add_To_TRM(Process* n)
 {
-	TRM.InsertEnd(n);
+	TRM.enqueue(n);
 }
 
 processor** Schedular::getProcessorList()
@@ -153,7 +159,11 @@ Queue<Process*> Schedular::getBLKList()
 {
 	return BLK1;
 }
-LinkedList<Process*> Schedular::getTRMList()
+//LinkedList<Process*> Schedular::getTRMList()
+//{
+//	return TRM;
+//}
+Queue<Process*> Schedular::getTRMList()
 {
 	return TRM;
 }
@@ -255,6 +265,23 @@ void Schedular::IncreamentTimeStep()
 		arr_Processor[1]->add_process(temp); //BLK.Dequeu() should return process
 		
 	}
+}
+auto Schedular::PicksShortRDY()
+{
+	auto* ShortRDY = arr_Processor[0];
+	for (int i = 0; i < nFCFS + nSJF + nRR; i++)
+	{
+		if (arr_Processor[i]->gettimer() > arr_Processor[i + 1]->gettimer())
+		{
+			ShortRDY = arr_Processor[i + 1];
+		}
+	}
+	return ShortRDY;
+}
+void Schedular::Add_To_RDY()
+{
+	
+
 }
 
 
