@@ -144,6 +144,11 @@ bool ProFCFS::PrintRUN() {
 
 }
 
+Process* ProFCFS::getRUNList()
+{
+	return RUNLIST;
+}
+
 void ProFCFS::PrintRDY() {
 
 	 

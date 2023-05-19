@@ -7,7 +7,6 @@
 #include"../Headers/ProRoundRobin.h"
 #include"../Headers/ProSJB.h"
 
-#include <string>
 using namespace std;
 //int main()
 //{
@@ -79,19 +78,14 @@ int main() {
 
 
 	Schedular S;
-	
 
 	string T;
 	T = "s";
-	cin >> T;
 	
 
 
 	while (T!="X") {
 		S.Phase_1_Simulation();
-		cout << "press X to exit";
-		cin >> T;
-		
 	}
 
 	//S.Phase_1_Simulation();

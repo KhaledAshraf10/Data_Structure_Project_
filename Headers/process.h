@@ -16,8 +16,10 @@ private:
     int TWT;
     VLinkedList IO_RD;
     int remainingtime; //time left to be processed by the cpu
+    int NOIO; // number of IO
 
 public:
+    Process();
     Process(int id, int at/*, int rt*/, int ct/*, int tt, int trt, int wt, int twt, LinkedList io_rd*/);
     int getId() const;
     int getArrivalTime() const;
@@ -43,5 +45,8 @@ public:
     int getremainingtime();
     void decremainingtime();
     void Add_To_IOList(int IO_R, int IO_D);
+    // Khaled added 
+    int getNOIO();
+    void setNOIO(int NIO);
 };
 

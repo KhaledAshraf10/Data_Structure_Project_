@@ -19,10 +19,13 @@ class Schedular
 {
 private:
 	Queue<Process*> BLK1;
-	Process** NEW;
+	Queue<Process*> NEW; // from recomened file 
+	//Process** NEW;
 	processor** arr_Processor;
-	LinkedList<Process*> BLK;
-	LinkedList<Process*> TRM;
+	//LinkedList<Process*> BLK;
+	Queue<Process*> BLK; // from recomened file 
+	//LinkedList<Process*> TRM;
+	Queue<Process*> TRM; // from recomened file 
 	UI userUI = { this };
 	Schedular* me;
 	
@@ -45,16 +48,21 @@ public:
 	void Phase_1_Simulation();
 	processor** getProcessorList();
 	Queue<Process*> getBLKList();
-	LinkedList<Process*> getTRMList();
+	Queue<Process*> getTRMList();
 	bool CheckTimeStep(int ArrivalTime);
 	int getnFCFS();
 	int getnSJF();
 	int getnRR();
 	int getTimeStep();
+	void RUNtoBLK(Process* P1);
+	void RUNtoTRM(Process* P1);
+	void SigKill(Process* p);
+	//void RUNtoBLK();
+	
 	void IncreamentTimeStep();
   
-	void ShortRDY(); // should return Shortest rdy queue => by looping on all proccesor 
-	//void Add_To_RDY();
+	auto PicksShortRDY(); // should return Shortest rdy queue => by looping on all proccesor 
+	void Add_To_RDY();
 	void Add_To_BLK(Process*);
 	void Add_To_TRM(Process*);
 	

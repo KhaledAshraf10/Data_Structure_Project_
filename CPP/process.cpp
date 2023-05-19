@@ -3,6 +3,10 @@
 
 
 
+Process::Process()
+{
+}
+
 Process::Process(int id, int at,/* int rt,*/ int ct/*, int tt, int trt, int wt, int twt,LinkedList io_rd*/) {
     ID = id;
     AT = at;
@@ -97,4 +101,13 @@ void Process::decremainingtime() {
 void Process::Add_To_IOList(int IO_R, int IO_D)
 {
     IO_RD.insert(IO_R, IO_D);
-};
+}
+int Process::getNOIO()
+{
+    return NOIO;
+}
+void Process::setNOIO(int NIO)
+{
+    NOIO = NIO;
+}
+
