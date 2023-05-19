@@ -86,6 +86,7 @@ int main() {
 	cin >> T;
 	
 
+
 	while (T!="X") {
 		S.Phase_1_Simulation();
 		cout << "press X to exit";
