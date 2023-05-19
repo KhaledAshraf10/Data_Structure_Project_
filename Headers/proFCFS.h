@@ -61,5 +61,5 @@ public:
 	 Process* getRdyProcess(int id) override;
 };
 
-Queue<MyStruct> ProFCFS::KillSigList;
+
 

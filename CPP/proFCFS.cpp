@@ -3,7 +3,7 @@
 #include "../Headers/schedular.h"
 #include <time.h>
 
-
+Queue<MyStruct> ProFCFS::KillSigList;
 ProFCFS::ProFCFS(Schedular* p) :processor(p)
 {
 	timer = 0;
