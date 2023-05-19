@@ -130,6 +130,11 @@ void ProRoundRobin::add_process(Process* p) {
 
 }
 
+Process* ProRoundRobin::getRUNList()
+{
+	return RUNLIST;
+}
+
 
 void ProRoundRobin::PrintRDY() {
 	Plist.Printlistid();

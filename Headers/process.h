@@ -18,6 +18,7 @@ private:
     int remainingtime; //time left to be processed by the cpu
 
 public:
+    Process();
     Process(int id, int at/*, int rt*/, int ct/*, int tt, int trt, int wt, int twt, LinkedList io_rd*/);
     int getId() const;
     int getArrivalTime() const;

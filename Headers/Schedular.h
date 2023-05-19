@@ -51,6 +51,11 @@ public:
 	int getnSJF();
 	int getnRR();
 	int getTimeStep();
+	void RUNtoBLK(Process* P1);
+	void RUNtoTRM(Process* P1);
+	void SigKill(Process* p);
+	//void RUNtoBLK();
+	
 	void IncreamentTimeStep();
   
 	void ShortRDY(); // should return Shortest rdy queue => by looping on all proccesor 

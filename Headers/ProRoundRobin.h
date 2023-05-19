@@ -34,6 +34,7 @@ public:
 	virtual void dectimer(Process* p) override;
 
 	virtual void add_process(Process* p) override;
+	Process* getRUNList();
 	void PrintRDY() override;
 	bool PrintRUN() override;
 	Process* getprocess(Schedular* S) {

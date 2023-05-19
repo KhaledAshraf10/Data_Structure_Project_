@@ -3,6 +3,10 @@
 
 
 
+Process::Process()
+{
+}
+
 Process::Process(int id, int at,/* int rt,*/ int ct/*, int tt, int trt, int wt, int twt,LinkedList io_rd*/) {
     ID = id;
     AT = at;
