@@ -77,6 +77,13 @@ void Process::setTotalWaitingTime(int twt) {
 void Process::setIO_RD(VLinkedList io_rd) {
     IO_RD = io_rd;
 }
+void Process::setIOList(int IOR, int IOD)
+{
+    IO_R_D s;
+    s.IO_R = IOR;
+    s.IO_D = IOD;
+    //IOList.enqueue(s);
+}
 int Process::calculateTurnaroundDuration() const {
     return TT - AT;
 }

@@ -64,7 +64,6 @@ public:
   
 	auto PicksShortRDY(); // should return Shortest rdy queue => by looping on all proccesor 
 	void BLKToRDY();
-	void Add_To_RDY();
 	void Add_To_BLK(Process*);
 	void Add_To_TRM(Process*);
 	
