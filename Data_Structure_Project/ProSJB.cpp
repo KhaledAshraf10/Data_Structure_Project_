@@ -171,7 +171,7 @@ string ProSJB::getType()
 Process* ProSJB::getRdyProcess(int id)
 {
 	return nullptr;
-
+}
 Process* ProSJB::getRUNList()
 {
 	return RUNLIST;

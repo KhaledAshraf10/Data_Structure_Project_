@@ -179,16 +179,12 @@ void ProFCFS::KillSig()
 		}
 
 	}
-
+}
 Process* ProFCFS::getRUNList()
 {
 	return RUNLIST;
 }
 
-void ProFCFS::PrintRDY() {
-
-
-}
 
 void ProFCFS::EnqueuEelements(const MyStruct& element)
 {
