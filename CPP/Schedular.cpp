@@ -283,11 +283,17 @@ void Schedular::BLKToRDY()
 	Process* p1 = nullptr;
 	
 	BLK.peek(p1);
-	if (p1->getCpuTime() == TimeStep) // it should not be that it should get IO_R if its equal time step it should go to shortes rdy list
+	if (p1->getIO_RD().getValue1At(0) == TimeStep) // it should not be that it should get IO_R if its equal time step it should go to shortes rdy list
 	{
 		PicksShortRDY()->add_process(p1);
 		BLK.dequeue(p1);
+		
 	}
+}
+
+void Schedular::Fork(Process* p)
+{
+	PicksShortRDY()->add_process(p);
 }
 
 
