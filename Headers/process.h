@@ -3,7 +3,11 @@
 #include "../Headers/VLinkedList.h"
 class Processor;
 using namespace std;
+struct IO_R_D {
 
+    int IO_R;
+    int IO_D;
+};
 class Process {
 private:
     int ID; //
@@ -17,6 +21,7 @@ private:
     VLinkedList IO_RD;
     int remainingtime; //time left to be processed by the cpu
     int NOIO; // number of IO
+    
 
 public:
     Process();
