@@ -1,6 +1,6 @@
 #pragma once
 #include"processor.h"
-#include"../Data_Structure_Project/Queue.h"
+#include "../Headers/Queue.h"
 
 class ProSJB : public processor
 {

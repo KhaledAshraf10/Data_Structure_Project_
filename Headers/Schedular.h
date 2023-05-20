@@ -5,8 +5,9 @@
 #include "LinkedList.h"
 #include <fstream>
 #include "../Headers/process.h"
-#include "../Data_Structure_Project/Queue.h"
-#include"../Data_Structure_Project/UI.h"
+#include "../Headers/Queue.h"
+#include "../Headers/UI.h"
+
 class UI;
 
 
@@ -62,7 +63,7 @@ public:
 	void IncreamentTimeStep();
   
 	auto PicksShortRDY(); // should return Shortest rdy queue => by looping on all proccesor 
-	void Add_To_RDY();
+	void BLKToRDY();
 	void Add_To_BLK(Process*);
 	void Add_To_TRM(Process*);
 	

@@ -278,11 +278,19 @@ auto Schedular::PicksShortRDY()
 	}
 	return ShortRDY;
 }
-void Schedular::Add_To_RDY()
+void Schedular::BLKToRDY()
 {
+	Process* p1 = nullptr;
 	
-
+	BLK.peek(p1);
+	if (p1->getCpuTime() == TimeStep) // it should not be that it should get IO_R if its equal time step it should go to shortes rdy list
+	{
+		PicksShortRDY()->add_process(p1);
+		BLK.dequeue(p1);
+	}
 }
+
+
 
 
 Schedular::~Schedular()
