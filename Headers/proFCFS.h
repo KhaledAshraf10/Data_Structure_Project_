@@ -28,7 +28,7 @@ public:
 
 	 void ScheduleAlgo() ;
 
-	void  forkingrequest(int AT, int RT);
+	void  forkingrequest(Process* p);
 
 	 void inctimer(Process* p) override;
 	 void inctimer(int time) ;

@@ -86,8 +86,10 @@ void ProFCFS::ScheduleAlgo()
 
 }
 
-void ProFCFS::forkingrequest(int AT, int RT)
-{}
+void ProFCFS::forkingrequest(Process* p)
+{
+	pS->Fork(p);
+}
 
 void ProFCFS::inctimer(Process* p)
 {
@@ -174,6 +176,7 @@ void ProFCFS::KillSig()
 				{
 					KillSigList.dequeue(tempp);
 					pS->Add_To_TRM(arr_Processor[i]->getRdyProcess(s1.ID));
+					//Plist.DeleteNode(arr_Processor[i]->getRdyProcess(s1.ID));
 				}
 			}
 		}
