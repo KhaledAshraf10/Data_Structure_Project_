@@ -12,14 +12,20 @@ class processor
 protected:
 	Schedular* pS;
 	int timer; // a sum for all CTs in the processor's rdy list
-	bool flag; // a flag to determine whether the processor is IDLE(=1) or BUSY(=0)
+	bool isIdle; // a flag to determine whether the processor is IDLE(=1) or BUSY(=0)
 	Process*  RUNLIST; 
 	bool  recent;
+	int overheatprop = 5;   //very low probability of 5 percent to overheat
+	int overheatmaltime; //timesteps for the processor to regain activation after overheating (taken from the input file)
+	bool isHeated; //flag to indicate whether the precssor is currently wrokin or not
+	int overheatingcounter;  //counter to process the ovrheating time
+
 
 public:
-	processor(Schedular* p) {
+	processor(Schedular* p,int overheatT) {
 		pS = p;
 		recent = false;
+		this->overheatmaltime = overheatT;
 	
 	};
 	virtual ~processor() {};
@@ -34,6 +40,11 @@ public:
 	virtual bool isrecent() { return recent; }
 	virtual void setrecent() { recent = true; }
 	virtual void unsetrecent() { recent = false; }
+	virtual bool IsHeated() { return isHeated; }
+	virtual void setIsHeated() { isHeated = true; }
+	virtual void unsetIsHeated() { isHeated = false; }
+
+
 
 		
 

@@ -19,6 +19,8 @@ Process::Process(int id, int at,/* int rt,*/ int ct/*, int tt, int trt, int wt, 
 
 
 }
+
+
 int Process::getId() const {
     return ID;
 }

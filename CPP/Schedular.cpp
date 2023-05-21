@@ -113,7 +113,7 @@ void Schedular::Phase_1_Simulation()
 			//{
 			//	TimeStep++; // increment till time step be equal arrival time
 			//}
-			 if (ArrivalTime == TimeStep) {          //should be changed to allow all precsses to get scheduled
+			 if (ArrivalTime == TimeStep) {          //should be changed to allow all precsses to get scheduled         //this modification was done by Eyad (we still need to discuss it)
 				 arr_Processor[(ArrivalTime-1)%11]->add_process(NEW[i]);                                                        //!! processes should be deleted from new 
 				 /*arr_Processor[(ArrivalTime-1)%11]->setrecent();*/
 				 counter++;// for e.x it will add first process to first processor 

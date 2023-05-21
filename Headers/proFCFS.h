@@ -14,7 +14,7 @@ private:
 
 public:
 
-	ProFCFS(Schedular* p) ;
+	ProFCFS(Schedular* p,int overheatT) ;
 
 	virtual ~ProFCFS();
 
@@ -39,9 +39,7 @@ public:
 
 		 }
 		 else {
-			 Process* p3;
-			 p3 = new Process(1, 2, 3);
-			 return p3;
+			 return nullptr;
 		 }
 
 

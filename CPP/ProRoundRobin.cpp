@@ -9,14 +9,15 @@
 
 //sdfa
 
- ProRoundRobin::ProRoundRobin(Schedular* p) :processor(p)
+ ProRoundRobin::ProRoundRobin(Schedular* p,int overheatT,int rtf,int slice) :processor(p,overheatT)
 
 {
 	 nop = 0;
 	 counter=0;
 	timer = 0;
 	RUNLIST = nullptr;
-	timeslice = 3;
+	timeslice = slice;
+	this->RTF = rtf;
 }
 
 
@@ -40,65 +41,103 @@ void ProRoundRobin::ScheduleAlgo()
 		Plist.dequeue(RUNLIST);
 		
 		dectimer(RUNLIST);
+		nop--;
+		return;
 
 	}
 	
-	//else if (RUNLIST->getremainingtime() ==0) {
+	else if (RUNLIST->getremainingtime() ==0) {
 
 
 
-	//	//Ps->move to TRM(RUNLIST);
+		pS->Add_To_TRM(RUNLIST);
+		RUNLIST == nullptr;
+		counter == 0; //to maintain the timeslice for next process
+		return;
+		
 
-	//}
-	srand(time(0));
-	int x = 1 + (rand() % 100);
+	}
+	else if (RUNLIST->getremainingtime() != 0) {
+		//int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
+		//bool flag = false;
+		//for (int i = 0; i < sizeof(RUNLIST->getIO_RD())/sizeof(Node2); i++) {               //na2sa l7d get IO matt3ml!!
+		//	if (totalexecutiontime == arrayIO[i]) {
+		//		pS->Add_To_BLK(RUNLIST);
+		//		RUNLIST=nullptr
+		// counter=0; 
+		//	return;
+
+		//	}
+		//		
+		//}
+		if (counter == timeslice) {
+			Plist.enqueue(RUNLIST);
+
+			
+			this->inctimer(RUNLIST);   //includes nop++
+
+			RUNLIST = nullptr;
+			counter = 0;
+			return;
+
+
+
+
+
+		}
+
+
+
+
+		RUNLIST->decremainingtime(); //actual processing
+		counter++;
+		return;
+
+
+
+	}
+
 	
-		//if (counter <= timeslice) {
-  //          srand(time(0));
-		//	int x = 1 + (rand() % 100);
 
-		//	RUNLIST->decremainingtime();
-
-		//	//counter++;
 
 			
 
-			if (1 <= x&&x <= 15)
+		//	if (1 <= x&&x <= 15)
 
-			{
+		//	{
 
-				pS->Add_To_BLK(RUNLIST);
-				RUNLIST = nullptr;
+		//		pS->Add_To_BLK(RUNLIST);
+		//		RUNLIST = nullptr;
 
-			}
-			else if (20 <= x&&x <= 30) {
+		//	}
+		//	else if (20 <= x&&x <= 30) {
 
-				Plist.enqueue(RUNLIST);
-				inctimer(RUNLIST);
-				RUNLIST = nullptr;
-				counter == 0;
+		//		Plist.enqueue(RUNLIST);
+		//		inctimer(RUNLIST);
+		//		RUNLIST = nullptr;
+		//		counter == 0;
 
-			}
-			else if (50 <= x&&x <= 60) {
+		//	}
+		//	else if (50 <= x&&x <= 60) {
 
 
-				pS->Add_To_TRM(RUNLIST);
-				RUNLIST = nullptr;
+		//		pS->Add_To_TRM(RUNLIST);
+		//		RUNLIST = nullptr;
 
-			}
-			else if(counter>=timeslice)
-			{
-				Plist.enqueue(RUNLIST);
-				inctimer(RUNLIST);
-				RUNLIST = nullptr;
-				counter == 0;
-			}
-		else if (RUNLIST->getremainingtime() == 0) {
+		//	}
+		//	else if(counter>=timeslice)
+		//	{
+		//		Plist.enqueue(RUNLIST);
+		//		inctimer(RUNLIST);
+		//		RUNLIST = nullptr;
+		//		counter == 0;
+		//	}
+		//else if (RUNLIST->getremainingtime() == 0) {
 
-				pS->Add_To_TRM(RUNLIST);
-			RUNLIST = nullptr;
+		//		pS->Add_To_TRM(RUNLIST);
+		//	RUNLIST = nullptr;
 
-		}
+		//}
 
 
 
@@ -125,6 +164,7 @@ void ProRoundRobin::add_process(Process* p) {
 
 	inctimer(p);
 	Plist.enqueue(p);
+	nop++;
 
 
 

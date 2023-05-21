@@ -23,7 +23,7 @@ private:
 
 public:
 
-	 ProRoundRobin(Schedular* p);
+	 ProRoundRobin(Schedular* p,int overheatT,int rtf=0,int slice=3);
 
 	virtual ~ProRoundRobin();
 

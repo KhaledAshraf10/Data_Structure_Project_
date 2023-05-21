@@ -7,10 +7,11 @@ class ProSJB : public processor
 private:
 	PriorityQueue  Plist;
 	int nop; //no of processes in RDY LIST
+	
 
 public:
 
-	ProSJB(Schedular* p);
+	ProSJB(Schedular* p,int overheatT);
 
 	virtual ~ProSJB();
 
