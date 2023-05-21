@@ -58,6 +58,7 @@ void ProFCFS::ScheduleAlgo()
 		if (!this->IsHeated()) {
 			Plist.getbeg(RUNLIST);
 			dectimer(RUNLIST);
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 		if (Plist.size() == 0) {
 		if (this->IsHeated())
@@ -72,6 +73,8 @@ void ProFCFS::ScheduleAlgo()
 =======
 		if (noP == 0) { return; }
 >>>>>>> master
+=======
+>>>>>>> Stashed changes
 
 			noP--;
 			return;
