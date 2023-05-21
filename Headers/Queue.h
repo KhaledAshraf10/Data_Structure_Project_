@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include "../Headers/Node.h"
 #include<vector>
 /*

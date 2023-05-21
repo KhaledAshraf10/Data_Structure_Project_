@@ -49,9 +49,9 @@ int Process::getWaitingTime() const {
 int Process::getTotalWaitingTime() const {
     return TWT;
 }
-VLinkedList Process::getIO_RD() const {
-    return IO_RD;
-}
+//VLinkedList Process::getIO_RD() const {
+//    return IO_RD;
+//}
 void Process::setId(int id) {
     ID = id;
 }
@@ -107,10 +107,19 @@ void Process::decremainingtime() {
     remainingtime--;
 
 }
-void Process::Add_To_IOList(int IO_R, int IO_D)
+void Process::Add_To_IOList(IO_R_D* S)
 {
-    IO_RD.insert(IO_R, IO_D);
+    IO_RD.enqueue(S);
 }
+void Process::peekIO(IO_R_D* S) {
+    IO_RD.peek(S);
+
+}
+void Process::DequeueIO(IO_R_D* S) {
+    IO_RD.dequeue(S);
+}
+
+
 int Process::getNOIO()
 {
     return NOIO;

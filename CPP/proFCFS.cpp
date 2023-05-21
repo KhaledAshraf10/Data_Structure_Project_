@@ -49,13 +49,13 @@ void ProFCFS::ScheduleAlgo()
 
 	if (RUNLIST == nullptr) {
 		if (Plist.size() == 0) { return; }
+		else {
+			Plist.getbeg(RUNLIST);
+			dectimer(RUNLIST);
 
-		  Plist.getbeg(RUNLIST);
-		  dectimer(RUNLIST);
+			noP--;
 
-		  noP--;
-		  
-
+		}
 	}else
 		if (RUNLIST->getremainingtime() != 0) {
 			srand(time(0));
@@ -85,17 +85,19 @@ void ProFCFS::ScheduleAlgo()
 		if (RUNLIST->getremainingtime() != 0) {
 			
 
-			//int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
-			//bool flag = false;
-			//for (int i = 0; i < sizeof(RUNLIST->getIO_RD())/sizeof(Node2); i++) {               //na2sa l7d get IO matt3ml!!
-			//	if (totalexecutiontime == arrayIO[i]) {
-			//		pS->Add_To_BLK(RUNLIST);
-			//		RUNLIST=nullptr
-			//		
+			int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
+			bool flag = false;
+		            //na2sa l7d get IO matt3ml!!
+			IO_R_D* temp;
+			RUNLIST->peekIO(temp);
+				if (totalexecutiontime == temp->IO_R) {
+					pS->Add_To_BLK(RUNLIST);
+					RUNLIST = nullptr;
+					
 
-			//	}
-			//		
-			//}
+				}
+					
+			
 			
 
 			
