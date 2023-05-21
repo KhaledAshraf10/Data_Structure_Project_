@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Headers/VLinkedList.h"
+#include "../Headers/Queue.h"
 class Processor;
 using namespace std;
 
@@ -14,7 +15,7 @@ private:
     int TRT;
     int WT;
     int TWT;
-    VLinkedList IO_RD;
+    Queue<IO_R_D*> IO_RD;
     int remainingtime; //time left to be processed by the cpu
     int NOIO; // number of IO
     //LinkedQueue<IO_R_D> IOList;
@@ -31,7 +32,7 @@ public:
     int getTurnaroundDuration() const;
     int getWaitingTime() const;
     int getTotalWaitingTime() const;
-    VLinkedList getIO_RD() const;
+    /*VLinkedList getIO_RD() const;*/ //  malhash lazma
     void setId(int id);
     void setArrivalTime(int at);
     void setResponseTime(int rt);
@@ -47,7 +48,9 @@ public:
     void incrementTotalWaitingTime();
     int getremainingtime();
     void decremainingtime();
-    void Add_To_IOList(int IO_R, int IO_D);
+    void Add_To_IOList(IO_R_D* S);
+    void peekIO(IO_R_D* S);
+    void DequeueIO(IO_R_D* S);
 
     // Khaled added 
     int getNOIO();
