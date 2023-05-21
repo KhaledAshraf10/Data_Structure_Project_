@@ -48,6 +48,16 @@ void ProFCFS::ScheduleAlgo()
 
 
 	if (RUNLIST == nullptr) {
+		if (Plist.size() == 0) {
+		if (this->IsHeated())
+			overheatingcounter++;
+		 return; 
+		}         
+		  
+	
+		if (!this->IsHeated()) {
+			Plist.getbeg(RUNLIST);
+			dectimer(RUNLIST);
 <<<<<<< HEAD
 		if (Plist.size() == 0) {
 		if (this->IsHeated())
