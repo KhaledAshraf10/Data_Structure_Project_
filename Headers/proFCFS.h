@@ -19,13 +19,9 @@ private:
 	
 
 public:
-<<<<<<< HEAD
 
 	ProFCFS(Schedular* p,int overheatT) ;
-=======
 	
-	ProFCFS(Schedular* p) ;
->>>>>>> 30e0de58619aa1c2afcc98d42ec784b945680fa4
 
 	virtual ~ProFCFS();
 
