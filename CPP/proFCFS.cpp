@@ -121,9 +121,10 @@ void ProFCFS::ScheduleAlgo()
 
 }
 
-void ProFCFS::forkingrequest(int AT, int RT)
-{}
-
+void ProFCFS::forkingrequest(Process* p)
+{
+	pS->Fork(p);
+}
 void ProFCFS::inctimer(Process* p)
 {
 	timer += p->getremainingtime();

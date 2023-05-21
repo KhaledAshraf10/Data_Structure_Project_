@@ -53,11 +53,10 @@ public:
     void decremainingtime();
     void Add_To_IOList(int IO_R, int IO_D);
 
-<<<<<<< Updated upstream
     // Khaled added 
     int getNOIO();
     void setNOIO(int NIO);
-=======
->>>>>>> Stashed changes
+
+
 };
 

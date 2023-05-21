@@ -75,18 +75,18 @@ void Schedular::Add_To_arr_Processor()
 	
 	for (int i = 0; i < nFCFS; i++)
 	{
-		arr_Processor[i] = new ProFCFS(this);
+		arr_Processor[i] = new ProFCFS(this,5);
 		
 	}
 
 	for (int i = nFCFS; i < nSJF+nFCFS; i++)
 	{
-		arr_Processor[i] = new ProFCFS(this);
+		arr_Processor[i] = new ProFCFS(this,5);
 	}
 	for (int i = nSJF + nFCFS; i < nSJF + nFCFS + nRR; i++)
 
 	{
-		arr_Processor[i] = new ProRoundRobin(this);
+		arr_Processor[i] = new ProRoundRobin(this,5,5,5);
 	}
 }
 
@@ -110,7 +110,7 @@ void Schedular::Phase_1_Simulation()
 		Process* P;
 		int ArrivalTime;
 		int counter = 0;
-		for (int i = 0; i < nProcess; i++)
+		for (int i = 0; i < nProcess;)
 		{
 			NEW.dequeue(P);// get arrival time of first process that should sort ascendingly
 			ArrivalTime = P->getArrivalTime();
@@ -119,15 +119,11 @@ void Schedular::Phase_1_Simulation()
 			//{
 			//	TimeStep++; // increment till time step be equal arrival time
 			//}
-<<<<<<< Updated upstream
 
 			 if (ArrivalTime == TimeStep) {          //should be changed to allow all precsses to get scheduled
 				 arr_Processor[(ArrivalTime-1)%11]->add_process(P);                                                        //!! processes should be deleted from new 
 
-=======
-			 if (ArrivalTime == TimeStep) {          //should be changed to allow all precsses to get scheduled         //this modification was done by Eyad (we still need to discuss it)
-				 arr_Processor[(ArrivalTime-1)%11]->add_process(NEW[i]);                                                        //!! processes should be deleted from new 
->>>>>>> Stashed changes
+
 				 /*arr_Processor[(ArrivalTime-1)%11]->setrecent();*/
 				 counter++;// for e.x it will add first process to first processor 
 			 }
