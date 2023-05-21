@@ -3,7 +3,7 @@
 #include "../Headers/schedular.h"
 #include <time.h>
 
-
+Queue<MyStruct> ProFCFS::KillSigList;
 ProFCFS::ProFCFS(Schedular* p,int overheatT) :processor(p,overheatT)
 {
 	timer = 0;
@@ -185,22 +185,67 @@ Process* ProFCFS::getRUNList()
 {
 	return RUNLIST;
 }
+void ProFCFS::KillSig()
+{
+	MyStruct s1, tempp;
+	int TimeStep = pS->getTimeStep();
+	int nFCFS = pS->getnFCFS();
+	processor** arr_Processor = pS->getProcessorList();
+	pS->LoadSigKillList();
+	KillSigList.peek(s1);
+	if (s1.KillTime != TimeStep)
+	{
+		return;
+	}
+	while (KillSigList.peek(s1))
+	{
+		if (s1.KillTime == TimeStep)
+		{
+			for (int i = 0; i < nFCFS; i++) // ana mout2kd en list of processor awl hagat feha hya fcfs
+			{
+				if (arr_Processor[i]->IsInRUN(s1.ID) && arr_Processor[i]->getType() == "ProFCFS")
+				{
+					KillSigList.dequeue(tempp);//arr_Processor[i]->KillProcess(s1.ID);
+					pS->Add_To_TRM(arr_Processor[i]->getprocess(pS));
+				}
+				else if (arr_Processor[i]->IsInRDY(s1.ID) && arr_Processor[i]->getType() == "ProFCFS")
+				{
+					KillSigList.dequeue(tempp);
+					pS->Add_To_TRM(arr_Processor[i]->getRdyProcess(s1.ID));
+					//Plist.DeleteNode(arr_Processor[i]->getRdyProcess(s1.ID));
+				}
 
-void ProFCFS::PrintRDY() {
+			}
 
-	 
-		Plist.PrintListid();
-		 
+		}
+	}
+}
+void ProFCFS::PrintRDY() 
+{
+	Plist.PrintListid();
+}
+void ProFCFS::EnqueuEelements(const MyStruct & element)
+{
+	KillSigList.enqueue(element);
+	}
 
-
-	
-
-
-
+bool ProFCFS::IsInRDY(int id)
+{
+	return Plist.Check(id);
+}
+Process * ProFCFS::getRdyProcess(int id)
+{
+	return Plist.getRdyProcessFL(id);
 }
 
+bool ProFCFS::IsInRUN(int id)
+{
+	return RUNLIST->getId() == id;
+}
 
-
-
+string ProFCFS::getType()
+{
+return "ProFCFS";
+}
 
 
