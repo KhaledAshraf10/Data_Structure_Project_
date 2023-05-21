@@ -69,8 +69,10 @@ void ProFCFS::ScheduleAlgo()
 				pS->Add_To_BLK(RUNLIST);
 
 
+
 		}*/
-		noP = 0;
+	
+	
 		overheatingcounter++;
 		this->timer = 0;
 		return;
