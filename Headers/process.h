@@ -1,9 +1,11 @@
 #pragma once
 
-#include "../Headers/VLinkedList.h"
-#include "../Headers/Queue.h"
+//#include "../Headers/Queue.h"
 class Processor;
 using namespace std;
+template<typename T>
+class Queue;        //forward declaration for both Queue and struct(IMP notes:-queue must be refrenced to with pointer or & to prevent memory ambiguity--Queue header should also be inlcuded in the cpp file
+struct IO_R_D;
 
 class Process {
 private:
@@ -15,14 +17,14 @@ private:
     int TRT;
     int WT;
     int TWT;
-    Queue<IO_R_D*> IO_RD;
+    Queue<IO_R_D *>& IO_RD;
     int remainingtime; //time left to be processed by the cpu
     int NOIO; // number of IO
     //LinkedQueue<IO_R_D> IOList;
 
 public:
-    Process();
-    Process(int id, int at/*, int rt*/, int ct/*, int tt, int trt, int wt, int twt, LinkedList io_rd*/);
+    Process(Queue<IO_R_D*>& obj);
+    Process(int id, int at/*, int rt*/, int ct/*, int tt, int trt, int wt, int twt, LinkedList io_rd*/, Queue<IO_R_D*>& obj);
 
     int getId() const;
     int getArrivalTime() const;
@@ -41,7 +43,7 @@ public:
     void setTurnaroundDuration(int trt);
     void setWaitingTime(int wt);
     void setTotalWaitingTime(int twt);
-    void setIO_RD(VLinkedList io_rd);
+ /*   void setIO_RD(VLinkedList io_rd);*/
     void setIOList(int IOR, int IOD);
     int calculateTurnaroundDuration() const;
     int calculateWaitingTime() const;
