@@ -78,14 +78,16 @@ int main() {
 
 
 	Schedular S;
-
+	
 	string T;
 	T = "s";
 	
 
 
 	while (T!="X") {
+		
 		S.Phase_1_Simulation();
+		cin >> T;
 	}
 
 	//S.Phase_1_Simulation();

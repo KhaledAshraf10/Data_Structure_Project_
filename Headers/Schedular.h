@@ -19,7 +19,7 @@ class processor;
 class Schedular
 {
 private:
-	Queue<Process*> BLK1;
+
 	Queue<Process*> NEW; // from recomened file 
 	//Process** NEW;
 	processor** arr_Processor;
@@ -62,7 +62,7 @@ public:
 	
 	void IncreamentTimeStep();
   
-	auto PicksShortRDY(); // should return Shortest rdy queue => by looping on all proccesor 
+	processor* PicksShortRDY(); // should return Shortest rdy queue => by looping on all proccesor 
 	void BLKToRDY();
 	void Fork(Process*); // function that 
 	void Add_To_BLK(Process*);

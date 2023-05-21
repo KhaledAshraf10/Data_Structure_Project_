@@ -60,7 +60,7 @@ void ProFCFS::ScheduleAlgo()
 		if (RUNLIST->getremainingtime() != 0) {
 			srand(time(0));
 			/*int x = 1 + (rand() % 100);*/
-			int x = 15;
+		/*	int x = 15;
 
 			if(1<=x && x<=15)
 			
@@ -68,8 +68,11 @@ void ProFCFS::ScheduleAlgo()
 			  
 				pS->Add_To_BLK(RUNLIST);
 
-		}
-		noP = 0;
+
+
+		}*/
+	
+	
 		overheatingcounter++;
 		this->timer = 0;
 		return;
