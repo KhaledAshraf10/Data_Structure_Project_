@@ -48,6 +48,7 @@ void ProFCFS::ScheduleAlgo()
 
 
 	if (RUNLIST == nullptr) {
+<<<<<<< HEAD
 		if (Plist.size() == 0) {
 		if (this->IsHeated())
 			overheatingcounter++;
@@ -58,6 +59,9 @@ void ProFCFS::ScheduleAlgo()
 		if (!this->IsHeated()) {
 			Plist.getbeg(RUNLIST);
 			dectimer(RUNLIST);
+=======
+		if (noP == 0) { return; }
+>>>>>>> master
 
 			noP--;
 			return;
@@ -198,6 +202,11 @@ bool ProFCFS::PrintRUN() {
 	}
 
 
+}
+
+Process* ProFCFS::getRUNList()
+{
+	return RUNLIST;
 }
 
 void ProFCFS::PrintRDY() {

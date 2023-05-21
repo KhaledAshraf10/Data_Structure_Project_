@@ -36,6 +36,7 @@ public:
 	virtual void add_process(Process* p) = 0;
 	virtual void PrintRDY() = 0;
 	virtual bool PrintRUN() = 0;
+	virtual Process* getRUNList() = 0;
 	virtual Process* getprocess(Schedular* S) = 0;
 	virtual bool isrecent() { return recent; }
 	virtual void setrecent() { recent = true; }

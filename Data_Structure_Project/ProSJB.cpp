@@ -186,3 +186,8 @@ bool ProSJB::PrintRUN() {
 
 }
 
+Process* ProSJB::getRUNList()
+{
+	return RUNLIST;
+}
+

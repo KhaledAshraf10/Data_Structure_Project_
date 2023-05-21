@@ -31,6 +31,7 @@ public:
 	 bool RandomKiller() ;
 	 void PrintRDY() override;
 	 bool PrintRUN() override;
+	 Process* getRUNList()override;
 	 Process* getprocess(Schedular* S) {
 		 if (RUNLIST != nullptr) {
 			 return RUNLIST;

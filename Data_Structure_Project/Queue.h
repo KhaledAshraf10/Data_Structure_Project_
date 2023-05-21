@@ -302,7 +302,7 @@ public:
 		while (Tfrnt1) {
 			Tfrnt1 = Tfrnt1->getNext();
 			counter += 1;
-			cout << "Im here!";
+			
 
 		}
 		cout << counter << " RDY";
@@ -337,8 +337,7 @@ public:
 		Process* temp = nullptr;;
 		while (dequeue(temp));
 
-		cout << "\n Is LinkedQueue Empty now?? ==> " << boolalpha << isEmpty();
-		cout << "\nEnding LinkedQueue destructor..." << endl;
+		cout << "LINKEDQUEUE DESTRUCTOR!!!" << endl;
 
 
 	};
