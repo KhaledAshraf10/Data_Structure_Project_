@@ -68,7 +68,14 @@ int main() {
 
 
 
+	IO_R_D* struct1 = new IO_R_D;
 
+	struct1->IO_D = 10;
+	struct1->IO_R = 20;
+
+	Queue<IO_R_D*> Q1;
+
+	Q1.enqueue(struct1);
 
 
 
