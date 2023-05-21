@@ -11,7 +11,7 @@ Schedular::Schedular()
 	load();
 	TimeStep = 0;
 	arr_Processor = new processor * [nFCFS + nSJF + nRR];
-	P = new ProFCFS(this);
+	P = new ProFCFS(this,5);
 	me = this;
 	
 	
