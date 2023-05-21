@@ -11,7 +11,7 @@ Schedular::Schedular()
 	load();
 	TimeStep = 0;
 	arr_Processor = new processor * [nFCFS + nSJF + nRR];
-
+	P = new ProFCFS(this);
 	me = this;
 	
 	
@@ -280,16 +280,30 @@ auto Schedular::PicksShortRDY()
 	{
 		if (arr_Processor[i]->gettimer() > arr_Processor[i + 1]->gettimer())
 		{
-			ShortRDY = arr_Processor[i + 1];
+			ShortRDY = arr_Processor[i];
 		}
 	}
 	return ShortRDY;
 }
-void Schedular::Add_To_RDY()
+void Schedular::BLKToRDY()
 {
+	Process* p1 = nullptr;
 	
-
+	BLK.peek(p1);
+	if (p1->getIO_RD().getValue1At(0) == TimeStep) // it should not be that it should get IO_R if its equal time step it should go to shortes rdy list
+	{
+		PicksShortRDY()->add_process(p1);
+		BLK.dequeue(p1);
+		
+	}
 }
+
+void Schedular::Fork(Process* p)
+{
+	PicksShortRDY()->add_process(p);
+}
+
+
 
 
 Schedular::~Schedular()
@@ -301,3 +315,41 @@ Schedular::~Schedular()
 	//delete[] NEW; // Deallocate the memory for the array of pointers
 	//delete[]arr_Processor;
 }
+
+void Schedular::LoadSigKillList()
+{	 
+	while (inputfile)
+	{
+		int ID, SKT; // id of process and signal kill time
+		inputfile >> ID >> SKT;
+		MyStruct structt{ ID,SKT };
+		P->EnqueuEelements(structt);
+	}
+}
+
+//void Schedular::SigKill(Queue<MyStruct> KillSigList, Schedular& a)
+//{
+//	MyStruct s1,tempp;
+//	KillSigList.peek(s1);
+//	if (s1.KillTime != a.TimeStep)
+//	{
+//		return;
+//	}
+//	while (KillSigList.peek(s1))
+//	{
+//		if (s1.KillTime == a.TimeStep)
+//		{
+//			for (int i = 0; i < a.nFCFS; i++) // ana mout2kd en list of processor awl hagat feha hya fcfs
+//			{
+//				if (a.arr_Processor[i]->IsInRDY(s1.ID) || a.arr_Processor[i]->IsInRUN(s1.ID))
+//				{
+//					//arr_Processor[i]->KillProcess(s1.ID);
+//					KillSigList.dequeue(tempp);
+//				}
+//			}
+//		}
+//		
+//	}
+//}
+
+

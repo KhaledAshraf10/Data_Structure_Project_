@@ -3,7 +3,11 @@
 #include "../Headers/VLinkedList.h"
 class Processor;
 using namespace std;
+struct IO_R_D {
 
+    int IO_R;
+    int IO_D;
+};
 class Process {
 private:
     int ID; //
@@ -17,6 +21,7 @@ private:
     VLinkedList IO_RD;
     int remainingtime; //time left to be processed by the cpu
     int NOIO; // number of IO
+    //LinkedQueue<IO_R_D> IOList;
 
 public:
     Process();
@@ -40,6 +45,7 @@ public:
     void setWaitingTime(int wt);
     void setTotalWaitingTime(int twt);
     void setIO_RD(VLinkedList io_rd);
+    void setIOList(int IOR, int IOD);
     int calculateTurnaroundDuration() const;
     int calculateWaitingTime() const;
     void incrementTotalWaitingTime();

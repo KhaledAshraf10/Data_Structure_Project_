@@ -4,6 +4,11 @@
 #include "LinkedList.h"
 #include"processor.h"
 //class processor;
+// struct to add to queue 
+struct MyStruct {
+	int ID;
+	int KillTime;
+};
 class Schedular;
 class Process;
 class ProFCFS : public processor 
@@ -11,10 +16,16 @@ class ProFCFS : public processor
 private:
 	LinkedList<Process*> Plist;
 	int noP; //no of processes in RDY LIST
+	
 
 public:
+<<<<<<< HEAD
 
 	ProFCFS(Schedular* p,int overheatT) ;
+=======
+	
+	ProFCFS(Schedular* p) ;
+>>>>>>> 30e0de58619aa1c2afcc98d42ec784b945680fa4
 
 	virtual ~ProFCFS();
 
@@ -22,7 +33,7 @@ public:
 
 	 void ScheduleAlgo() ;
 
-	void  forkingrequest(int AT, int RT);
+	void  forkingrequest(Process* p);
 
 	 void inctimer(Process* p) override;
 	 void inctimer(int time) ;
@@ -42,15 +53,17 @@ public:
 		 else {
 			 return nullptr;
 		 }
-
-
-
 	 }
+	 void KillSig();
+	 static void EnqueuEelements(const MyStruct& element);
+	 static Queue<MyStruct> KillSigList;
 
 	// ana esmy eyad
-
-
-
-
+	 bool IsInRDY(int id) override;
+	 bool IsInRUN(int id) override;
+	 string getType() override;
+	 Process* getRdyProcess(int id) override;
 };
+
+
 

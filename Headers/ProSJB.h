@@ -1,6 +1,6 @@
 #pragma once
 #include"processor.h"
-#include"../Data_Structure_Project/Queue.h"
+#include "../Headers/Queue.h"
 
 class ProSJB : public processor
 {
@@ -36,6 +36,10 @@ public:
 
 
 	}
+	bool IsInRDY(int id) override;
+	bool IsInRUN(int id) override;
+	string getType() override;
+	Process* getRdyProcess(int id) override;
 
 
 

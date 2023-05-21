@@ -41,11 +41,19 @@ public:
 	virtual bool isrecent() { return recent; }
 	virtual void setrecent() { recent = true; }
 	virtual void unsetrecent() { recent = false; }
+<<<<<<< HEAD
 	virtual bool IsHeated() { return isHeated; }
 	virtual void setIsHeated() { isHeated = true; }
 	virtual void unsetIsHeated() { isHeated = false; }
 
 
+=======
+	virtual bool IsInRDY(int id) = 0;
+	virtual bool IsInRUN(int id) = 0;
+	virtual string getType() = 0;
+	virtual Process* getRdyProcess(int id) = 0;
+	
+>>>>>>> 30e0de58619aa1c2afcc98d42ec784b945680fa4
 
 		
 

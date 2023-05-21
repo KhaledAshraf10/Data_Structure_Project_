@@ -199,3 +199,23 @@ bool ProRoundRobin::PrintRUN() {
 
 
 }
+
+bool ProRoundRobin::IsInRDY(int id)
+{
+	return false;
+}
+
+bool ProRoundRobin::IsInRUN(int id)
+{
+	return false;
+}
+
+string ProRoundRobin::getType()
+{
+	return "ProRoundRobin";
+}
+
+Process* ProRoundRobin::getRdyProcess(int id)
+{
+	return nullptr;
+}
