@@ -324,23 +324,23 @@ public:
 
 
 
-	~Queue() {
+	//~Queue() {
 
 
 
-	//	//Note that the cout statements here is just for learning purpose
-	////They should be normally removed from the destructor
-	//	cout << "\nStarting LinkedQueue destructor...";
-	//	cout << "\nFreeing all nodes in the queue...";
+	////	//Note that the cout statements here is just for learning purpose
+	//////They should be normally removed from the destructor
+	////	cout << "\nStarting LinkedQueue destructor...";
+	////	cout << "\nFreeing all nodes in the queue...";
 
-		//Free all nodes in the queue
-		Process* temp = nullptr;;
-		while (dequeue(temp));
+	//	//Free all nodes in the queue
+	//	Process* temp = nullptr;;
+	//	while (dequeue(temp));
 
-		cout << "LINKEDQUEUE DESTRUCTOR!!!" << endl;
+	//	cout << "LINKEDQUEUE DESTRUCTOR!!!" << endl;
 
 
-	};
+	//};
 };
 
 

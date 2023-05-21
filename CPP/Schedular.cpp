@@ -110,25 +110,29 @@ void Schedular::Phase_1_Simulation()
 		Process* P;
 		int ArrivalTime;
 		int counter = 0;
-		for (int i = 0; i < nProcess;)
-		{
-			NEW.dequeue(P);// get arrival time of first process that should sort ascendingly
-			ArrivalTime = P->getArrivalTime();
-			 
-			//while (CheckTimeStep(ArrivalTime) == 0) 
-			//{
-			//	TimeStep++; // increment till time step be equal arrival time
-			//}
+		if (TimeStep == 1) {
 
-			 if (ArrivalTime == TimeStep) {          //should be changed to allow all precsses to get scheduled
-				 arr_Processor[(ArrivalTime-1)%11]->add_process(P);                                                        //!! processes should be deleted from new 
+			for (int i = 0; i < nProcess; i++)
+			{
+
+				NEW.dequeue(P);// get arrival time of first process that should sort ascendingly
+				ArrivalTime = P->getArrivalTime();
+
+				//while (CheckTimeStep(ArrivalTime) == 0) 
+				//{
+				//	TimeStep++; // increment till time step be equal arrival time
+				//}
+
+				if (ArrivalTime == TimeStep) {          //should be changed to allow all precsses to get scheduled
+					processor* shortest = PicksShortRDY();
+					shortest->add_process(P);        //!! processes should be deleted from new 
 
 
-				 /*arr_Processor[(ArrivalTime-1)%11]->setrecent();*/
-				 counter++;// for e.x it will add first process to first processor 
-			 }
+					/*arr_Processor[(ArrivalTime-1)%11]->setrecent();*/
+					counter++;// for e.x it will add first process to first processor 
+				}
+			}
 		}
-		
 		for (int j = 0;j < nFCFS+nRR+nSJF; j++)
 		{
 		 
@@ -145,7 +149,7 @@ void Schedular::Phase_1_Simulation()
 void Schedular::Add_To_BLK(Process* n)
 {
 
-	BLK1.enqueue(n);
+	BLK.enqueue(n);
 }
 void Schedular::Add_To_TRM(Process* n)
 {
@@ -160,7 +164,7 @@ processor** Schedular::getProcessorList()
 
 Queue<Process*> Schedular::getBLKList()
 {
-	return BLK1;
+	return BLK;
 }
 //LinkedList<Process*> Schedular::getTRMList()
 //{
@@ -254,27 +258,27 @@ void Schedular::SigKill(Process* p) {
 
 
 
-
-void Schedular::IncreamentTimeStep()
+//
+//void Schedular::IncreamentTimeStep()
+//{
+//	srand(time(NULL)); // seed the random number generator with the current time
+//	int randomNumber = rand() % 100 + 1; // generate a random number between 1 to 100
+//	TimeStep++;
+//	if (randomNumber < 10)
+//	{
+//		Process* temp;
+//
+//		BLK.dequeue(temp);
+//		arr_Processor[1]->add_process(temp); //BLK.Dequeu() should return process
+//		
+//	}
+//}
+processor* Schedular::PicksShortRDY()
 {
-	srand(time(NULL)); // seed the random number generator with the current time
-	int randomNumber = rand() % 100 + 1; // generate a random number between 1 to 100
-	TimeStep++;
-	if (randomNumber < 10)
+	processor* ShortRDY = arr_Processor[0];
+	for (int i = 1; i < nFCFS + nSJF + nRR; i++)
 	{
-		Process* temp;
-
-		BLK1.dequeue(temp);
-		arr_Processor[1]->add_process(temp); //BLK.Dequeu() should return process
-		
-	}
-}
-auto Schedular::PicksShortRDY()
-{
-	auto* ShortRDY = arr_Processor[0];
-	for (int i = 0; i < nFCFS + nSJF + nRR; i++)
-	{
-		if (arr_Processor[i]->gettimer() > arr_Processor[i + 1]->gettimer())
+		if (arr_Processor[i-1]->gettimer() > arr_Processor[i]->gettimer())
 		{
 			ShortRDY = arr_Processor[i];
 		}
