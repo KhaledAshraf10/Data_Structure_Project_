@@ -3,11 +3,7 @@
 #include "../Headers/VLinkedList.h"
 class Processor;
 using namespace std;
-struct IO_R_D {
 
-    int IO_R;
-    int IO_D;
-};
 class Process {
 private:
     int ID; //
