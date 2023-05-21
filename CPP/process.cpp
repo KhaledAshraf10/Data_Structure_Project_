@@ -1,13 +1,18 @@
-#include "../Headers/VLinkedList.h"
 #include "../Headers/Process.h"
+#include"../Headers/Queue.h"
 
 
 
-Process::Process()
-{
+
+
+
+
+Process::Process(Queue<IO_R_D*>& Queue):IO_RD(Queue){
+
+  
+
 }
-
-Process::Process(int id, int at,/* int rt,*/ int ct/*, int tt, int trt, int wt, int twt,LinkedList io_rd*/) {
+Process::Process(int id, int at,/* int rt,*/ int ct/*, int tt, int trt, int wt, int twt,LinkedList io_rd*/, Queue<IO_R_D*>& Queue):IO_RD(Queue) {
     ID = id;
     AT = at;
     //RT = rt;
@@ -19,7 +24,7 @@ Process::Process(int id, int at,/* int rt,*/ int ct/*, int tt, int trt, int wt, 
 
     //IO_RD = io_rd;
     remainingtime = ct;
-
+ 
 
 
 }
@@ -76,16 +81,16 @@ void Process::setWaitingTime(int wt) {
 void Process::setTotalWaitingTime(int twt) {
     TWT = twt;
 }
-void Process::setIO_RD(VLinkedList io_rd) {
-    IO_RD = io_rd;
-}
-void Process::setIOList(int IOR, int IOD)
-{
-    IO_R_D s;
-    s.IO_R = IOR;
-    s.IO_D = IOD;
-    //IOList.enqueue(s);
-}
+//void Process::setIO_RD(VLinkedList io_rd) {
+//    IO_RD = io_rd;
+//}
+//void Process::setIOList(int IOR, int IOD)
+//{
+//    IO_R_D s;
+//    s.IO_R = IOR;
+//    s.IO_D = IOD;
+//    //IOList.enqueue(s);
+//}
 int Process::calculateTurnaroundDuration() const {
     return TT - AT;
 }

@@ -42,7 +42,8 @@ void Schedular::load()
 		inputfile >> AT >> PID >> CT >> NIO;
 
 		// if i put Process id in New list or process 
-		Process* P = new Process(AT, PID, CT); // it should contain NIO
+		Queue<IO_R_D* > Q1;
+		Process* P = new Process(AT, PID, CT,Q1); // it should contain NIO
 		NEW.enqueue(P);
 		
 	}
@@ -205,21 +206,21 @@ int Schedular::getTimeStep()
 {
 	return TimeStep;
 }
-void Schedular::RUNtoBLK(Process* P1) {
-	
-	for (int i = 0; i < nFCFS + nSJF + nRR; i++) {
-		processor* processorPtr = arr_Processor[i]; 
-		Process* runList = processorPtr->getRUNList();
-		for (int j = 0; j < sizeof(runList); j++) {
-			if (runList[j].getIO_RD().containsValue1(TimeStep)) {
-				Process* p = &runList[j]; 
-				Add_To_BLK(p);
-			}
-		}
-		
-
-	}
-}
+//void Schedular::RUNtoBLK(Process* P1) {
+//	
+//	for (int i = 0; i < nFCFS + nSJF + nRR; i++) {
+//		processor* processorPtr = arr_Processor[i]; 
+//		Process* runList = processorPtr->getRUNList();
+//		for (int j = 0; j < sizeof(runList); j++) {
+//			if (runList[j].getIO_RD().containsValue1(TimeStep)) {
+//				Process* p = &runList[j]; 
+//				Add_To_BLK(p);
+//			}
+//		}
+//		
+//
+//	}
+//}
 void Schedular::RUNtoTRM(Process* P1) {
 
 	for (int i = 0; i < nFCFS + nSJF + nRR; i++) {
@@ -285,18 +286,18 @@ processor* Schedular::PicksShortRDY()
 	}
 	return ShortRDY;
 }
-void Schedular::BLKToRDY()
-{
-	Process* p1 = nullptr;
-	
-	BLK.peek(p1);
-	if (p1->getIO_RD().getValue1At(0) == TimeStep) // it should not be that it should get IO_R if its equal time step it should go to shortes rdy list
-	{
-		PicksShortRDY()->add_process(p1);
-		BLK.dequeue(p1);
-		
-	}
-}
+//void Schedular::BLKToRDY()
+//{
+//	Process* p1 = nullptr;
+//	
+//	BLK.peek(p1);
+//	if (p1->getIO_RD().getValue1At(0) == TimeStep) // it should not be that it should get IO_R if its equal time step it should go to shortes rdy list
+//	{
+//		PicksShortRDY()->add_process(p1);
+//		BLK.dequeue(p1);
+//		
+//	}
+//}
 
 void Schedular::Fork(Process* p)
 {

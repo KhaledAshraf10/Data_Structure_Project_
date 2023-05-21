@@ -81,37 +81,37 @@ void ProFCFS::ScheduleAlgo()
 	else
 
 	
-		
-		if (RUNLIST->getremainingtime() != 0) {
-			
+		//
+		//if (RUNLIST->getremainingtime() != 0) {
+		//	
 
-			int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
-			bool flag = false;
-		            //na2sa l7d get IO matt3ml!!
-			IO_R_D* temp;
-			RUNLIST->peekIO(temp);
-				if (totalexecutiontime == temp->IO_R) {
-					pS->Add_To_BLK(RUNLIST);
-					RUNLIST = nullptr;
-					
+		//	int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
+		//	bool flag = false;
+		//            //na2sa l7d get IO matt3ml!!
+		//	IO_R_D* temp;
+		//	//RUNLIST->peekIO(temp);
+		//		if (totalexecutiontime == temp->IO_R) {
+		//			pS->Add_To_BLK(RUNLIST);
+		//			RUNLIST = nullptr;
+		//			
 
-				}
-					
-			
-			
+		//		}
+		//			
+		//	
+		//	
 
-			
+		//	
 
-		
+		//
 
-			RUNLIST->decremainingtime();
-			return;
-			
+		//	RUNLIST->decremainingtime();
+		//	return;
+		//	
 
 
 
-		}
-		else 
+		//}
+		//else 
 			if (RUNLIST->getremainingtime() == 0) {
 
 				pS->Add_To_TRM(RUNLIST);
