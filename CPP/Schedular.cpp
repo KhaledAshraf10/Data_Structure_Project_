@@ -188,7 +188,7 @@ int Schedular::getnFCFS()
 }
 
 int Schedular::getnSJF()
-{
+{	
 	return nSJF;
 }
 
