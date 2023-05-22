@@ -340,13 +340,13 @@ public:
 
 	Process* getProcessAtPosition(Queue<Process*>& processQueue, int position)
 	{
-		if (position < 1 || position > processQueue.count()) {
+		if (position < 0 || position > processQueue.count()) {
 			std::cout << "Invalid position." << std::endl;
 			return nullptr;
 		}
 
 		Process* process;
-		int currentPosition = 1;
+		int currentPosition = 0;
 
 		// Dequeue processes from the original queue until the desired position
 		while (currentPosition < position) {
@@ -361,6 +361,14 @@ public:
 		return process;
 	}
 
+	void printProcessIDs(const Queue<Process*>& processQueue) {
+		Node<Process*>* currentNode = processQueue.frontPtr;
+		while (currentNode != nullptr) {
+			std::cout << currentNode->getItem()->getId() << " ";
+			currentNode = currentNode->getNext();
+		}
+		std::cout << std::endl;
+	}
 
 
 

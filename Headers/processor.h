@@ -19,6 +19,8 @@ protected:
 	int overheatmaltime; //timesteps for the processor to regain activation after overheating (taken from the input file)
 	bool isHeated; //flag to indicate whether the precssor is currently wrokin or not
 	int overheatingcounter;  //counter to process the ovrheating time
+	int Busytime;
+	int IDLEtime;
 
 
 public:
@@ -57,7 +59,10 @@ public:
 
 	virtual int getSizeOfRDYList() = 0;
 	virtual LinkedList<Process*> getRDYList() = 0;
-
+	virtual void incrementBusyTime() = 0;
+	virtual void incrementIDLETime() = 0;
+	virtual	int getBusyTime() = 0;
+	virtual int getIDLETime() = 0;
 
 
 
