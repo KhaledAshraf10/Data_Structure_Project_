@@ -58,18 +58,19 @@ void ProRoundRobin::ScheduleAlgo()
 
 	}
 	else if (RUNLIST->getremainingtime() != 0) {
-		//int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
-		//bool flag = false;
-		//for (int i = 0; i < sizeof(RUNLIST->getIO_RD())/sizeof(Node2); i++) {               //na2sa l7d get IO matt3ml!!
-		//	if (totalexecutiontime == arrayIO[i]) {
-		//		pS->Add_To_BLK(RUNLIST);
-		//		RUNLIST=nullptr
-		// counter=0; 
-		//	return;
+		int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
+	            //na2sa l7d get IO matt3ml!!
+		IO_R_D* temp;
+		RUNLIST->peekIO(temp);
+			if (totalexecutiontime == temp->IO_R) {
+				pS->Add_To_BLK(RUNLIST);
+				RUNLIST = nullptr;
+		         counter=0; 
+			return;
 
-		//	}
-		//		
-		//}
+			}
+				
+		}
 		if (counter == timeslice) {
 			Plist.enqueue(RUNLIST);
 
@@ -86,12 +87,15 @@ void ProRoundRobin::ScheduleAlgo()
 
 		}
 
+		else {
 
 
 
-		RUNLIST->decremainingtime(); //actual processing
-		counter++;
-		return;
+
+			RUNLIST->decremainingtime(); //actual processing
+			counter++;
+			return;
+		}
 
 
 

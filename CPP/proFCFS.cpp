@@ -36,7 +36,7 @@ void ProFCFS::ScheduleAlgo()
 
 	if (x ==5 ) {
 		this->setIsHeated();
-
+		return;
 
 	}
 
@@ -58,60 +58,35 @@ void ProFCFS::ScheduleAlgo()
 		}
 	}else
 		if (RUNLIST->getremainingtime() != 0) {
-			srand(time(0));
-			/*int x = 1 + (rand() % 100);*/
-		/*	int x = 15;
-
-			if(1<=x && x<=15)
 			
-			{
-			  
-				pS->Add_To_BLK(RUNLIST);
+
+			int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
+			bool flag = false;
+			IO_R_D* temp;
+			RUNLIST->peekIO(temp);
+				if (totalexecutiontime == temp->IO_R) {
+					pS->Add_To_BLK(RUNLIST);
+					RUNLIST = nullptr;
+					return;
+					
+
+				}
+
+				else {
+					RUNLIST->decremainingtime();   //actual processing
+					srand(time(0));
+					int F = 1 + (rand() % 100);  //forkprobability
+					if (F == 5/*forkpropality*/)
+						this->forkingrequest(RUNLIST);
+					return;
+
+				}
+			
 
 
 
-		}*/
-	
-	
-		overheatingcounter++;
-		this->timer = 0;
-		return;
-
-	}
-	else
-
-	
-		//
-		//if (RUNLIST->getremainingtime() != 0) {
-		//	
-
-		//	int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
-		//	bool flag = false;
-		//            //na2sa l7d get IO matt3ml!!
-		//	IO_R_D* temp;
-		//	//RUNLIST->peekIO(temp);
-		//		if (totalexecutiontime == temp->IO_R) {
-		//			pS->Add_To_BLK(RUNLIST);
-		//			RUNLIST = nullptr;
-		//			
-
-		//		}
-		//			
-		//	
-		//	
-
-		//	
-
-		//
-
-		//	RUNLIST->decremainingtime();
-		//	return;
-		//	
-
-
-
-		//}
-		//else 
+		}
+		else 
 			if (RUNLIST->getremainingtime() == 0) {
 
 				pS->Add_To_TRM(RUNLIST);

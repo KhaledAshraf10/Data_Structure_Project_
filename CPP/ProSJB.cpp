@@ -53,22 +53,26 @@ void ProSJB::ScheduleAlgo()
 
 	else if (RUNLIST->getremainingtime() != 0) {
 
-	//int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
+	int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
 		
-		//for (int i = 0; i < sizeof(RUNLIST->getIO_RD())/sizeof(Node2); i++) {               //na2sa l7d get IO matt3ml!!
-		//	if (totalexecutiontime == arrayIO[i]) {
-		// arrayIO[i]=0;
-		//		pS->Add_To_BLK(RUNLIST);
-		//		RUNLIST=nullptr
-		//		return;
+	IO_R_D* temp;
+	RUNLIST->peekIO(temp);
+			if (totalexecutiontime == temp->IO_R ) {
+	
+				pS->Add_To_BLK(RUNLIST);
+				RUNLIST = nullptr;
+				return;
 
 
-		//	}
-		//		
-		//}
+			}
+			else {
+				RUNLIST->decremainingtime();
+				return;
+				
+			}
+		}
 	/*else*/
-		RUNLIST->decremainingtime();
-		return;
+
 
 
 
