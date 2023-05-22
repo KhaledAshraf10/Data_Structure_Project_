@@ -136,72 +136,40 @@ void Schedular::Phase_1_Simulation()
 		}
 		else
 		{
-			/*Process* P;
+			
+			Process* P;
 			int ArrivalTime;
 			int counter = 0;
-			if (TimeStep == 1) {*/
+			if (TimeStep == 1) {
 
-			//	for (int i = 0; i < nProcess; i++)
-			//	{
-
-			//		NEW.dequeue(P);// get arrival time of first process that should sort ascendingly
-			//		ArrivalTime = P->getArrivalTime();
-
-			//		//while (CheckTimeStep(ArrivalTime) == 0) 
-			//		//{
-			//		//	TimeStep++; // increment till time step be equal arrival time
-			//		//}
-
-			//		if (ArrivalTime == TimeStep) {          //should be changed to allow all precsses to get scheduled
-			//			processor* shortest = PicksShortRDY();
-			//			shortest->add_process(P);        //!! processes should be deleted from new 
-
-
-			//			/*arr_Processor[(ArrivalTime-1)%11]->setrecent();*/
-			//			counter++;// for e.x it will add first process to first processor 
-			//		}
-			//	}
-			//}
-			for (int j = 0; j < nFCFS + nRR + nSJF; j++)
-
-			{
-				Process* P;
-				int ArrivalTime;
-				int counter = 0;
-				if (TimeStep == 1) {
-
-					for (int i = 0; i < nProcess; i++)
-					{
-
-						NEW.dequeue(P);// get arrival time of first process that should sort ascendingly
-						ArrivalTime = P->getArrivalTime();
-
-						//while (CheckTimeStep(ArrivalTime) == 0) 
-						//{
-						//	TimeStep++; // increment till time step be equal arrival time
-						//}
-
-						if (ArrivalTime == TimeStep) {          //should be changed to allow all precsses to get scheduled
-							processor* shortest = PicksShortRDY();
-							shortest->add_process(P);        //!! processes should be deleted from new 
-
-
-							/*arr_Processor[(ArrivalTime-1)%11]->setrecent();*/
-							counter++;// for e.x it will add first process to first processor 
-						}
-					}
-				}
-				for (int j = 0; j < nFCFS + nRR + nSJF; j++)
+				for (int i = 0; i < nProcess; i++)
 				{
 
-
-					arr_Processor[j]->ScheduleAlgo(); // it excute each processor to run 
-					/*	if (arr_Processor[j]->isrecent()) { arr_Processor[j]->unsetrecent(); }*/
+					NEW.dequeue(P);// get arrival time of first process that should sort ascendingly
+					ArrivalTime = P->getArrivalTime();
+					if (ArrivalTime == TimeStep) 
+					{          
+						//should be changed to allow all precsses to get scheduled
+						processor* shortest = PicksShortRDY();
+						shortest->add_process(P);        //!! processes should be deleted from new 
+						/*arr_Processor[(ArrivalTime-1)%11]->setrecent();*/
+						counter++;// for e.x it will add first process to first processor 
+					}
 				}
-				/*userUI.printProcessIDs(this);*/
-				userUI.FirstMode();
-				TimeStep++;
 			}
+			for (int j = 0; j < nFCFS + nRR + nSJF; j++)
+			{
+				arr_Processor[j]->ScheduleAlgo(); // it excute each processor to run 
+				/*	if (arr_Processor[j]->isrecent()) { arr_Processor[j]->unsetrecent(); }*/
+			}
+			/*userUI.printProcessIDs(this);*/
+			if (!BLK.isEmpty())
+			{
+				BLKToRDY();
+			}
+			userUI.FirstMode();
+			TimeStep++;
+			
 		}
 	}
 	if (q == 2) {
@@ -375,18 +343,7 @@ processor* Schedular::PicksShortRDY()
 	return ShortRDY;
 
 }
-//void Schedular::BLKToRDY()
-//{
-//	Process* p1 = nullptr;
-//	
-//	BLK.peek(p1);
-//	if (p1->getIO_RD().getValue1At(0) == TimeStep) // it should not be that it should get IO_R if its equal time step it should go to shortes rdy list
-//	{
-//		PicksShortRDY()->add_process(p1);
-//		BLK.dequeue(p1);
-//		
-//	}
-//}
+
 
 void Schedular::Fork(Process* p)
 {
