@@ -41,6 +41,9 @@ public:
 	string getType() override;
 	Process* getRdyProcess(int id) override;
 
+	int getSizeOfRDYList();
+	LinkedList<Process*> getRDYList();
+
 
 
 

@@ -45,13 +45,13 @@ public:
 	virtual bool IsHeated() { return isHeated; }
 	virtual void setIsHeated() { isHeated = true; }
 	virtual void unsetIsHeated() { isHeated = false; }
-
-
-
 	virtual bool IsInRDY(int id) = 0;
 	virtual bool IsInRUN(int id) = 0;
 	virtual string getType() = 0;
 	virtual Process* getRdyProcess(int id) = 0;
+	virtual int getSizeOfRDYList() = 0;
+	virtual LinkedList<Process*> getRDYList() = 0;
+
 	
 
 

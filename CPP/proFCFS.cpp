@@ -34,6 +34,7 @@ void ProFCFS::ScheduleAlgo()
 		srand(time(0));
 	int x = 1 + (rand() % 100);
 
+
 	if (x <5 ) {
 		this->setIsHeated();
 		for (int i = 0; i < Plist.size(); i++) {
@@ -51,9 +52,17 @@ void ProFCFS::ScheduleAlgo()
 	}
 
 
+
 	}
 
+
+
+		}*/
 	
+	
+		overheatingcounter++;
+		this->timer = 0;
+		return;
 
 
 
@@ -91,12 +100,18 @@ void ProFCFS::ScheduleAlgo()
 					return;
 
 				}
-			
+
+
+		//
+
+		//	RUNLIST->decremainingtime();
+		//	return;
+		//	
 
 
 
-		}
-		else 
+		//}
+		//else 
 			if (RUNLIST->getremainingtime() == 0) {
 
 				pS->Add_To_TRM(RUNLIST);
@@ -207,8 +222,11 @@ void ProFCFS::KillSig()
 
 			}
 
+
+
 		}
 	}
+
 }
 void ProFCFS::PrintRDY() 
 {
@@ -218,6 +236,21 @@ void ProFCFS::EnqueuEelements(const MyStruct & element)
 {
 	KillSigList.enqueue(element);
 	}
+
+
+
+Process* ProFCFS::getProcessWithValidParent()
+{
+	Node<Process*>* current = Plist.getHead();
+
+	while (current != nullptr) {
+		Process* process = current->getItem();
+		int parentID = process->getparentid();
+
+		if (parentID != -1) {
+			return process;
+		}
+  }
 
 bool ProFCFS::IsInRDY(int id)
 {
@@ -239,3 +272,21 @@ return "ProFCFS";
 }
 
 
+		current = current->getNext();
+	}
+
+	return nullptr;
+}
+int ProFCFS::getSizeOfRDYList()
+{
+	int count = 0;
+	Node<Process*>* current = Plist.getHead();
+	while (current != nullptr) {
+		count++;
+		current = current->getNext();
+	}
+	return count;
+}
+LinkedList<Process*> ProFCFS::getRDYList() {
+	return Plist;
+}

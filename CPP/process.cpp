@@ -7,6 +7,7 @@
 
 
 
+
 Process::Process(Queue<IO_R_D*>& Queue):IO_RD(Queue){
 
   
@@ -116,13 +117,16 @@ void Process::Add_To_IOList(IO_R_D* S)
 {
     IO_RD.enqueue(S);
 }
+
 void Process::peekIO(IO_R_D*& S) {
+
     IO_RD.peek(S);
 
 }
 void Process::DequeueIO(IO_R_D* S) {
     IO_RD.dequeue(S);
 }
+
 
 
 int Process::getNOIO()
@@ -133,4 +137,16 @@ void Process::setNOIO(int NIO)
 {
     NOIO = NIO;
 }
+
+
+int Process::getparentid()
+{
+    return parentid;
+}
+
+void Process::setparentid(int id)
+{
+    parentid = id;
+}
+
 

@@ -5,14 +5,21 @@
 #include"../Headers/UI.h"
 #include "../Headers/ProSJB.h"
 
+#include <chrono>
+#include <thread> 
+#include <fstream>
 
-  void UI:: printProcessIDs(/*Schedular* schedular*/) {
+  void UI::FirstMode(/*Schedular* schedular*/) {
+
         Queue<Process*> trmList = PS->getTRMList();
         Queue<Process*> blkList = PS->getBLKList();
         processor** processorList = PS->getProcessorList();
         int nFCFS = PS->getnFCFS();
         int nSJF = PS->getnSJF();
         int nRR = PS->getnRR();
+
+        int npr = PS->getnprocess();
+
 
 
         cout << "the current Timestep  " << timestep;
@@ -69,6 +76,40 @@
         //}
 
 
+            cout << "------------------------------------------------------------------------------------------------------" << endl;
 
 
-    }
+   }
+  void UI::ThirdMode()
+  {
+      cout << "simulation started....";
+ 
+  
+  }
+  int UI:: gettimestep() {
+      return timestep;
+  }
+  void UI:: writeInfoToFile() {
+      int npr = PS->getnprocess();
+      ofstream outputFile("info.txt");
+
+      if (!outputFile) {
+          std::cerr << "Error opening file." << std::endl;
+          return;
+      }
+
+      
+      outputFile << "TT PID AT CT IO_D WT RT TRT" << std::endl;
+
+      for (int i = 0; i < npr; i++) {
+          outputFile << std::endl;
+      }
+      // Write the second line of information
+      outputFile << "50 10 9 22 10 19 6 41" << std::endl;
+
+      // Close the file
+      outputFile.close();
+
+      std::cout << "Information written to file." << std::endl;
+  }
+

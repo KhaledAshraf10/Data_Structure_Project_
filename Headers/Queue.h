@@ -293,6 +293,18 @@ public:
 
 	}
 
+	bool isProcessInQueue(int targetProcessID) const {
+		Node<Process*>* currentNode = frontPtr;
+		while (currentNode != nullptr) {
+			if (currentNode->getItem()->getId() == targetProcessID) {
+				return true;  // Found the target process ID in the queue
+			}
+			currentNode = currentNode->getNext();
+		}
+		return false;  // Target process ID not found in the queue
+	}
+
+
 	void Printlistid() {
 		Node<Process*>* Tfrnt1 = frontPtr;
 		Node<Process*>* Tfrnt2 = frontPtr;
@@ -325,6 +337,30 @@ public:
 
 
 	}
+
+	Process* getProcessAtPosition(Queue<Process*>& processQueue, int position)
+	{
+		if (position < 1 || position > processQueue.count()) {
+			std::cout << "Invalid position." << std::endl;
+			return nullptr;
+		}
+
+		Process* process;
+		int currentPosition = 1;
+
+		// Dequeue processes from the original queue until the desired position
+		while (currentPosition < position) {
+			processQueue.dequeue(process);
+			processQueue.enqueue(process);
+			currentPosition++;
+		}
+
+		// Get the process at the desired position
+		processQueue.peek(process);
+
+		return process;
+	}
+
 
 
 
@@ -487,7 +523,9 @@ public:
 
 
 	};
+
 	bool peek(IO_R_D*& frntEntry)  const {
+
 
 		if (isEmpty())
 			return false;
