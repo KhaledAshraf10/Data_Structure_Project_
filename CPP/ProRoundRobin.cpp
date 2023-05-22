@@ -290,4 +290,24 @@ LinkedList<Process*> ProRoundRobin::getRDYList()
 	return LinkedList<Process*>();
 }
 
+void ProRoundRobin::incrementBusyTime()
+{
+	Busytime = Busytime + 1;
+}
+
+void ProRoundRobin::incrementIDLETime()
+{
+	 IDLEtime = IDLEtime+1;
+}
+
+int ProRoundRobin::getBusyTime()
+{
+	return Busytime;
+}
+
+int ProRoundRobin::getIDLETime()
+{
+	return IDLEtime;
+}
+
 

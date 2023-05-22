@@ -67,7 +67,10 @@ public:
 	 void setRUNNull() override;
 	 void deleteNode(Process* p) override;
 	 void decNoop() override;
-
+	 void incrementBusyTime();
+	 void incrementIDLETime();
+	 int getBusyTime();
+	 int getIDLETime();
 };
 
 

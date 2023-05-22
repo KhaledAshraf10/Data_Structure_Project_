@@ -271,6 +271,26 @@ void ProFCFS::decNoop()
 	noP--;
 }
 
+void ProFCFS::incrementBusyTime()
+{
+	Busytime = Busytime + 1;
+}
+
+void ProFCFS::incrementIDLETime()
+{
+	IDLEtime = IDLEtime + 1;
+}
+
+int ProFCFS::getBusyTime()
+{
+	return Busytime;
+}
+
+int ProFCFS::getIDLETime()
+{
+	return IDLEtime;
+}
+
 bool ProFCFS::IsInRUN(int id)
 {
 	return RUNLIST->getId() == id;
