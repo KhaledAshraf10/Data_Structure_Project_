@@ -93,7 +93,7 @@ void Process::setTotalWaitingTime(int twt) {
 //    //IOList.enqueue(s);
 //}
 int Process::calculateTurnaroundDuration() const {
-    return TT - AT;
+    return (TT - AT);
 }
 int Process::calculateWaitingTime() const {
     return TRT - CT;

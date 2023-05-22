@@ -53,7 +53,7 @@ void ProRoundRobin::ScheduleAlgo()
 		srand(time(0));
 		int x = 1 + (rand() % 100);
 
-		if (x < 5) {
+		if (x < 0) {
 			this->setIsHeated();
 
 			Process* temp;
@@ -294,6 +294,26 @@ int ProRoundRobin::getSizeOfRDYList()
 LinkedList<Process*> ProRoundRobin::getRDYList()
 {
 	return LinkedList<Process*>();
+}
+
+void ProRoundRobin::incrementBusyTime()
+{
+	Busytime = Busytime + 1;
+}
+
+void ProRoundRobin::incrementIDLETime()
+{
+	 IDLEtime = IDLEtime+1;
+}
+
+int ProRoundRobin::getBusyTime()
+{
+	return Busytime;
+}
+
+int ProRoundRobin::getIDLETime()
+{
+	return IDLEtime;
 }
 
 

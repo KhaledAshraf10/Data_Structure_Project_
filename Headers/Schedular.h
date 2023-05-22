@@ -86,6 +86,8 @@ public:
 	int getnprocess();
 	int getFP();
 	int getOverHeatT();
+	void checkBusy();
+	void checkIDLE();
 
 	//void SigKill(Queue<MyStruct> KillSigList, Schedular& a); //take list of signal kill that is sorted acc and at time equal sig kill it should move this process to TRM, check : process should in FCFS => RUN or RDY
 	/*forking

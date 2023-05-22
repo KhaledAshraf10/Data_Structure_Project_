@@ -38,7 +38,7 @@ void ProSJB::ScheduleAlgo()
 		srand(time(0));
 		int x = 1 + (rand() % 100);
 
-		if (x < 5) {
+		if (x < 0) {
 			this->setIsHeated();
 
 
@@ -251,6 +251,26 @@ int ProSJB::getSizeOfRDYList()
 LinkedList<Process*> ProSJB::getRDYList()
 {
 	return LinkedList<Process*>();
+}
+
+void ProSJB::incrementBusyTime()
+{
+	Busytime = Busytime + 1;
+}
+
+void ProSJB::incrementIDLETime()
+{
+	IDLEtime = IDLEtime + 1;
+}
+
+int ProSJB::getBusyTime()
+{
+	return Busytime;
+}
+
+int ProSJB::getIDLETime()
+{
+	return IDLEtime;
 }
 
 

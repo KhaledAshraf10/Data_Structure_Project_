@@ -46,6 +46,10 @@ public:
 
 	int getSizeOfRDYList();
 	LinkedList<Process*> getRDYList();
+	void incrementBusyTime();
+	void incrementIDLETime();
+	int getBusyTime();
+	int getIDLETime();
 
 
 

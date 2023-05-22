@@ -26,7 +26,7 @@ private:
 
 public:
     Process(Queue<IO_R_D*>& obj);
-    Process(int id, int at/*, int rt*/, int ct/*, int tt, int trt, int wt, int twt, LinkedList io_rd*/, Queue<IO_R_D*>& obj);
+    Process(int at,int id, /*, int rt*/ int ct/*, int tt, int trt, int wt, int twt, LinkedList io_rd*/, Queue<IO_R_D*>& obj);
 
     int getId() const;
     int getArrivalTime() const;
