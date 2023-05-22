@@ -24,7 +24,7 @@ int ProFCFS::gettimer() const
 void ProFCFS::ScheduleAlgo()
 {
 	if (this->IsHeated()) {
-		if (overheatingcounter == overheatmaltime) {
+		if (overheatingcounter == pS->getOverHeatT()) {
 			this->unsetIsHeated();
 			return;
 		}
@@ -40,12 +40,12 @@ void ProFCFS::ScheduleAlgo()
 			for (int i = 0; i < Plist.size(); i++) {
 				Process* temp;
 				Plist.getbeg(temp);
-				//pS->addtoshortest;
+				pS->GoToShortestRDY(temp);
 
 
 
 			}
-			//pS->addtoshortest(RUNLIST)
+			pS->GoToShortestRDY(RUNLIST);
 			RUNLIST = nullptr;
 			return;
 
@@ -88,7 +88,7 @@ void ProFCFS::ScheduleAlgo()
 				RUNLIST->decremainingtime();   //actual processing
 				srand(time(0));
 				int F = 1 + (rand() % 100);  //forkprobability
-				if (F == 5/*forkpropality*/)
+				if (F <= pS->getFP())
 					this->forkingrequest(RUNLIST);
 				return;
 
@@ -200,7 +200,7 @@ void ProFCFS::KillSig()
 					KillSigList.dequeue(tempp);//arr_Processor[i]->KillProcess(s1.ID);
 					pS->Add_To_TRM(arr_Processor[i]->getRUNList());
 					arr_Processor[i]->setRUNNull();
-					arr_Processor[i]->decNoop();
+					
 
 				}
 				else if (arr_Processor[i]->IsInRDY(s1.ID) && arr_Processor[i]->getType() == "ProFCFS")

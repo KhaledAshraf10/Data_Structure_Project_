@@ -36,7 +36,7 @@ private:
 	//LinkedList<int>* processorList; // int must replace by proessor data type from  sou3dy 
 	//LinkedList<int>* processList;	// int must replace by process data type from  abstar
 	ifstream inputfile;
-	int nFCFS, nSJF, nRR, TS, RTF, MaxW, STL, FP, nProcess/*,process dataType,kill datatype*/;
+	int nFCFS, nSJF, nRR, TS, RTF, MaxW, STL, FP, OverHeatT, nProcess/*,process dataType,kill datatype*/;
 	/*int AT, PID, CT, NIO;*/ // data of process taken form file 
 	int TimeStep, BLKCount;
 	
@@ -63,6 +63,7 @@ public:
 	void IncreamentTimeStep();
   
 	processor* PicksShortRDY(); // should return Shortest rdy queue => by looping on all proccesor 
+	void GoToShortestRDY(Process* p);
 	void BLKToRDY();
 	void Fork(Process*); // function that 
 	void Add_To_BLK(Process*);
@@ -83,6 +84,8 @@ public:
 
 	void KillOrphanProcesses();
 	int getnprocess();
+	int getFP();
+	int getOverHeatT();
 
 	//void SigKill(Queue<MyStruct> KillSigList, Schedular& a); //take list of signal kill that is sorted acc and at time equal sig kill it should move this process to TRM, check : process should in FCFS => RUN or RDY
 	/*forking

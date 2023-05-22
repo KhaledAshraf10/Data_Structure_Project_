@@ -22,7 +22,7 @@ Schedular::Schedular()
 void Schedular::load()
 {
 	inputfile.open("File_1.txt"); // it can use function from UI to enter file name and then i should make check if file name exist or not 
-	inputfile >> nFCFS >> nSJF >> nRR >> TS >> RTF >> MaxW >> STL >> FP >> nProcess;
+	inputfile >> nFCFS >> nSJF >> nRR >> TS >> RTF >> MaxW >> STL >> FP >> OverHeatT >> nProcess;
 	
 
 	/*
@@ -347,8 +347,12 @@ processor* Schedular::PicksShortRDY()
 
 void Schedular::Fork(Process* p)
 {
-	PicksShortRDY()->add_process(p);
-
+	int AT = TimeStep, PID = nProcess + 1, CT = p->getremainingtime();
+	Queue<IO_R_D*>* arr = new Queue<IO_R_D*>;
+	Process* child = new Process(AT, PID, CT, *arr);
+	child->setparentid(p->getId());
+	nProcess++;
+	PicksShortRDY()->add_process(child);
 }
 void Schedular::BLKToRDY()
 {
@@ -364,6 +368,11 @@ void Schedular::BLKToRDY()
 		p1->DequeueIO(s);
 		
 	}
+}
+
+void Schedular::GoToShortestRDY(Process* p)
+{
+	PicksShortRDY()->add_process(p);
 }
 
 
@@ -439,7 +448,7 @@ void Schedular::KillOrphanProcesses()
 			if (isParentTerminated) {
 				Add_To_TRM(runningProcess);
 				currentProcessor->setRUNNull();
-				currentProcessor->decNoop();
+				
 				//arr_Processor[i]->setRUNlist(); // Clear the RUNLIST by setting it to nullptr
 			}
 		}
@@ -457,6 +466,7 @@ void Schedular::KillOrphanProcesses()
 				if (isParentTerminated) {
 					Add_To_TRM(currentProcessor->getRDYList().getProcessByPosition(j));
 					//check
+					currentProcessor->dectimer(currentProcessor->getRDYList().getProcessByPosition(j));
 					currentProcessor->deleteNode(currentProcessor->getRDYList().getProcessByPosition(j));
 					currentProcessor->decNoop();
 					 // Clear the RUNLIST by setting it to nullptr
@@ -471,5 +481,15 @@ void Schedular::KillOrphanProcesses()
 
 int Schedular::getnprocess() {
 	return nProcess;
+}
+
+int Schedular::getFP()
+{
+	return FP;
+}
+
+int Schedular::getOverHeatT()
+{
+	return OverHeatT;
 }
 

@@ -27,7 +27,7 @@ void ProSJB::ScheduleAlgo()
 {
 
 	if (this->IsHeated()) {
-		if (overheatingcounter == overheatmaltime) {
+		if (overheatingcounter == pS->getOverHeatT()) {
 			this->unsetIsHeated();
 			return;
 		}
@@ -46,12 +46,12 @@ void ProSJB::ScheduleAlgo()
 			 
 				Process* temp;
 				while (Plist.dequeue(temp)) {
-					//pS->addtoshortest;
+					pS->GoToShortestRDY(temp);
 
 				}
 
 			
-			//pS->addtoshortest(RUNLIST)
+			pS->GoToShortestRDY(RUNLIST);
 			RUNLIST = nullptr;
 			return;
 		}
