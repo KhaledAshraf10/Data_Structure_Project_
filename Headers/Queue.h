@@ -487,7 +487,7 @@ public:
 
 
 	};
-	bool peek(IO_R_D* frntEntry)  const {
+	bool peek(IO_R_D*& frntEntry)  const {
 
 		if (isEmpty())
 			return false;

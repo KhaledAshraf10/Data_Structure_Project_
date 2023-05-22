@@ -39,7 +39,7 @@ void ProSJB::ScheduleAlgo()
 
 	}
 
-	else if (RUNLIST->getremainingtime() ==0) {
+	else if (RUNLIST->getremainingtime() == 0) {
 
 
 
@@ -53,24 +53,24 @@ void ProSJB::ScheduleAlgo()
 
 	else if (RUNLIST->getremainingtime() != 0) {
 
-	int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
-		
-	IO_R_D* temp;
-	RUNLIST->peekIO(temp);
-			if (totalexecutiontime == temp->IO_R ) {
-	
-				pS->Add_To_BLK(RUNLIST);
-				RUNLIST = nullptr;
-				return;
+		int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
+
+		IO_R_D* temp=nullptr;
+		RUNLIST->peekIO(temp);
+		if (totalexecutiontime == temp->IO_R) {
+
+			pS->Add_To_BLK(RUNLIST);
+			RUNLIST = nullptr;
+			return;
 
 
-			}
-			else {
-				RUNLIST->decremainingtime();
-				return;
-				
-			}
 		}
+		else {
+			RUNLIST->decremainingtime();
+			return;
+
+		}
+	}
 	/*else*/
 
 
@@ -79,7 +79,7 @@ void ProSJB::ScheduleAlgo()
 
 
 
-	}
+}
 
 
 
@@ -137,7 +137,6 @@ void ProSJB::ScheduleAlgo()
 
 
 
-}
 
 void ProSJB::inctimer(Process* p)
 {

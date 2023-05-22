@@ -116,7 +116,7 @@ void Process::Add_To_IOList(IO_R_D* S)
 {
     IO_RD.enqueue(S);
 }
-void Process::peekIO(IO_R_D* S) {
+void Process::peekIO(IO_R_D*& S) {
     IO_RD.peek(S);
 
 }

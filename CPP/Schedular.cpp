@@ -42,7 +42,9 @@ void Schedular::load()
 	
 
 	for (int i = 0; i < nProcess ; i++)
-	{
+	{	IO_R_D* struct1 = new IO_R_D;
+	struct1->IO_D = 10;
+	struct1->IO_R = 10;
 		
 		int AT=0, PID=0, CT=0, NIO=0;
 		inputfile >> AT >> PID >> CT >> NIO;
@@ -50,9 +52,13 @@ void Schedular::load()
 		// if i put Process id in New list or process 
 			Queue<IO_R_D*>* arr = new Queue<IO_R_D*>;
 		Process* P = new Process(AT, PID, CT,*arr); // it should contain NIO
+		P->Add_To_IOList(struct1);
 		NEW.enqueue(P);
 		
 	}
+
+
+
 
 
 	

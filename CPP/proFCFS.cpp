@@ -62,7 +62,7 @@ void ProFCFS::ScheduleAlgo()
 
 			int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
 			bool flag = false;
-			IO_R_D* temp;
+			IO_R_D* temp=nullptr;
 			RUNLIST->peekIO(temp);
 				if (totalexecutiontime == temp->IO_R) {
 					pS->Add_To_BLK(RUNLIST);

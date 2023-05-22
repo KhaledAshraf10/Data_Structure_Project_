@@ -51,7 +51,7 @@ public:
     int getremainingtime();
     void decremainingtime();
     void Add_To_IOList(IO_R_D* S);
-    void peekIO(IO_R_D* S);
+    void peekIO(IO_R_D*& S);
     void DequeueIO(IO_R_D* S);
 
     // Khaled added 
