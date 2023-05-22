@@ -114,17 +114,24 @@ void Schedular::Add_To_arr_Processor()
 
 void Schedular::Phase_1_Simulation()
 {
+	bool isfinished = false;
+	if (TRM.count() != nProcess) {
+		 isfinished = false;
+	}
+	else{
+		isfinished = true;
+	}
 	static int q;
-	static bool executed = false;  
+	static bool executed = false;
 
 	if (!executed)
 	{
-		
+
 		cout << "Choose the mode : 1,2 or 3 ";
 		cin >> q;
-		executed = true;  
+		executed = true;
 	}
-	if (q == 1) 
+	if (q == 1)
 	{
 		if (TimeStep == 0)
 		{
@@ -137,7 +144,7 @@ void Schedular::Phase_1_Simulation()
 		}
 		else
 		{
-			
+
 			Process* P;
 			int ArrivalTime;
 			int counter = 0;
@@ -148,8 +155,8 @@ void Schedular::Phase_1_Simulation()
 
 					NEW.dequeue(P);// get arrival time of first process that should sort ascendingly
 					ArrivalTime = P->getArrivalTime();
-					if (ArrivalTime == TimeStep) 
-					{          
+					if (ArrivalTime == TimeStep)
+					{
 						//should be changed to allow all precsses to get scheduled
 						processor* shortest = PicksShortRDY();
 						shortest->add_process(P);        //!! processes should be deleted from new 
@@ -170,10 +177,10 @@ void Schedular::Phase_1_Simulation()
 			}
 			userUI.FirstMode();
 			TimeStep++;
-			
+
 		}
 	}
-	userUI.writeInfoToFile();
+
 
 	if (q == 2) {
 		while (true) {
@@ -233,7 +240,7 @@ void Schedular::Phase_1_Simulation()
 
 		}
 	}
-	userUI.writeInfoToFile();
+
 	if (q == 3) {
 		userUI.ThirdMode();
 		while (true) {
@@ -245,8 +252,8 @@ void Schedular::Phase_1_Simulation()
 				TimeStep++;
 
 				/*userUI.printProcessIDs(this);*/
-				
-				
+
+
 
 			}
 			else
@@ -285,7 +292,7 @@ void Schedular::Phase_1_Simulation()
 					/*	if (arr_Processor[j]->isrecent()) { arr_Processor[j]->unsetrecent(); }*/
 				}
 				/*userUI.printProcessIDs(this);*/
-				
+
 
 				TimeStep++;
 			}
@@ -293,7 +300,9 @@ void Schedular::Phase_1_Simulation()
 
 		}
 	}
-	userUI.writeInfoToFile();
+	if (isfinished) {
+		userUI.writeInfoToFile();
+	}
 }
 void Schedular::Add_To_BLK(Process* n)
 {
