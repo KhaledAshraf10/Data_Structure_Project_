@@ -83,8 +83,8 @@ int main() {
 
 
 
-
 	Schedular S;
+	
 	
 	string T;
 	T = "s";

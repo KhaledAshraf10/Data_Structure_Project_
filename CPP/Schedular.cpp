@@ -22,7 +22,7 @@ Schedular::Schedular()
 void Schedular::load()
 {
 	inputfile.open("File_1.txt"); // it can use function from UI to enter file name and then i should make check if file name exist or not 
-	inputfile >> nFCFS >> nSJF >> nRR >> TS >> RTF >> MaxW >> STL >> FP >> nProcess;
+	inputfile >> nFCFS >> nSJF >> nRR >> TS >> RTF >> MaxW >> STL >> FP >> OverHeatT >> nProcess;
 	
 
 	/*
@@ -123,38 +123,20 @@ void Schedular::Phase_1_Simulation()
 		cin >> q;
 		executed = true;  
 	}
-
-	else
+	if (q == 1) 
 	{
-		Process* P;
-		int ArrivalTime;
-		int counter = 0;
-		if (TimeStep == 1) {
-
-			for (int i = 0; i < nProcess; i++)
-			{
-
-				NEW.dequeue(P);// get arrival time of first process that should sort ascendingly
-				ArrivalTime = P->getArrivalTime();
-
-				//while (CheckTimeStep(ArrivalTime) == 0) 
-				//{
-				//	TimeStep++; // increment till time step be equal arrival time
-				//}
-
-				if (ArrivalTime == TimeStep) {          //should be changed to allow all precsses to get scheduled
-					processor* shortest = PicksShortRDY();
-					shortest->add_process(P);        //!! processes should be deleted from new 
-
-
-					/*arr_Processor[(ArrivalTime-1)%11]->setrecent();*/
-					counter++;// for e.x it will add first process to first processor 
-				}
-			}
-		}
-		for (int j = 0;j < nFCFS+nRR+nSJF; j++)
-
+		if (TimeStep == 0)
 		{
+			Add_To_NEW();
+			Add_To_arr_Processor();
+			TimeStep++;
+
+			// userUI.printProcessIDs(this); /
+			userUI.FirstMode();
+		}
+		else
+		{
+			
 			Process* P;
 			int ArrivalTime;
 			int counter = 0;
@@ -165,17 +147,11 @@ void Schedular::Phase_1_Simulation()
 
 					NEW.dequeue(P);// get arrival time of first process that should sort ascendingly
 					ArrivalTime = P->getArrivalTime();
-
-					//while (CheckTimeStep(ArrivalTime) == 0) 
-					//{
-					//	TimeStep++; // increment till time step be equal arrival time
-					//}
-
-					if (ArrivalTime == TimeStep) {          //should be changed to allow all precsses to get scheduled
+					if (ArrivalTime == TimeStep) 
+					{          
+						//should be changed to allow all precsses to get scheduled
 						processor* shortest = PicksShortRDY();
 						shortest->add_process(P);        //!! processes should be deleted from new 
-
-
 						/*arr_Processor[(ArrivalTime-1)%11]->setrecent();*/
 						counter++;// for e.x it will add first process to first processor 
 					}
@@ -183,14 +159,17 @@ void Schedular::Phase_1_Simulation()
 			}
 			for (int j = 0; j < nFCFS + nRR + nSJF; j++)
 			{
-
-
 				arr_Processor[j]->ScheduleAlgo(); // it excute each processor to run 
 				/*	if (arr_Processor[j]->isrecent()) { arr_Processor[j]->unsetrecent(); }*/
 			}
 			/*userUI.printProcessIDs(this);*/
+			if (!BLK.isEmpty())
+			{
+				BLKToRDY();
+			}
 			userUI.FirstMode();
 			TimeStep++;
+			
 		}
 	}
 	if (q == 2) {
@@ -364,23 +343,16 @@ processor* Schedular::PicksShortRDY()
 	return ShortRDY;
 
 }
-//void Schedular::BLKToRDY()
-//{
-//	Process* p1 = nullptr;
-//	
-//	BLK.peek(p1);
-//	if (p1->getIO_RD().getValue1At(0) == TimeStep) // it should not be that it should get IO_R if its equal time step it should go to shortes rdy list
-//	{
-//		PicksShortRDY()->add_process(p1);
-//		BLK.dequeue(p1);
-//		
-//	}
-//}
+
 
 void Schedular::Fork(Process* p)
 {
-	PicksShortRDY()->add_process(p);
-
+	int AT = TimeStep, PID = nProcess + 1, CT = p->getremainingtime();
+	Queue<IO_R_D*>* arr = new Queue<IO_R_D*>;
+	Process* child = new Process(AT, PID, CT, *arr);
+	child->setparentid(p->getId());
+	nProcess++;
+	PicksShortRDY()->add_process(child);
 }
 void Schedular::BLKToRDY()
 {
@@ -396,6 +368,11 @@ void Schedular::BLKToRDY()
 		p1->DequeueIO(s);
 		
 	}
+}
+
+void Schedular::GoToShortestRDY(Process* p)
+{
+	PicksShortRDY()->add_process(p);
 }
 
 
@@ -471,7 +448,7 @@ void Schedular::KillOrphanProcesses()
 			if (isParentTerminated) {
 				Add_To_TRM(runningProcess);
 				currentProcessor->setRUNNull();
-
+				
 				//arr_Processor[i]->setRUNlist(); // Clear the RUNLIST by setting it to nullptr
 			}
 		}
@@ -489,6 +466,7 @@ void Schedular::KillOrphanProcesses()
 				if (isParentTerminated) {
 					Add_To_TRM(currentProcessor->getRDYList().getProcessByPosition(j));
 					//check
+					currentProcessor->dectimer(currentProcessor->getRDYList().getProcessByPosition(j));
 					currentProcessor->deleteNode(currentProcessor->getRDYList().getProcessByPosition(j));
 					currentProcessor->decNoop();
 					 // Clear the RUNLIST by setting it to nullptr
@@ -503,5 +481,15 @@ void Schedular::KillOrphanProcesses()
 
 int Schedular::getnprocess() {
 	return nProcess;
+}
+
+int Schedular::getFP()
+{
+	return FP;
+}
+
+int Schedular::getOverHeatT()
+{
+	return OverHeatT;
 }
 

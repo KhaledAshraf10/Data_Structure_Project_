@@ -262,7 +262,7 @@ public:
 
 
 	};
-	bool peek(Process* frntEntry)  const {
+	bool peek(Process*& frntEntry)  const {
 
 		if (isEmpty())
 			return false;
