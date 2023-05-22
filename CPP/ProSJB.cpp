@@ -244,6 +244,18 @@ Process* ProSJB::getRdyProcess(int id)
 {
 	return nullptr;
 }
+void ProSJB::setRUNNull()
+{
+	RUNLIST = nullptr;
+}
+void ProSJB::deleteNode(Process* p)
+{
+	return;
+}
+void ProSJB::decNoop()
+{
+	nop--;
+}
 Process* ProSJB::getRUNList()
 {
 	return RUNLIST;

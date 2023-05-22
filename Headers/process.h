@@ -53,7 +53,8 @@ public:
     void Add_To_IOList(IO_R_D* S);
     void peekIO(IO_R_D*& S);
     void DequeueIO(IO_R_D* S);
-
+    int getIOR();
+    int getIOD();
     // Khaled added 
     int getNOIO();
     void setNOIO(int NIO);

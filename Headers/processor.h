@@ -52,7 +52,11 @@ public:
 	virtual bool IsInRUN(int id) = 0;
 	virtual string getType() = 0;
 	virtual Process* getRdyProcess(int id) = 0;
-	
+	// no implemetaion
+	virtual void setRUNNull() = 0;
+	virtual void deleteNode(Process* p) = 0;
+	virtual void decNoop() = 0;
+
 
 
 		

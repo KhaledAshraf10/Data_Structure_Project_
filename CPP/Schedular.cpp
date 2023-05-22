@@ -42,17 +42,22 @@ void Schedular::load()
 	
 
 	for (int i = 0; i < nProcess ; i++)
-	{	IO_R_D* struct1 = new IO_R_D;
-	struct1->IO_D = 10;
-	struct1->IO_R = 10;
-		
-		int AT=0, PID=0, CT=0, NIO=0;
+	{	
+		int AT = 0, PID = 0, CT = 0, NIO = 0, IOR = 0, IOD = 0;
 		inputfile >> AT >> PID >> CT >> NIO;
-
+		
 		// if i put Process id in New list or process 
-			Queue<IO_R_D*>* arr = new Queue<IO_R_D*>;
+		Queue<IO_R_D*>* arr = new Queue<IO_R_D*>;
 		Process* P = new Process(AT, PID, CT,*arr); // it should contain NIO
-		P->Add_To_IOList(struct1);
+		for (int j = 0; j < NIO; j++)
+		{
+			IO_R_D* struct1 = new IO_R_D;
+			inputfile >> IOR >> IOD;
+			struct1->IO_R = IOR;
+			struct1->IO_D = IOD;
+			P->Add_To_IOList(struct1);
+		}
+		
 		NEW.enqueue(P);
 		
 	}
@@ -298,19 +303,21 @@ processor* Schedular::PicksShortRDY()
 	}
 	return ShortRDY;
 }
-//void Schedular::BLKToRDY()
-//{
-//	Process* p1 = nullptr;
-//	
-//	BLK.peek(p1);
-//	if (p1->getIO_RD().getValue1At(0) == TimeStep) // it should not be that it should get IO_R if its equal time step it should go to shortes rdy list
-//	{
-//		PicksShortRDY()->add_process(p1);
-//		BLK.dequeue(p1);
-//		
-//	}
-//}
-
+void Schedular::BLKToRDY()
+{
+	Process * p1 = nullptr;
+	IO_R_D * s;
+	BLK.peek(p1);
+	p1->peekIO(s);
+	
+	if (s->IO_R + s->IO_D == TimeStep)  // when the sum of IOR and IOD equal time step it mean that process wait in blk 
+	{
+		PicksShortRDY()->add_process(p1);
+		BLK.dequeue(p1);
+		p1->DequeueIO(s);
+		
+	}
+}
 void Schedular::Fork(Process* p)
 {
 	PicksShortRDY()->add_process(p);

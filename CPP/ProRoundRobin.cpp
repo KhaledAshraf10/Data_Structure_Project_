@@ -263,3 +263,18 @@ Process* ProRoundRobin::getRdyProcess(int id)
 {
 	return nullptr;
 }
+
+void ProRoundRobin::setRUNNull()
+{
+	RUNLIST = nullptr;
+}
+
+void ProRoundRobin::deleteNode(Process* p)
+{
+	return;
+}
+
+void ProRoundRobin::decNoop()
+{
+	nop--;
+}
