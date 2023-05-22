@@ -53,8 +53,18 @@ void ProRoundRobin::ScheduleAlgo()
 		srand(time(0));
 		int x = 1 + (rand() % 100);
 
-		if (x == 5) {
+		if (x < 5) {
 			this->setIsHeated();
+
+				Process* temp;
+				while(Plist.dequeue(temp)){
+				//pS->addtoshortest;
+
+
+
+			}
+			//pS->addtoshortest(RUNLIST)
+			RUNLIST = nullptr;
 			counter = 0;
 
 			return;

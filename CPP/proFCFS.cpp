@@ -34,7 +34,7 @@ void ProFCFS::ScheduleAlgo()
 		srand(time(0));
 	int x = 1 + (rand() % 100);
 
-	if (x <=5 ) {
+	if (x <5 ) {
 		this->setIsHeated();
 		for (int i = 0; i < Plist.size(); i++) {
 			Process* temp;
