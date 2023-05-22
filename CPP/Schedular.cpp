@@ -1,6 +1,7 @@
 #include "../Headers/Schedular.h"
 #include "../Headers/proFCFS.h"
 #include "../Headers/ProRoundRobin.h"
+#include"../Headers/ProSJB.h"
 #include <chrono>
 #include <thread> 
 
@@ -102,12 +103,12 @@ void Schedular::Add_To_arr_Processor()
 
 	for (int i = nFCFS; i < nSJF+nFCFS; i++)
 	{
-		arr_Processor[i] = new ProFCFS(this,5);
+		arr_Processor[i] = new ProSJB(this, 5);
 	}
 	for (int i = nSJF + nFCFS; i < nSJF + nFCFS + nRR; i++)
 
 	{
-		arr_Processor[i] = new ProRoundRobin(this,5,5,5);
+		arr_Processor[i] = new ProRoundRobin(this,5,5,TS);
 	}
 }
 
@@ -355,25 +356,25 @@ int Schedular::getTimeStep()
 }
 
 
-void Schedular::SigKill(Process* p) 
-{
-	
-	for (int i = 0; i < nFCFS; i++) {
-		processor* processorPtr = arr_Processor[i];
-		Process* runList = processorPtr->getRUNList();
-
-		
-		for (int j = 0; j < sizeof(runList); j++) {
-			if (runList[j].getId() == p->getId()) {
-				
-				Add_To_TRM(p);
-
-				
-				return;
-			}
-		}
-	}
-}
+//void Schedular::SigKill(Process* p) 
+//{
+//	
+//	for (int i = 0; i < nFCFS; i++) {
+//		processor* processorPtr = arr_Processor[i];
+//		Process* runList = processorPtr->getRUNList();
+//
+//		
+//		for (int j = 0; j < sizeof(runList); j++) {
+//			if (runList[j].getId() == p->getId()) {
+//				
+//				Add_To_TRM(p);
+//
+//				
+//				return;
+//			}
+//		}
+//	}
+//}
 
 
 
@@ -396,10 +397,18 @@ void Schedular::SigKill(Process* p)
 processor* Schedular::PicksShortRDY()
 {
 	processor* ShortRDY = arr_Processor[0];
+	for (int i = 0; i < nFCFS + nSJF + nRR; i++)
+	{
+		if (!(arr_Processor[i]->IsHeated())) {
+			 ShortRDY = arr_Processor[i];
+			break;
+		}
+	}
 	for (int i = 1; i < nFCFS + nSJF + nRR; i++)
 	{
 		if (arr_Processor[i-1]->gettimer() > arr_Processor[i]->gettimer())
 		{
+			if(!(arr_Processor[i]->IsHeated()))
 			ShortRDY = arr_Processor[i];
 		}
 	}
@@ -424,11 +433,15 @@ void Schedular::BLKToRDY()
 	BLK.peek(p1);
 	p1->peekIO(s);
 	
-	if (s->IO_R + s->IO_D == TimeStep)  // when the sum of IOR and IOD equal time step it mean that process wait in blk 
+	if (s->IO_D != p1->GetBLKCounter())  // when the sum of IOR and IOD equal time step it mean that process wait in blk 
 	{
+		p1->incBLK();
+	}
+	else{
 		PicksShortRDY()->add_process(p1);
 		BLK.dequeue(p1);
 		p1->DequeueIO(s);
+		p1->BLKsetZERO();
 		
 	}
 }

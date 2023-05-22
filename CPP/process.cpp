@@ -150,3 +150,24 @@ void Process::setparentid(int id)
 }
 
 
+
+bool Process::IOIsEmpty()
+{
+
+    return IO_RD.isEmpty();
+}
+
+
+void Process::incBLK(){
+    this->BLKcounter++;
+}
+
+void Process::BLKsetZERO() {
+    this->BLKcounter = 0;
+}
+
+
+
+int Process::GetBLKCounter() {
+    return BLKcounter;
+}

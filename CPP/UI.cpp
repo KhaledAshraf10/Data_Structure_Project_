@@ -63,7 +63,9 @@
         cout << "-------------- TRM Processes -------------" << endl;
 
         //trmList.PrintListid();
+
         trmList.printProcessIDs(trmList);
+
         cout << "------------- BLK Processes ---------------" << endl;
        // for (int i = 0; i < blkList.size(); i++) {
             blkList.printProcessIDs(blkList);
