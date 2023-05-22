@@ -36,6 +36,36 @@ void ProRoundRobin::ScheduleAlgo()
 {
 
 
+	if (this->IsHeated()) {
+		if (overheatingcounter == overheatmaltime) {
+			this->unsetIsHeated();
+			counter = 0;
+
+			return;
+			
+		}
+		this->overheatingcounter++;
+		counter = 0;
+
+		return;
+	}
+	else {
+		srand(time(0));
+		int x = 1 + (rand() % 100);
+
+		if (x == 5) {
+			this->setIsHeated();
+			counter = 0;
+
+			return;
+
+		}
+
+
+	}
+	//////////end of Bonus Task Check
+
+
 	if (RUNLIST == nullptr) {
 		if (Plist.count() == 0) { return; }
 		Plist.dequeue(RUNLIST);
