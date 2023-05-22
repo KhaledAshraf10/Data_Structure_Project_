@@ -361,6 +361,14 @@ public:
 		return process;
 	}
 
+	void printProcessIDs(const Queue<Process*>& processQueue) {
+		Node<Process*>* currentNode = processQueue.frontPtr;
+		while (currentNode != nullptr) {
+			std::cout << currentNode->getItem()->getId() << " ";
+			currentNode = currentNode->getNext();
+		}
+		std::cout << std::endl;
+	}
 
 
 

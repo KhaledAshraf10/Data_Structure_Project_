@@ -253,6 +253,26 @@ LinkedList<Process*> ProSJB::getRDYList()
 	return LinkedList<Process*>();
 }
 
+void ProSJB::incrementBusyTime()
+{
+	Busytime = Busytime + 1;
+}
+
+void ProSJB::incrementIDLETime()
+{
+	IDLEtime = IDLEtime + 1;
+}
+
+int ProSJB::getBusyTime()
+{
+	return Busytime;
+}
+
+int ProSJB::getIDLETime()
+{
+	return IDLEtime;
+}
+
 
 Process* ProSJB::getRUNList()
 {
