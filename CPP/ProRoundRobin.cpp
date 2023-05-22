@@ -60,7 +60,7 @@ void ProRoundRobin::ScheduleAlgo()
 	else if (RUNLIST->getremainingtime() != 0) {
 		int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
 	            //na2sa l7d get IO matt3ml!!
-		IO_R_D* temp;
+		IO_R_D* temp=nullptr;
 		RUNLIST->peekIO(temp);
 			if (totalexecutiontime == temp->IO_R) {
 				pS->Add_To_BLK(RUNLIST);
@@ -146,7 +146,7 @@ void ProRoundRobin::ScheduleAlgo()
 
 
 
-}
+
 
 void ProRoundRobin::inctimer(Process* p)
 {
