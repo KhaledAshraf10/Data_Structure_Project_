@@ -25,6 +25,29 @@ int ProSJB::gettimer() const
 
 void ProSJB::ScheduleAlgo()
 {
+	if (this->IsHeated()) {
+		if (overheatingcounter == overheatmaltime) {
+			this->unsetIsHeated();
+			return;
+		}
+		this->overheatingcounter++;
+		return;
+	}
+	else {
+		srand(time(0));
+		int x = 1 + (rand() % 100);
+
+		if (x == 5) {
+			this->setIsHeated();
+			return;
+
+		}
+
+
+	}
+
+
+
 
 
 	if (RUNLIST == nullptr) {
