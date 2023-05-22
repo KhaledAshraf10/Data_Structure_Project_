@@ -90,6 +90,7 @@ void ProRoundRobin::ScheduleAlgo()
 
 
 
+
 		pS->Add_To_TRM(RUNLIST);
 		RUNLIST == nullptr;
 		counter == 0; //to maintain the timeslice for next process
@@ -114,8 +115,11 @@ void ProRoundRobin::ScheduleAlgo()
 		if (counter == timeslice) {
 			Plist.enqueue(RUNLIST);
 
+
 			
 			this->inctimer(RUNLIST);   //includes nop++
+
+
 
 			RUNLIST = nullptr;
 			counter = 0;
@@ -127,7 +131,9 @@ void ProRoundRobin::ScheduleAlgo()
 
 		}
 
+
 		else {
+
 
 
 
@@ -136,6 +142,7 @@ void ProRoundRobin::ScheduleAlgo()
 			counter++;
 			return;
 		}
+
 
 
 
@@ -184,10 +191,6 @@ void ProRoundRobin::ScheduleAlgo()
 		//}
 
 
-
-
-
-
 void ProRoundRobin::inctimer(Process* p)
 {
 
@@ -195,6 +198,7 @@ void ProRoundRobin::inctimer(Process* p)
 	nop++;
 
 }
+
 
 void ProRoundRobin::dectimer(Process *p)
 {
@@ -204,15 +208,14 @@ void ProRoundRobin::dectimer(Process *p)
 
 }
 
-void ProRoundRobin::add_process(Process* p) {
 
+void ProRoundRobin::add_process(Process* p) 
+{
 	inctimer(p);
 	Plist.enqueue(p);
 	nop++;
-
-
-
 }
+
 
 Process* ProRoundRobin::getRUNList()
 {
@@ -220,15 +223,10 @@ Process* ProRoundRobin::getRUNList()
 }
 
 
-void ProRoundRobin::PrintRDY() {
+void ProRoundRobin::PrintRDY()
+{
 	Plist.Printlistid();
-	
-
-
 }
-
-
-
 
 
 bool ProRoundRobin::PrintRUN() {
@@ -264,6 +262,7 @@ Process* ProRoundRobin::getRdyProcess(int id)
 	return nullptr;
 }
 
+
 void ProRoundRobin::setRUNNull()
 {
 	RUNLIST = nullptr;
@@ -278,3 +277,16 @@ void ProRoundRobin::decNoop()
 {
 	nop--;
 }
+
+
+int ProRoundRobin::getSizeOfRDYList()
+{
+	return 0;
+}
+
+LinkedList<Process*> ProRoundRobin::getRDYList()
+{
+	return LinkedList<Process*>();
+}
+
+

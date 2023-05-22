@@ -449,6 +449,30 @@ public:
 
 
 	}
+	Node<Process*>* getHead() {
+		return Head;
+	}
+	Process* getProcessByPosition(int position) const {
+		if (position < 0 || position >= size()) {
+			// Invalid position, return nullptr or throw an exception
+			return nullptr;
+		}
+
+		Node<Process*>* currentNode = Head;
+		int currentPosition = 0;
+
+		while (currentNode && currentPosition != position) {
+			currentNode = currentNode->getNext();
+			currentPosition++;
+		}
+
+		if (currentNode) {
+			return currentNode->getItem();
+		}
+
+		return nullptr;
+	}
+
 
 	
 };

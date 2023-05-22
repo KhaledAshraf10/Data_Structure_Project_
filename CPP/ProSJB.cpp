@@ -25,6 +25,7 @@ int ProSJB::gettimer() const
 
 void ProSJB::ScheduleAlgo()
 {
+
 	if (this->IsHeated()) {
 		if (overheatingcounter == overheatmaltime) {
 			this->unsetIsHeated();
@@ -62,6 +63,7 @@ void ProSJB::ScheduleAlgo()
 
 
 
+
 	if (RUNLIST == nullptr) {
 		if (Plist.count() == 0) { return; }
 
@@ -74,7 +76,9 @@ void ProSJB::ScheduleAlgo()
 
 	}
 
+
 	else if (RUNLIST->getremainingtime() == 0) {
+
 
 
 
@@ -87,6 +91,7 @@ void ProSJB::ScheduleAlgo()
 	}
 
 	else if (RUNLIST->getremainingtime() != 0) {
+
 
 		int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
 
@@ -114,7 +119,11 @@ void ProSJB::ScheduleAlgo()
 
 
 
+
+
+
 }
+
 
 
 
@@ -155,6 +164,8 @@ void ProSJB::ScheduleAlgo()
 	//	RUNLIST = nullptr;
 
 	//}
+
+
 
 
 
@@ -244,6 +255,7 @@ Process* ProSJB::getRdyProcess(int id)
 {
 	return nullptr;
 }
+
 void ProSJB::setRUNNull()
 {
 	RUNLIST = nullptr;
@@ -256,6 +268,18 @@ void ProSJB::decNoop()
 {
 	nop--;
 }
+
+
+int ProSJB::getSizeOfRDYList()
+{
+	return 0;
+}
+LinkedList<Process*> ProSJB::getRDYList()
+{
+	return LinkedList<Process*>();
+}
+
+
 Process* ProSJB::getRUNList()
 {
 	return RUNLIST;

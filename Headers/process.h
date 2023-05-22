@@ -21,6 +21,8 @@ private:
     int remainingtime; //time left to be processed by the cpu
     int NOIO; // number of IO
     //LinkedQueue<IO_R_D> IOList;
+    int parentid = -1;
+
 
 public:
     Process(Queue<IO_R_D*>& obj);
@@ -51,13 +53,18 @@ public:
     int getremainingtime();
     void decremainingtime();
     void Add_To_IOList(IO_R_D* S);
+
     void peekIO(IO_R_D*& S);
+
     void DequeueIO(IO_R_D* S);
     int getIOR();
     int getIOD();
     // Khaled added 
     int getNOIO();
     void setNOIO(int NIO);
+
+    int getparentid();
+    void setparentid(int id);
 
 
 };

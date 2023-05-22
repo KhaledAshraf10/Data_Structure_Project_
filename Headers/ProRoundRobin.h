@@ -56,6 +56,8 @@ public:
 	void deleteNode(Process* p) override;
 	void decNoop() override;
 
+	int getSizeOfRDYList();
+	LinkedList<Process*> getRDYList();
 
 
 
