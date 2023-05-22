@@ -65,10 +65,10 @@
         //trmList.PrintListid();
         Process* P;
         if
-        (!trmList.dequeue(P))
+        (trmList.isEmpty())
             cout << "empty";
         else {
-            cout << P->getId();
+            trmList.Printlistid();
         }
         cout << "------------- BLK Processes ---------------" << endl;
        // for (int i = 0; i < blkList.size(); i++) {

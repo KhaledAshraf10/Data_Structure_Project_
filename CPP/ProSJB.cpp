@@ -87,7 +87,7 @@ void ProSJB::ScheduleAlgo()
 
 
 		pS->Add_To_TRM(RUNLIST);
-		RUNLIST == nullptr;
+		RUNLIST = nullptr;
 		return;
 
 	}
