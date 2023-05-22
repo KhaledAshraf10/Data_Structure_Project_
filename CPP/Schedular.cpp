@@ -141,15 +141,19 @@ void Schedular::Phase_1_Simulation()
 			Process* P;
 			int ArrivalTime;
 			int counter = 0;
-			if (TimeStep == 1) {
-
+			 
+			if (!NEW.isEmpty()) {
 				for (int i = 0; i < nProcess; i++)
 				{
-
-					NEW.dequeue(P);// get arrival time of first process that should sort ascendingly
+					if (NEW.isEmpty()) {
+						break;
+					}
+					NEW.peek(P);
+					// get arrival time of first process that should sort ascendingly
 					ArrivalTime = P->getArrivalTime();
-					if (ArrivalTime == TimeStep) 
-					{          
+					if (ArrivalTime == TimeStep)
+					{
+						NEW.dequeue(P);
 						//should be changed to allow all precsses to get scheduled
 						processor* shortest = PicksShortRDY();
 						shortest->add_process(P);        //!! processes should be deleted from new 
