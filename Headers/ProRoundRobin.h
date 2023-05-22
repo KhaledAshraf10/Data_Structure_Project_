@@ -52,6 +52,9 @@ public:
 	bool IsInRUN(int id) override;
 	string getType() override;
 	Process* getRdyProcess(int id) override;
+	void setRUNNull() override;
+	void deleteNode(Process* p) override;
+	void decNoop() override;
 
 	int getSizeOfRDYList();
 	LinkedList<Process*> getRDYList();

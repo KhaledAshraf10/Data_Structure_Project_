@@ -256,6 +256,20 @@ Process* ProSJB::getRdyProcess(int id)
 	return nullptr;
 }
 
+void ProSJB::setRUNNull()
+{
+	RUNLIST = nullptr;
+}
+void ProSJB::deleteNode(Process* p)
+{
+	return;
+}
+void ProSJB::decNoop()
+{
+	nop--;
+}
+
+
 int ProSJB::getSizeOfRDYList()
 {
 	return 0;
@@ -264,6 +278,7 @@ LinkedList<Process*> ProSJB::getRDYList()
 {
 	return LinkedList<Process*>();
 }
+
 
 Process* ProSJB::getRUNList()
 {

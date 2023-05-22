@@ -211,13 +211,21 @@ void ProFCFS::KillSig()
 				if (arr_Processor[i]->IsInRUN(s1.ID) && arr_Processor[i]->getType() == "ProFCFS")
 				{
 					KillSigList.dequeue(tempp);//arr_Processor[i]->KillProcess(s1.ID);
-					pS->Add_To_TRM(arr_Processor[i]->getprocess(pS));
+					pS->Add_To_TRM(arr_Processor[i]->getRUNList());
+					arr_Processor[i]->setRUNNull();
+					arr_Processor[i]->deleteNode(getRdyProcess(s1.ID));
+					arr_Processor[i]->decNoop();
+
 				}
 				else if (arr_Processor[i]->IsInRDY(s1.ID) && arr_Processor[i]->getType() == "ProFCFS")
 				{
 					KillSigList.dequeue(tempp);
 					pS->Add_To_TRM(arr_Processor[i]->getRdyProcess(s1.ID));
-					//Plist.DeleteNode(arr_Processor[i]->getRdyProcess(s1.ID));
+					arr_Processor[i]->dectimer(getRdyProcess(s1.ID));
+					arr_Processor[i]->deleteNode(getRdyProcess(s1.ID));
+					arr_Processor[i]->decNoop();
+
+					
 				}
 
 			}
@@ -258,7 +266,23 @@ bool ProFCFS::IsInRDY(int id)
 }
 Process * ProFCFS::getRdyProcess(int id)
 {
+	
 	return Plist.getRdyProcessFL(id);
+}
+
+void ProFCFS::setRUNNull()
+{
+	RUNLIST = nullptr;
+}
+
+void ProFCFS::deleteNode(Process* p)
+{
+	Plist.DeleteNode(p);
+}
+
+void ProFCFS::decNoop()
+{
+	noP--;
 }
 
 bool ProFCFS::IsInRUN(int id)

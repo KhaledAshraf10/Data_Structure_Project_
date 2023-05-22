@@ -63,9 +63,10 @@ public:
 	 int getSizeOfRDYList();
 	 LinkedList<Process*> getRDYList();
 	 Process* getRdyProcess(int id) override;
-	 //////////////////////////////////////////////////////////
-	 // 
-	// LinkedList<Process*> getRDYList();
+
+	 void setRUNNull() override;
+	 void deleteNode(Process* p) override;
+	 void decNoop() override;
 
 };
 

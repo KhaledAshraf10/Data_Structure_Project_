@@ -57,7 +57,8 @@ public:
     void peekIO(IO_R_D*& S);
 
     void DequeueIO(IO_R_D* S);
-
+    int getIOR();
+    int getIOD();
     // Khaled added 
     int getNOIO();
     void setNOIO(int NIO);

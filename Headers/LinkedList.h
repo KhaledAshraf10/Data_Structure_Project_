@@ -338,16 +338,14 @@ public:
 	Process* getRdyProcessFL(int id)
 	{
 		Node<Process*>* curptr = Head;
-		Node<Process*>* prevptr = nullptr;
 		Process* result = nullptr;
-		while (curptr->getNext())
+		while (curptr)
 		{
 			if (curptr->getItem()->getId() == id)
 			{
 				result = curptr->getItem();
-				prevptr->setNext(curptr->getNext());
-				delete curptr;
 			}
+			curptr->getNext();
 		}
 		return result;
 	}
