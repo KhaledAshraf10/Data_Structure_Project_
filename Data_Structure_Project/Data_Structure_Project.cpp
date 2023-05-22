@@ -3,7 +3,7 @@
 #include "../Headers/Process.h"
 #include "../Headers/proFCFS.h"
 
-#include"UI.h"
+#include"../Headers/UI.h"
 #include"../Headers/ProRoundRobin.h"
 #include"../Headers/ProSJB.h"
 
@@ -68,7 +68,14 @@ int main() {
 
 
 
+	IO_R_D* struct1 = new IO_R_D;
 
+	struct1->IO_D = 10;
+	struct1->IO_R = 20;
+
+	Queue<IO_R_D*> Q1;
+
+	Q1.enqueue(struct1);
 
 
 
@@ -78,13 +85,16 @@ int main() {
 
 
 	Schedular S;
-
+	
 	string T;
 	T = "s";
 	
 
-	while (cin >> T) {
+
+	while (T!="X") {
+		
 		S.Phase_1_Simulation();
+		cin >> T;
 	}
 
 	//S.Phase_1_Simulation();

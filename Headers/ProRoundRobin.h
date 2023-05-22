@@ -2,8 +2,8 @@
 
 #include "processor.h"
 
+#include"../Headers/Queue.h"
 
-#include "../Data_Structure_Project/Queue.h"
 
 
 class ProRoundRobin : public processor
@@ -23,7 +23,7 @@ private:
 
 public:
 
-	 ProRoundRobin(Schedular* p);
+	 ProRoundRobin(Schedular* p,int overheatT,int rtf,int slice);
 
 	virtual ~ProRoundRobin();
 
@@ -48,8 +48,12 @@ public:
 
 
 	}
-
-
+	bool IsInRDY(int id) override;
+	bool IsInRUN(int id) override;
+	string getType() override;
+	Process* getRdyProcess(int id) override;
+	int getSizeOfRDYList();
+	LinkedList<Process*> getRDYList();
 
 
 

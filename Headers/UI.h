@@ -10,8 +10,13 @@ private:
 public:
     UI(Schedular* P) { PS = P; }
 
-    void printProcessIDs(/*Schedular* schedular*/);
+    void FirstMode(/*Schedular* schedular*/);
+    void ThirdMode();
+    void SecondMode();
 
+    int gettimestep();
+
+    void writeInfoToFile();
 
 
 };

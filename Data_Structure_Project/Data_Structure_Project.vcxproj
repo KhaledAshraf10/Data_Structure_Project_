@@ -131,11 +131,11 @@
     <ClCompile Include="..\CPP\processor.cpp" />
     <ClCompile Include="..\CPP\proFCFS.cpp" />
     <ClCompile Include="..\CPP\ProRoundRobin.cpp" />
+    <ClCompile Include="..\CPP\ProSJB.cpp" />
     <ClCompile Include="..\CPP\Schedular.cpp" />
+    <ClCompile Include="..\CPP\UI.cpp" />
     <ClCompile Include="..\CPP\VLinkedList.cpp" />
     <ClCompile Include="Data_Structure_Project.cpp" />
-    <ClCompile Include="UI.cpp" />
-    <ClCompile Include="ProSJB.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Headers\LinkedList.h" />
@@ -145,10 +145,10 @@
     <ClInclude Include="..\Headers\proFCFS.h" />
     <ClInclude Include="..\Headers\ProRoundRobin.h" />
     <ClInclude Include="..\Headers\ProSJB.h" />
+    <ClInclude Include="..\Headers\Queue.h" />
     <ClInclude Include="..\Headers\Schedular.h" />
+    <ClInclude Include="..\Headers\UI.h" />
     <ClInclude Include="..\Headers\VLinkedList.h" />
-    <ClInclude Include="Queue.h" />
-    <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="File_1.txt" />

@@ -217,8 +217,10 @@ public:
 	}
 
 		~LinkedList()
+
 	{
 		DeleteAll();
+		cout << "LINKEDLIST DESTRUCTOR !!";
 	}
 
 	/*
@@ -257,7 +259,7 @@ public:
 			Tp=Tp->getNext();
 			counter+=2;
 		}
-		//cout << counter << "  RDY:";
+		cout << counter << "  RDY:";
 		 
 		while (p)
 		{
@@ -328,21 +330,26 @@ public:
 		P->setNext(R);
 	}
 
-	void getbeg( Process*& data) {
-
+	void getbeg( Process*& data) 
+	{
 		data = Head->getItem();
-
 		DeleteNode(data);
-
-
-
-
-
-
-
-
-
-
+	}
+	Process* getRdyProcessFL(int id)
+	{
+		Node<Process*>* curptr = Head;
+		Node<Process*>* prevptr = nullptr;
+		Process* result = nullptr;
+		while (curptr->getNext())
+		{
+			if (curptr->getItem()->getId() == id)
+			{
+				result = curptr->getItem();
+				prevptr->setNext(curptr->getNext());
+				delete curptr;
+			}
+		}
+		return result;
 	}
 
 	
@@ -353,6 +360,21 @@ public:
 		while (P)
 		{
 			if (P->getItem() == data)
+			{
+				counter++;
+			}
+			P = P->getNext();
+		}
+		if (counter) return true;
+		else return false;
+	}
+	bool Check(int data)
+	{
+		Node<Process*>* P = Head;
+		int counter = 0;
+		while (P)
+		{
+			if (P->getItem()->getId() == data)
 			{
 				counter++;
 			}
@@ -429,6 +451,30 @@ public:
 
 
 	}
+	Node<Process*>* getHead() {
+		return Head;
+	}
+	Process* getProcessByPosition(int position) const {
+		if (position < 0 || position >= size()) {
+			// Invalid position, return nullptr or throw an exception
+			return nullptr;
+		}
+
+		Node<Process*>* currentNode = Head;
+		int currentPosition = 0;
+
+		while (currentNode && currentPosition != position) {
+			currentNode = currentNode->getNext();
+			currentPosition++;
+		}
+
+		if (currentNode) {
+			return currentNode->getItem();
+		}
+
+		return nullptr;
+	}
+
 
 	
 };

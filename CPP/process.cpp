@@ -1,13 +1,18 @@
-#include "../Headers/VLinkedList.h"
 #include "../Headers/Process.h"
+#include"../Headers/Queue.h"
 
 
 
-Process::Process()
-{
+
+
+
+
+Process::Process(Queue<IO_R_D*>& Queue):IO_RD(Queue){
+
+  
+
 }
-
-Process::Process(int id, int at,/* int rt,*/ int ct/*, int tt, int trt, int wt, int twt,LinkedList io_rd*/) {
+Process::Process(int id, int at,/* int rt,*/ int ct/*, int tt, int trt, int wt, int twt,LinkedList io_rd*/, Queue<IO_R_D*>& Queue):IO_RD(Queue) {
     ID = id;
     AT = at;
     //RT = rt;
@@ -19,10 +24,12 @@ Process::Process(int id, int at,/* int rt,*/ int ct/*, int tt, int trt, int wt, 
 
     //IO_RD = io_rd;
     remainingtime = ct;
-
+ 
 
 
 }
+
+
 int Process::getId() const {
     return ID;
 }
@@ -47,9 +54,9 @@ int Process::getWaitingTime() const {
 int Process::getTotalWaitingTime() const {
     return TWT;
 }
-VLinkedList Process::getIO_RD() const {
-    return IO_RD;
-}
+//VLinkedList Process::getIO_RD() const {
+//    return IO_RD;
+//}
 void Process::setId(int id) {
     ID = id;
 }
@@ -74,9 +81,16 @@ void Process::setWaitingTime(int wt) {
 void Process::setTotalWaitingTime(int twt) {
     TWT = twt;
 }
-void Process::setIO_RD(VLinkedList io_rd) {
-    IO_RD = io_rd;
-}
+//void Process::setIO_RD(VLinkedList io_rd) {
+//    IO_RD = io_rd;
+//}
+//void Process::setIOList(int IOR, int IOD)
+//{
+//    IO_R_D s;
+//    s.IO_R = IOR;
+//    s.IO_D = IOD;
+//    //IOList.enqueue(s);
+//}
 int Process::calculateTurnaroundDuration() const {
     return TT - AT;
 }
@@ -98,7 +112,36 @@ void Process::decremainingtime() {
     remainingtime--;
 
 }
-void Process::Add_To_IOList(int IO_R, int IO_D)
+void Process::Add_To_IOList(IO_R_D* S)
 {
-    IO_RD.insert(IO_R, IO_D);
-};
+    IO_RD.enqueue(S);
+}
+void Process::peekIO(IO_R_D* S) {
+    IO_RD.peek(S);
+
+}
+void Process::DequeueIO(IO_R_D* S) {
+    IO_RD.dequeue(S);
+}
+
+
+
+int Process::getNOIO()
+{
+    return NOIO;
+}
+void Process::setNOIO(int NIO)
+{
+    NOIO = NIO;
+}
+
+int Process::getparentid()
+{
+    return parentid;
+}
+
+void Process::setparentid(int id)
+{
+    parentid = id;
+}
+

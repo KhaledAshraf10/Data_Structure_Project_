@@ -1,16 +1,17 @@
 #pragma once
 #include"processor.h"
-#include"../Data_Structure_Project/Queue.h"
+#include "../Headers/Queue.h"
 
 class ProSJB : public processor
 {
 private:
 	PriorityQueue  Plist;
 	int nop; //no of processes in RDY LIST
+	
 
 public:
 
-	ProSJB(Schedular* p);
+	ProSJB(Schedular* p,int overheatT);
 
 	virtual ~ProSJB();
 
@@ -35,7 +36,13 @@ public:
 
 
 	}
-
+	bool IsInRDY(int id) override;
+	bool IsInRUN(int id) override;
+	string getType() override;
+	Process* getRdyProcess(int id) override;
+	
+	int getSizeOfRDYList();
+	LinkedList<Process*> getRDYList();
 
 
 

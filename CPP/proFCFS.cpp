@@ -3,8 +3,8 @@
 #include "../Headers/schedular.h"
 #include <time.h>
 
-
-ProFCFS::ProFCFS(Schedular* p) :processor(p)
+Queue<MyStruct> ProFCFS::KillSigList;
+ProFCFS::ProFCFS(Schedular* p,int overheatT) :processor(p,overheatT)
 {
 	timer = 0;
 	noP = 0;
@@ -23,20 +23,44 @@ int ProFCFS::gettimer() const
 
 void ProFCFS::ScheduleAlgo()
 {
+	if (this->IsHeated()) {
+		if (overheatingcounter == overheatmaltime) {
+			this->unsetIsHeated();
+			return;
+		}
+		this->overheatingcounter++;
+	return; }
+	else {
+		srand(time(0));
+	int x = 1 + (rand() % 100);
+
+	if (x ==5 ) {
+		this->setIsHeated();
+
+
+	}
+
+
+	}
+
+	
+
+
+
 	if (RUNLIST == nullptr) {
 		if (Plist.size() == 0) { return; }
+		else {
+			Plist.getbeg(RUNLIST);
+			dectimer(RUNLIST);
 
-		  Plist.getbeg(RUNLIST);
-		  dectimer(RUNLIST);
+			noP--;
 
-		  noP--;
-		  
-
+		}
 	}else
 		if (RUNLIST->getremainingtime() != 0) {
 			srand(time(0));
 			/*int x = 1 + (rand() % 100);*/
-			int x = 15;
+		/*	int x = 15;
 
 			if(1<=x && x<=15)
 			
@@ -44,38 +68,55 @@ void ProFCFS::ScheduleAlgo()
 			  
 				pS->Add_To_BLK(RUNLIST);
 
-				RUNLIST = nullptr;
-			
-			}
-			else if (20 <= x && x <= 30) {
-
-				Plist.InsertEnd(RUNLIST);
-				inctimer(RUNLIST);
-				RUNLIST = nullptr;
-				noP++;
-				
-				
-			}
-			else if (50 <= x && x <= 60) {
 
 
-				pS->Add_To_TRM(RUNLIST);
-				RUNLIST = nullptr;
+		}*/
+	
+	
+		overheatingcounter++;
+		this->timer = 0;
+		return;
 
-			}
+	}
+	else
+
+	
+		//
+		//if (RUNLIST->getremainingtime() != 0) {
+		//	
+
+		//	int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
+		//	bool flag = false;
+		//            //na2sa l7d get IO matt3ml!!
+		//	IO_R_D* temp;
+		//	//RUNLIST->peekIO(temp);
+		//		if (totalexecutiontime == temp->IO_R) {
+		//			pS->Add_To_BLK(RUNLIST);
+		//			RUNLIST = nullptr;
+		//			
+
+		//		}
+		//			
+		//	
+		//	
+
+		//	
+
+		//
+
+		//	RUNLIST->decremainingtime();
+		//	return;
+		//	
 
 
 
-			
-
-
-
-		}
-		else 
+		//}
+		//else 
 			if (RUNLIST->getremainingtime() == 0) {
 
 				pS->Add_To_TRM(RUNLIST);
 				RUNLIST = nullptr;
+				return;
 
 
 			}
@@ -85,9 +126,10 @@ void ProFCFS::ScheduleAlgo()
 
 }
 
-void ProFCFS::forkingrequest(int AT, int RT)
-{}
-
+void ProFCFS::forkingrequest(Process* p)
+{
+	pS->Fork(p);
+}
 void ProFCFS::inctimer(Process* p)
 {
 	timer += p->getremainingtime();
@@ -148,22 +190,96 @@ Process* ProFCFS::getRUNList()
 {
 	return RUNLIST;
 }
+void ProFCFS::KillSig()
+{
+	MyStruct s1, tempp;
+	int TimeStep = pS->getTimeStep();
+	int nFCFS = pS->getnFCFS();
+	processor** arr_Processor = pS->getProcessorList();
+	pS->LoadSigKillList();
+	KillSigList.peek(s1);
+	if (s1.KillTime != TimeStep)
+	{
+		return;
+	}
+	while (KillSigList.peek(s1))
+	{
+		if (s1.KillTime == TimeStep)
+		{
+			for (int i = 0; i < nFCFS; i++) // ana mout2kd en list of processor awl hagat feha hya fcfs
+			{
+				if (arr_Processor[i]->IsInRUN(s1.ID) && arr_Processor[i]->getType() == "ProFCFS")
+				{
+					KillSigList.dequeue(tempp);//arr_Processor[i]->KillProcess(s1.ID);
+					pS->Add_To_TRM(arr_Processor[i]->getprocess(pS));
+				}
+				else if (arr_Processor[i]->IsInRDY(s1.ID) && arr_Processor[i]->getType() == "ProFCFS")
+				{
+					KillSigList.dequeue(tempp);
+					pS->Add_To_TRM(arr_Processor[i]->getRdyProcess(s1.ID));
+					//Plist.DeleteNode(arr_Processor[i]->getRdyProcess(s1.ID));
+				}
 
-void ProFCFS::PrintRDY() {
+			}
 
-	 
-		Plist.PrintListid();
-		 
+		}
+	}
+}
+void ProFCFS::PrintRDY() 
+{
+	Plist.PrintListid();
+}
+void ProFCFS::EnqueuEelements(const MyStruct & element)
+{
+	KillSigList.enqueue(element);
+	}
 
-
-	
-
-
-
+bool ProFCFS::IsInRDY(int id)
+{
+	return Plist.Check(id);
+}
+Process * ProFCFS::getRdyProcess(int id)
+{
+	return Plist.getRdyProcessFL(id);
 }
 
+bool ProFCFS::IsInRUN(int id)
+{
+	return RUNLIST->getId() == id;
+}
 
+string ProFCFS::getType()
+{
+return "ProFCFS";
+}
 
+Process* ProFCFS::getProcessWithValidParent()
+{
+	Node<Process*>* current = Plist.getHead();
 
+	while (current != nullptr) {
+		Process* process = current->getItem();
+		int parentID = process->getparentid();
 
+		if (parentID != -1) {
+			return process;
+		}
 
+		current = current->getNext();
+	}
+
+	return nullptr;
+}
+int ProFCFS::getSizeOfRDYList()
+{
+	int count = 0;
+	Node<Process*>* current = Plist.getHead();
+	while (current != nullptr) {
+		count++;
+		current = current->getNext();
+	}
+	return count;
+}
+LinkedList<Process*> ProFCFS::getRDYList() {
+	return Plist;
+}

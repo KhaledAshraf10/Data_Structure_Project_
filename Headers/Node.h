@@ -1,6 +1,6 @@
+#pragma once
 #ifndef _NODE
 #define _NODE
-#include "../Headers/process.h"
 
 //First let's declare a single node in the list
 

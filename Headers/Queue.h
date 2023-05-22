@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include "../Headers/Node.h"
 #include<vector>
 /*
@@ -42,7 +43,11 @@ Single Node Case:
 //
 //#ifndef Queue
 //#define Queue
+struct IO_R_D {
 
+	int IO_R;
+	int IO_D;
+};
 
 
 template <class T>
@@ -287,6 +292,16 @@ public:
 
 
 	}
+	bool isProcessInQueue(int targetProcessID) const {
+		Node<Process*>* currentNode = frontPtr;
+		while (currentNode != nullptr) {
+			if (currentNode->getItem()->getId() == targetProcessID) {
+				return true;  // Found the target process ID in the queue
+			}
+			currentNode = currentNode->getNext();
+		}
+		return false;  // Target process ID not found in the queue
+	}
 
 	void Printlistid() {
 		Node<Process*>* Tfrnt1 = frontPtr;
@@ -302,7 +317,7 @@ public:
 		while (Tfrnt1) {
 			Tfrnt1 = Tfrnt1->getNext();
 			counter += 1;
-			cout << "Im here!";
+			
 
 		}
 		cout << counter << " RDY";
@@ -320,28 +335,49 @@ public:
 
 
 	}
+	Process* getProcessAtPosition(Queue<Process*>& processQueue, int position)
+	{
+		if (position < 1 || position > processQueue.count()) {
+			std::cout << "Invalid position." << std::endl;
+			return nullptr;
+		}
+
+		Process* process;
+		int currentPosition = 1;
+
+		// Dequeue processes from the original queue until the desired position
+		while (currentPosition < position) {
+			processQueue.dequeue(process);
+			processQueue.enqueue(process);
+			currentPosition++;
+		}
+
+		// Get the process at the desired position
+		processQueue.peek(process);
+
+		return process;
+	}
 
 
 
 
-	~Queue() {
+	//~Queue() {
 
 
 
-	//	//Note that the cout statements here is just for learning purpose
-	////They should be normally removed from the destructor
-	//	cout << "\nStarting LinkedQueue destructor...";
-	//	cout << "\nFreeing all nodes in the queue...";
+	////	//Note that the cout statements here is just for learning purpose
+	//////They should be normally removed from the destructor
+	////	cout << "\nStarting LinkedQueue destructor...";
+	////	cout << "\nFreeing all nodes in the queue...";
 
-		//Free all nodes in the queue
-		Process* temp = nullptr;;
-		while (dequeue(temp));
+	//	//Free all nodes in the queue
+	//	Process* temp = nullptr;;
+	//	while (dequeue(temp));
 
-		cout << "\n Is LinkedQueue Empty now?? ==> " << boolalpha << isEmpty();
-		cout << "\nEnding LinkedQueue destructor..." << endl;
+	//	cout << "LINKEDQUEUE DESTRUCTOR!!!" << endl;
 
 
-	};
+	//};
 };
 
 
@@ -411,4 +447,165 @@ public:
 	};
 
 };
+
+
+
+
+
+
+template<>
+class Queue<IO_R_D*>
+{
+
+protected:
+
+	Node<IO_R_D*>* backPtr;
+	Node<IO_R_D*>* frontPtr;
+public:
+	Queue() {
+
+
+
+
+		backPtr = nullptr;
+		frontPtr = nullptr;
+
+
+	};
+	bool isEmpty() const {
+
+
+
+		return (frontPtr == nullptr);
+
+
+
+	};
+
+
+
+	virtual bool enqueue(IO_R_D* newEntry) {
+
+
+
+
+
+		Node<IO_R_D*>* newNodePtr = new Node<IO_R_D*>(newEntry);
+		// Insert the new node
+		if (isEmpty())	//special case if this is the first node to insert
+			frontPtr = newNodePtr; // The queue is empty
+		else
+			backPtr->setNext(newNodePtr); // The queue was not empty
+
+		backPtr = newNodePtr; // New node is the last node now
+		return true;
+	};
+	bool dequeue(IO_R_D*& frntEntry) {
+
+		if (isEmpty())
+			return false;
+
+		Node<IO_R_D*>* nodeToDeletePtr = frontPtr;
+		frntEntry = frontPtr->getItem();
+		frontPtr = frontPtr->getNext();
+		// Queue is not empty; remove front
+		if (nodeToDeletePtr == backPtr)	 // Special case: last node in the queue
+			backPtr = nullptr;
+
+		// Free memory reserved for the dequeued node
+		delete nodeToDeletePtr;
+
+		return true;
+
+
+	};
+	bool peek(IO_R_D* frntEntry)  const {
+
+		if (isEmpty())
+			return false;
+
+		frntEntry = frontPtr->getItem();
+		return true;
+
+
+
+
+
+	};
+
+
+
+
+	int count() {    //count elements within thr Queue
+
+		Node<IO_R_D*>* Tfrnt1 = frontPtr;
+		int counter = 0;
+		while (Tfrnt1) {
+			Tfrnt1 = Tfrnt1->getNext();
+			counter++;
+
+		}
+		return counter;
+
+
+	}
+
+	void Printlistid() {
+		Node<IO_R_D*>* Tfrnt1 = frontPtr;
+		Node<IO_R_D*>* Tfrnt2 = frontPtr;
+		Node<IO_R_D*>* Tbck = backPtr;
+		if (frontPtr == nullptr) {
+
+			cout << 0 << "  RDY:" << endl;
+			return;
+		}
+
+		int counter = 0;
+		while (Tfrnt1) {
+			Tfrnt1 = Tfrnt1->getNext();
+			counter += 1;
+
+
+		}
+		cout << counter << " RDY";
+		//while (Tfrnt2) {
+
+		//	cout << "  " << Tfrnt2->getItem()->getId() << "  ";
+		//	if (Tfrnt2->getNext())
+		//		Tfrnt2 = Tfrnt2->getNext();
+		//	else
+		//		break;
+
+
+		//}
+		cout << "*\n";
+
+
+	}
+
+
+
+
+	//~Queue() {
+
+
+
+	////	//Note that the cout statements here is just for learning purpose
+	//////They should be normally removed from the destructor
+	////	cout << "\nStarting LinkedQueue destructor...";
+	////	cout << "\nFreeing all nodes in the queue...";
+
+	//	//Free all nodes in the queue
+	//	Process* temp = nullptr;;
+	//	while (dequeue(temp));
+
+	//	cout << "LINKEDQUEUE DESTRUCTOR!!!" << endl;
+
+
+	//};
+};
+
+
+
+
 

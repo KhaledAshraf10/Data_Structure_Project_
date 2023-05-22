@@ -1,30 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\CPP\Process.cpp" />
-    <ClCompile Include="..\CPP\processor.cpp" />
-    <ClCompile Include="..\CPP\proFCFS.cpp" />
-    <ClCompile Include="..\CPP\ProRoundRobin.cpp" />
-    <ClCompile Include="..\CPP\Schedular.cpp" />
-    <ClCompile Include="..\CPP\VLinkedList.cpp" />
     <ClCompile Include="Data_Structure_Project.cpp" />
-    <ClCompile Include="UI.cpp" />
-    <ClCompile Include="ProSJB.cpp" />
+    <ClCompile Include="..\CPP\ProSJB.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP\UI.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP\Process.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP\processor.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP\proFCFS.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP\ProRoundRobin.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP\Schedular.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP\VLinkedList.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Headers\LinkedList.h" />
-    <ClInclude Include="..\Headers\Node.h" />
-    <ClInclude Include="..\Headers\Process.h" />
-    <ClInclude Include="..\Headers\processor.h" />
-    <ClInclude Include="..\Headers\proFCFS.h" />
-    <ClInclude Include="..\Headers\ProRoundRobin.h" />
-    <ClInclude Include="..\Headers\ProSJB.h" />
-    <ClInclude Include="..\Headers\Schedular.h" />
-    <ClInclude Include="..\Headers\VLinkedList.h" />
-    <ClInclude Include="Queue.h" />
-    <ClInclude Include="UI.h" />
+    <ClInclude Include="..\Headers\Queue.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\UI.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\LinkedList.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Node.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Process.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\processor.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\proFCFS.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\ProSJB.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\ProRoundRobin.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Schedular.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\VLinkedList.h">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="File_1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header">
+      <UniqueIdentifier>{7695f3b5-2c33-481b-aa54-5761baad070c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CPP">
+      <UniqueIdentifier>{1e1bfc8b-02c2-488b-a66a-60c361e2ca69}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
