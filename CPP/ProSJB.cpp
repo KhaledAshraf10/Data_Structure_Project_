@@ -43,16 +43,18 @@ void ProSJB::ScheduleAlgo()
 
 
 
-			 
-				Process* temp;
-				while (Plist.dequeue(temp)) {
-					pS->GoToShortestRDY(temp);
 
-				}
+			Process* temp;
+			while (Plist.dequeue(temp)) {
+				pS->GoToShortestRDY(temp);
 
-			
-			pS->GoToShortestRDY(RUNLIST);
-			RUNLIST = nullptr;
+			}
+
+
+			if (RUNLIST) {
+				pS->GoToShortestRDY(RUNLIST);
+				RUNLIST = nullptr;
+			}
 			return;
 		}
 
@@ -95,22 +97,28 @@ void ProSJB::ScheduleAlgo()
 
 		int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
 
-		IO_R_D* temp=nullptr;
-		RUNLIST->peekIO(temp);
-		if (totalexecutiontime == temp->IO_R) {
+		IO_R_D* temp = nullptr;
+		if (!RUNLIST->IOIsEmpty()) {
+			RUNLIST->peekIO(temp);
+			if (totalexecutiontime == temp->IO_R) {
+				pS->Add_To_BLK(RUNLIST);
+				RUNLIST = nullptr;
+				return;
 
-			pS->Add_To_BLK(RUNLIST);
-			RUNLIST = nullptr;
-			return;
 
 
+
+
+			}
 		}
-		else {
-			RUNLIST->decremainingtime();
-			return;
 
-		}
+		RUNLIST->decremainingtime();
+		return;
+
+
 	}
+}
+
 	/*else*/
 
 
@@ -122,7 +130,6 @@ void ProSJB::ScheduleAlgo()
 
 
 
-}
 
 
 
@@ -131,39 +138,6 @@ void ProSJB::ScheduleAlgo()
 
 
 
-	//if (counter <= timeslice) {
-//          srand(time(0));
-	  //	int x = 1 + (rand() % 100);
-
-	  //	RUNLIST->decremainingtime();
-
-	  	//counter++;
-
-
-
-	//if (1 <= x && x <= 15)
-
-	//{
-
-	//	pS->Add_To_BLK(RUNLIST);
-	//	RUNLIST = nullptr;
-
-	//}
-	//else if (20 <= x && x <= 30) {
-
-	//	Plist.enqueueS(RUNLIST);
-	//	inctimer(RUNLIST);
-	//	RUNLIST = nullptr;
-	//
-
-	//}
-	//else if (50 <= x && x <= 60) {
-
-
-	//	pS->Add_To_TRM(RUNLIST);
-	//	RUNLIST = nullptr;
-
-	//}
 
 
 

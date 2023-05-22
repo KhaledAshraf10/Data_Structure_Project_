@@ -65,6 +65,8 @@ public:
 
     int getparentid();
     void setparentid(int id);
+    bool IOIsEmpty();
+
 
 
 };

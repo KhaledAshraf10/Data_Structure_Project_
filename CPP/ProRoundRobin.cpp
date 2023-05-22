@@ -42,7 +42,7 @@ void ProRoundRobin::ScheduleAlgo()
 			counter = 0;
 
 			return;
-			
+
 		}
 		this->overheatingcounter++;
 		counter = 0;
@@ -56,16 +56,18 @@ void ProRoundRobin::ScheduleAlgo()
 		if (x < 5) {
 			this->setIsHeated();
 
-				Process* temp;
-				while(Plist.dequeue(temp)){
+			Process* temp;
+			while (Plist.dequeue(temp)) {
 				//pS->addtoshortest;
 				pS->GoToShortestRDY(temp);
 
 
 
 			}
-			pS->GoToShortestRDY(RUNLIST);
-			RUNLIST = nullptr;
+			if (RUNLIST) {
+				pS->GoToShortestRDY(RUNLIST);
+				RUNLIST = nullptr;
+			}
 			counter = 0;
 
 			return;
@@ -80,14 +82,14 @@ void ProRoundRobin::ScheduleAlgo()
 	if (RUNLIST == nullptr) {
 		if (Plist.count() == 0) { return; }
 		Plist.dequeue(RUNLIST);
-		
+
 		dectimer(RUNLIST);
 		nop--;
 		return;
 
 	}
-	
-	else if (RUNLIST->getremainingtime() ==0) {
+
+	else if (RUNLIST->getremainingtime() == 0) {
 
 
 
@@ -96,28 +98,31 @@ void ProRoundRobin::ScheduleAlgo()
 		RUNLIST == nullptr;
 		counter == 0; //to maintain the timeslice for next process
 		return;
-		
+
 
 	}
 	else if (RUNLIST->getremainingtime() != 0) {
 		int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
-	            //na2sa l7d get IO matt3ml!!
-		IO_R_D* temp=nullptr;
-		RUNLIST->peekIO(temp);
+		//na2sa l7d get IO matt3ml!!
+		IO_R_D* temp = nullptr;
+		if (!RUNLIST->IOIsEmpty()) {
+			RUNLIST->peekIO(temp);
 			if (totalexecutiontime == temp->IO_R) {
 				pS->Add_To_BLK(RUNLIST);
 				RUNLIST = nullptr;
-		         counter=0; 
-			return;
+				return;
+
+
+
+
 
 			}
-				
 		}
 		if (counter == timeslice) {
 			Plist.enqueue(RUNLIST);
 
 
-			
+
 			this->inctimer(RUNLIST);   //includes nop++
 
 
@@ -148,6 +153,7 @@ void ProRoundRobin::ScheduleAlgo()
 
 
 	}
+}
 
 	
 

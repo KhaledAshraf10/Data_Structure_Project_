@@ -150,3 +150,11 @@ void Process::setparentid(int id)
 }
 
 
+
+bool Process::IOIsEmpty()
+{
+
+    return IO_RD.isEmpty();
+}
+
+

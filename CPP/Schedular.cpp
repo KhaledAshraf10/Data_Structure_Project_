@@ -1,6 +1,7 @@
 #include "../Headers/Schedular.h"
 #include "../Headers/proFCFS.h"
 #include "../Headers/ProRoundRobin.h"
+#include"../Headers/ProSJB.h"
 #include <chrono>
 #include <thread> 
 
@@ -102,12 +103,12 @@ void Schedular::Add_To_arr_Processor()
 
 	for (int i = nFCFS; i < nSJF+nFCFS; i++)
 	{
-		arr_Processor[i] = new ProFCFS(this,5);
+		arr_Processor[i] = new ProSJB(this, 5);
 	}
 	for (int i = nSJF + nFCFS; i < nSJF + nFCFS + nRR; i++)
 
 	{
-		arr_Processor[i] = new ProRoundRobin(this,5,5,5);
+		arr_Processor[i] = new ProRoundRobin(this,5,5,TS);
 	}
 }
 
@@ -333,10 +334,18 @@ void Schedular::SigKill(Process* p)
 processor* Schedular::PicksShortRDY()
 {
 	processor* ShortRDY = arr_Processor[0];
+	for (int i = 0; i < nFCFS + nSJF + nRR; i++)
+	{
+		if (!(arr_Processor[i]->IsHeated())) {
+			 ShortRDY = arr_Processor[i];
+			break;
+		}
+	}
 	for (int i = 1; i < nFCFS + nSJF + nRR; i++)
 	{
 		if (arr_Processor[i-1]->gettimer() > arr_Processor[i]->gettimer())
 		{
+			if(!(arr_Processor[i]->IsHeated()))
 			ShortRDY = arr_Processor[i];
 		}
 	}
