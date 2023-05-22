@@ -35,7 +35,6 @@ void ProFCFS::ScheduleAlgo()
 		srand(time(0));
 		int x = 1 + (rand() % 100);
 
-
 		if (x < 5) {
 			this->setIsHeated();
 			for (int i = 0; i < Plist.size(); i++) {
@@ -53,17 +52,9 @@ void ProFCFS::ScheduleAlgo()
 		}
 
 
-
 	}
 
 
-
-
-
-
-	overheatingcounter++;
-	this->timer = 0;
-	return;
 
 
 
@@ -104,16 +95,10 @@ void ProFCFS::ScheduleAlgo()
 			}
 
 
-			//
-
-			//	RUNLIST->decremainingtime();
-			//	return;
-			//	
 
 
-
-			//}
-			//else 
+		}
+		else
 			if (RUNLIST->getremainingtime() == 0) {
 
 				pS->Add_To_TRM(RUNLIST);
@@ -126,7 +111,6 @@ void ProFCFS::ScheduleAlgo()
 
 
 
-		}
 }
 
 void ProFCFS::forkingrequest(Process* p)

@@ -123,74 +123,85 @@ void Schedular::Phase_1_Simulation()
 		cin >> q;
 		executed = true;  
 	}
-
-	else
+	if (q == 1) 
 	{
-		Process* P;
-		int ArrivalTime;
-		int counter = 0;
-		if (TimeStep == 1) {
-
-			for (int i = 0; i < nProcess; i++)
-			{
-
-				NEW.dequeue(P);// get arrival time of first process that should sort ascendingly
-				ArrivalTime = P->getArrivalTime();
-
-				//while (CheckTimeStep(ArrivalTime) == 0) 
-				//{
-				//	TimeStep++; // increment till time step be equal arrival time
-				//}
-
-				if (ArrivalTime == TimeStep) {          //should be changed to allow all precsses to get scheduled
-					processor* shortest = PicksShortRDY();
-					shortest->add_process(P);        //!! processes should be deleted from new 
-
-
-					/*arr_Processor[(ArrivalTime-1)%11]->setrecent();*/
-					counter++;// for e.x it will add first process to first processor 
-				}
-			}
-		}
-		for (int j = 0;j < nFCFS+nRR+nSJF; j++)
-
+		if (TimeStep == 0)
 		{
-			Process* P;
+			Add_To_NEW();
+			Add_To_arr_Processor();
+			TimeStep++;
+
+			// userUI.printProcessIDs(this); /
+			userUI.FirstMode();
+		}
+		else
+		{
+			/*Process* P;
 			int ArrivalTime;
 			int counter = 0;
-			if (TimeStep == 1) {
+			if (TimeStep == 1) {*/
 
-				for (int i = 0; i < nProcess; i++)
-				{
+			//	for (int i = 0; i < nProcess; i++)
+			//	{
 
-					NEW.dequeue(P);// get arrival time of first process that should sort ascendingly
-					ArrivalTime = P->getArrivalTime();
+			//		NEW.dequeue(P);// get arrival time of first process that should sort ascendingly
+			//		ArrivalTime = P->getArrivalTime();
 
-					//while (CheckTimeStep(ArrivalTime) == 0) 
-					//{
-					//	TimeStep++; // increment till time step be equal arrival time
-					//}
+			//		//while (CheckTimeStep(ArrivalTime) == 0) 
+			//		//{
+			//		//	TimeStep++; // increment till time step be equal arrival time
+			//		//}
 
-					if (ArrivalTime == TimeStep) {          //should be changed to allow all precsses to get scheduled
-						processor* shortest = PicksShortRDY();
-						shortest->add_process(P);        //!! processes should be deleted from new 
+			//		if (ArrivalTime == TimeStep) {          //should be changed to allow all precsses to get scheduled
+			//			processor* shortest = PicksShortRDY();
+			//			shortest->add_process(P);        //!! processes should be deleted from new 
 
 
-						/*arr_Processor[(ArrivalTime-1)%11]->setrecent();*/
-						counter++;// for e.x it will add first process to first processor 
+			//			/*arr_Processor[(ArrivalTime-1)%11]->setrecent();*/
+			//			counter++;// for e.x it will add first process to first processor 
+			//		}
+			//	}
+			//}
+			for (int j = 0; j < nFCFS + nRR + nSJF; j++)
+
+			{
+				Process* P;
+				int ArrivalTime;
+				int counter = 0;
+				if (TimeStep == 1) {
+
+					for (int i = 0; i < nProcess; i++)
+					{
+
+						NEW.dequeue(P);// get arrival time of first process that should sort ascendingly
+						ArrivalTime = P->getArrivalTime();
+
+						//while (CheckTimeStep(ArrivalTime) == 0) 
+						//{
+						//	TimeStep++; // increment till time step be equal arrival time
+						//}
+
+						if (ArrivalTime == TimeStep) {          //should be changed to allow all precsses to get scheduled
+							processor* shortest = PicksShortRDY();
+							shortest->add_process(P);        //!! processes should be deleted from new 
+
+
+							/*arr_Processor[(ArrivalTime-1)%11]->setrecent();*/
+							counter++;// for e.x it will add first process to first processor 
+						}
 					}
 				}
-			}
-			for (int j = 0; j < nFCFS + nRR + nSJF; j++)
-			{
+				for (int j = 0; j < nFCFS + nRR + nSJF; j++)
+				{
 
 
-				arr_Processor[j]->ScheduleAlgo(); // it excute each processor to run 
-				/*	if (arr_Processor[j]->isrecent()) { arr_Processor[j]->unsetrecent(); }*/
+					arr_Processor[j]->ScheduleAlgo(); // it excute each processor to run 
+					/*	if (arr_Processor[j]->isrecent()) { arr_Processor[j]->unsetrecent(); }*/
+				}
+				/*userUI.printProcessIDs(this);*/
+				userUI.FirstMode();
+				TimeStep++;
 			}
-			/*userUI.printProcessIDs(this);*/
-			userUI.FirstMode();
-			TimeStep++;
 		}
 	}
 	if (q == 2) {
@@ -471,7 +482,7 @@ void Schedular::KillOrphanProcesses()
 			if (isParentTerminated) {
 				Add_To_TRM(runningProcess);
 				currentProcessor->setRUNNull();
-
+				currentProcessor->decNoop();
 				//arr_Processor[i]->setRUNlist(); // Clear the RUNLIST by setting it to nullptr
 			}
 		}
