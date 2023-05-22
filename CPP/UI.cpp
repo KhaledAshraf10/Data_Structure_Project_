@@ -63,16 +63,10 @@
         cout << "-------------- TRM Processes -------------" << endl;
 
         //trmList.PrintListid();
-        Process* P;
-        if
-        (!trmList.dequeue(P))
-            cout << "empty";
-        else {
-            cout << P->getId();
-        }
+        trmList.printProcessIDs(trmList);
         cout << "------------- BLK Processes ---------------" << endl;
        // for (int i = 0; i < blkList.size(); i++) {
-            blkList.Printlistid();
+            blkList.printProcessIDs(blkList);
         //}
 
 
