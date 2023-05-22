@@ -293,25 +293,25 @@ int Schedular::getTimeStep()
 }
 
 
-void Schedular::SigKill(Process* p) 
-{
-	
-	for (int i = 0; i < nFCFS; i++) {
-		processor* processorPtr = arr_Processor[i];
-		Process* runList = processorPtr->getRUNList();
-
-		
-		for (int j = 0; j < sizeof(runList); j++) {
-			if (runList[j].getId() == p->getId()) {
-				
-				Add_To_TRM(p);
-
-				
-				return;
-			}
-		}
-	}
-}
+//void Schedular::SigKill(Process* p) 
+//{
+//	
+//	for (int i = 0; i < nFCFS; i++) {
+//		processor* processorPtr = arr_Processor[i];
+//		Process* runList = processorPtr->getRUNList();
+//
+//		
+//		for (int j = 0; j < sizeof(runList); j++) {
+//			if (runList[j].getId() == p->getId()) {
+//				
+//				Add_To_TRM(p);
+//
+//				
+//				return;
+//			}
+//		}
+//	}
+//}
 
 
 
@@ -370,11 +370,15 @@ void Schedular::BLKToRDY()
 	BLK.peek(p1);
 	p1->peekIO(s);
 	
-	if (s->IO_R + s->IO_D == TimeStep)  // when the sum of IOR and IOD equal time step it mean that process wait in blk 
+	if (s->IO_D != p1->GetBLKCounter())  // when the sum of IOR and IOD equal time step it mean that process wait in blk 
 	{
+		p1->incBLK();
+	}
+	else{
 		PicksShortRDY()->add_process(p1);
 		BLK.dequeue(p1);
 		p1->DequeueIO(s);
+		p1->BLKsetZERO();
 		
 	}
 }

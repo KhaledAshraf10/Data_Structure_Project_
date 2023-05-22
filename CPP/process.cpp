@@ -158,3 +158,16 @@ bool Process::IOIsEmpty()
 }
 
 
+void Process::incBLK(){
+    this->BLKcounter++;
+}
+
+void Process::BLKsetZERO() {
+    this->BLKcounter = 0;
+}
+
+
+
+int Process::GetBLKCounter() {
+    return BLKcounter;
+}

@@ -22,7 +22,7 @@ private:
     int NOIO; // number of IO
     //LinkedQueue<IO_R_D> IOList;
     int parentid = -1;
-
+    int BLKcounter =0;
 
 public:
     Process(Queue<IO_R_D*>& obj);
@@ -66,7 +66,9 @@ public:
     int getparentid();
     void setparentid(int id);
     bool IOIsEmpty();
-
+    void incBLK();
+    void BLKsetZERO();
+    int GetBLKCounter();
 
 
 };
