@@ -10,6 +10,7 @@ private:
 public:
     UI(Schedular* P) { PS = P; }
 
+
     void FirstMode(/*Schedular* schedular*/);
     void ThirdMode();
     void SecondMode();
@@ -17,6 +18,7 @@ public:
     int gettimestep();
 
     void writeInfoToFile();
+
 
 
 };

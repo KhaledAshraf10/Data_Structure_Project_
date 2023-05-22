@@ -80,8 +80,10 @@ public:
 	void STLA(); // stealing action should done every STL, 
 	
 	void LoadSigKillList();
+
 	void KillOrphanProcesses();
 	int getnprocess();
+
 	//void SigKill(Queue<MyStruct> KillSigList, Schedular& a); //take list of signal kill that is sorted acc and at time equal sig kill it should move this process to TRM, check : process should in FCFS => RUN or RDY
 	/*forking
 	process t2oul liy processor en 3ayz fork 3nd time T , processor haymsk process data(3l4an hayb3tha liy scheduler) => new ID , AT = T , CT = reaminging CT parent

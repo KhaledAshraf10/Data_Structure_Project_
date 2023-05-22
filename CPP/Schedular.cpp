@@ -36,18 +36,32 @@ void Schedular::load()
 	*/
 	//sss
 
+
+
+	
+	
+	
+
 	for (int i = 0; i < nProcess ; i++)
-	{
+	{	IO_R_D* struct1 = new IO_R_D;
+	struct1->IO_D = 10;
+	struct1->IO_R = 10;
 		
 		int AT=0, PID=0, CT=0, NIO=0;
 		inputfile >> AT >> PID >> CT >> NIO;
 
 		// if i put Process id in New list or process 
-		Queue<IO_R_D* > Q1;
-		Process* P = new Process(AT, PID, CT,Q1); // it should contain NIO
+
+		Queue<IO_R_D*>* arr = new Queue<IO_R_D*>;
+		Process* P = new Process(AT, PID, CT,*arr); // it should contain NIO
+		P->Add_To_IOList(struct1);
+
 		NEW.enqueue(P);
 		
 	}
+
+
+
 
 
 	
@@ -104,20 +118,37 @@ void Schedular::Phase_1_Simulation()
 		cin >> q;
 		executed = true;  
 	}
-	if (q == 1) {
-		if (TimeStep == 0)
-		{
-			/*load();*/
-			Add_To_NEW();
-			Add_To_arr_Processor();
-			TimeStep++;
 
-			/*userUI.printProcessIDs(this);*/
-			userUI.FirstMode();
+	else
+	{
+		Process* P;
+		int ArrivalTime;
+		int counter = 0;
+		if (TimeStep == 1) {
+
+			for (int i = 0; i < nProcess; i++)
+			{
+
+				NEW.dequeue(P);// get arrival time of first process that should sort ascendingly
+				ArrivalTime = P->getArrivalTime();
+
+				//while (CheckTimeStep(ArrivalTime) == 0) 
+				//{
+				//	TimeStep++; // increment till time step be equal arrival time
+				//}
+
+				if (ArrivalTime == TimeStep) {          //should be changed to allow all precsses to get scheduled
+					processor* shortest = PicksShortRDY();
+					shortest->add_process(P);        //!! processes should be deleted from new 
 
 
+					/*arr_Processor[(ArrivalTime-1)%11]->setrecent();*/
+					counter++;// for e.x it will add first process to first processor 
+				}
+			}
 		}
-		else
+		for (int j = 0;j < nFCFS+nRR+nSJF; j++)
+
 		{
 			Process* P;
 			int ArrivalTime;
@@ -275,15 +306,10 @@ int Schedular::getTimeStep()
 {
 	return TimeStep;
 }
-void Schedular::RUNtoBLK(Process* P1) {
-	Add_To_BLK(P1);
-}
-void Schedular::RUNtoTRM(Process* P1) {
 
-	Add_To_TRM(P1);
-	
-}
-void Schedular::SigKill(Process* p) {
+
+void Schedular::SigKill(Process* p) 
+{
 	
 	for (int i = 0; i < nFCFS; i++) {
 		processor* processorPtr = arr_Processor[i];
@@ -331,6 +357,25 @@ processor* Schedular::PicksShortRDY()
 		}
 	}
 	return ShortRDY;
+
+}
+//void Schedular::BLKToRDY()
+//{
+//	Process* p1 = nullptr;
+//	
+//	BLK.peek(p1);
+//	if (p1->getIO_RD().getValue1At(0) == TimeStep) // it should not be that it should get IO_R if its equal time step it should go to shortes rdy list
+//	{
+//		PicksShortRDY()->add_process(p1);
+//		BLK.dequeue(p1);
+//		
+//	}
+//}
+
+void Schedular::Fork(Process* p)
+{
+	PicksShortRDY()->add_process(p);
+
 }
 //void Schedular::BLKToRDY()
 //{
@@ -349,6 +394,8 @@ void Schedular::Fork(Process* p)
 {
 	PicksShortRDY()->add_process(p);
 }
+
+
 
 
 
@@ -398,6 +445,7 @@ void Schedular::LoadSigKillList()
 //		
 //	}
 //}
+
 void Schedular::KillOrphanProcesses()
 {
 	for (int i = 0; i < nFCFS; i++) {
@@ -447,3 +495,4 @@ void Schedular::KillOrphanProcesses()
 int Schedular::getnprocess() {
 	return nProcess;
 }
+

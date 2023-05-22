@@ -36,6 +36,46 @@ void ProRoundRobin::ScheduleAlgo()
 {
 
 
+	if (this->IsHeated()) {
+		if (overheatingcounter == overheatmaltime) {
+			this->unsetIsHeated();
+			counter = 0;
+
+			return;
+			
+		}
+		this->overheatingcounter++;
+		counter = 0;
+
+		return;
+	}
+	else {
+		srand(time(0));
+		int x = 1 + (rand() % 100);
+
+		if (x < 5) {
+			this->setIsHeated();
+
+				Process* temp;
+				while(Plist.dequeue(temp)){
+				//pS->addtoshortest;
+
+
+
+			}
+			//pS->addtoshortest(RUNLIST)
+			RUNLIST = nullptr;
+			counter = 0;
+
+			return;
+
+		}
+
+
+	}
+	//////////end of Bonus Task Check
+
+
 	if (RUNLIST == nullptr) {
 		if (Plist.count() == 0) { return; }
 		Plist.dequeue(RUNLIST);
@@ -50,6 +90,7 @@ void ProRoundRobin::ScheduleAlgo()
 
 
 
+
 		pS->Add_To_TRM(RUNLIST);
 		RUNLIST == nullptr;
 		counter == 0; //to maintain the timeslice for next process
@@ -58,23 +99,27 @@ void ProRoundRobin::ScheduleAlgo()
 
 	}
 	else if (RUNLIST->getremainingtime() != 0) {
-		//int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
-		//bool flag = false;
-		//for (int i = 0; i < sizeof(RUNLIST->getIO_RD())/sizeof(Node2); i++) {               //na2sa l7d get IO matt3ml!!
-		//	if (totalexecutiontime == arrayIO[i]) {
-		//		pS->Add_To_BLK(RUNLIST);
-		//		RUNLIST=nullptr
-		// counter=0; 
-		//	return;
+		int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
+	            //na2sa l7d get IO matt3ml!!
+		IO_R_D* temp=nullptr;
+		RUNLIST->peekIO(temp);
+			if (totalexecutiontime == temp->IO_R) {
+				pS->Add_To_BLK(RUNLIST);
+				RUNLIST = nullptr;
+		         counter=0; 
+			return;
 
-		//	}
-		//		
-		//}
+			}
+				
+		}
 		if (counter == timeslice) {
 			Plist.enqueue(RUNLIST);
 
+
 			
 			this->inctimer(RUNLIST);   //includes nop++
+
+
 
 			RUNLIST = nullptr;
 			counter = 0;
@@ -87,11 +132,17 @@ void ProRoundRobin::ScheduleAlgo()
 		}
 
 
+		else {
 
 
-		RUNLIST->decremainingtime(); //actual processing
-		counter++;
-		return;
+
+
+
+			RUNLIST->decremainingtime(); //actual processing
+			counter++;
+			return;
+		}
+
 
 
 
@@ -140,10 +191,6 @@ void ProRoundRobin::ScheduleAlgo()
 		//}
 
 
-
-
-}
-
 void ProRoundRobin::inctimer(Process* p)
 {
 
@@ -151,6 +198,7 @@ void ProRoundRobin::inctimer(Process* p)
 	nop++;
 
 }
+
 
 void ProRoundRobin::dectimer(Process *p)
 {
@@ -160,15 +208,14 @@ void ProRoundRobin::dectimer(Process *p)
 
 }
 
-void ProRoundRobin::add_process(Process* p) {
 
+void ProRoundRobin::add_process(Process* p) 
+{
 	inctimer(p);
 	Plist.enqueue(p);
 	nop++;
-
-
-
 }
+
 
 Process* ProRoundRobin::getRUNList()
 {
@@ -176,15 +223,10 @@ Process* ProRoundRobin::getRUNList()
 }
 
 
-void ProRoundRobin::PrintRDY() {
+void ProRoundRobin::PrintRDY()
+{
 	Plist.Printlistid();
-	
-
-
 }
-
-
-
 
 
 bool ProRoundRobin::PrintRUN() {
@@ -220,6 +262,7 @@ Process* ProRoundRobin::getRdyProcess(int id)
 	return nullptr;
 }
 
+
 int ProRoundRobin::getSizeOfRDYList()
 {
 	return 0;
@@ -229,3 +272,4 @@ LinkedList<Process*> ProRoundRobin::getRDYList()
 {
 	return LinkedList<Process*>();
 }
+

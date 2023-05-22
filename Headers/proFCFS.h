@@ -58,6 +58,7 @@ public:
 	 bool IsInRDY(int id) override;
 	 bool IsInRUN(int id) override;
 	 string getType() override;
+
 	 Process* getProcessWithValidParent();
 	 int getSizeOfRDYList();
 	 LinkedList<Process*> getRDYList();
@@ -65,6 +66,7 @@ public:
 	 //////////////////////////////////////////////////////////
 	 // 
 	// LinkedList<Process*> getRDYList();
+
 };
 
 

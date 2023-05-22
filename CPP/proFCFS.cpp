@@ -34,16 +34,35 @@ void ProFCFS::ScheduleAlgo()
 		srand(time(0));
 	int x = 1 + (rand() % 100);
 
-	if (x ==5 ) {
+
+	if (x <5 ) {
 		this->setIsHeated();
+		for (int i = 0; i < Plist.size(); i++) {
+			Process* temp;
+			Plist.getbeg(temp);
+			//pS->addtoshortest;
+			
+
+
+		}
+//pS->addtoshortest(RUNLIST)
+			RUNLIST = nullptr;
+		return;
+
+	}
+
 
 
 	}
 
 
-	}
 
+		}*/
 	
+	
+		overheatingcounter++;
+		this->timer = 0;
+		return;
 
 
 
@@ -58,49 +77,30 @@ void ProFCFS::ScheduleAlgo()
 		}
 	}else
 		if (RUNLIST->getremainingtime() != 0) {
-			srand(time(0));
-			/*int x = 1 + (rand() % 100);*/
-		/*	int x = 15;
-
-			if(1<=x && x<=15)
 			
-			{
-			  
-				pS->Add_To_BLK(RUNLIST);
 
+			int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
+			bool flag = false;
+			IO_R_D* temp=nullptr;
+			RUNLIST->peekIO(temp);
+				if (totalexecutiontime == temp->IO_R) {
+					pS->Add_To_BLK(RUNLIST);
+					RUNLIST = nullptr;
+					return;
+					
 
+				}
 
-		}*/
-	
-	
-		overheatingcounter++;
-		this->timer = 0;
-		return;
+				else {
+					RUNLIST->decremainingtime();   //actual processing
+					srand(time(0));
+					int F = 1 + (rand() % 100);  //forkprobability
+					if (F == 5/*forkpropality*/)
+						this->forkingrequest(RUNLIST);
+					return;
 
-	}
-	else
+				}
 
-	
-		//
-		//if (RUNLIST->getremainingtime() != 0) {
-		//	
-
-		//	int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
-		//	bool flag = false;
-		//            //na2sa l7d get IO matt3ml!!
-		//	IO_R_D* temp;
-		//	//RUNLIST->peekIO(temp);
-		//		if (totalexecutiontime == temp->IO_R) {
-		//			pS->Add_To_BLK(RUNLIST);
-		//			RUNLIST = nullptr;
-		//			
-
-		//		}
-		//			
-		//	
-		//	
-
-		//	
 
 		//
 
@@ -222,8 +222,11 @@ void ProFCFS::KillSig()
 
 			}
 
+
+
 		}
 	}
+
 }
 void ProFCFS::PrintRDY() 
 {
@@ -233,6 +236,21 @@ void ProFCFS::EnqueuEelements(const MyStruct & element)
 {
 	KillSigList.enqueue(element);
 	}
+
+
+
+Process* ProFCFS::getProcessWithValidParent()
+{
+	Node<Process*>* current = Plist.getHead();
+
+	while (current != nullptr) {
+		Process* process = current->getItem();
+		int parentID = process->getparentid();
+
+		if (parentID != -1) {
+			return process;
+		}
+  }
 
 bool ProFCFS::IsInRDY(int id)
 {
@@ -253,17 +271,6 @@ string ProFCFS::getType()
 return "ProFCFS";
 }
 
-Process* ProFCFS::getProcessWithValidParent()
-{
-	Node<Process*>* current = Plist.getHead();
-
-	while (current != nullptr) {
-		Process* process = current->getItem();
-		int parentID = process->getparentid();
-
-		if (parentID != -1) {
-			return process;
-		}
 
 		current = current->getNext();
 	}

@@ -292,6 +292,7 @@ public:
 
 
 	}
+
 	bool isProcessInQueue(int targetProcessID) const {
 		Node<Process*>* currentNode = frontPtr;
 		while (currentNode != nullptr) {
@@ -302,6 +303,7 @@ public:
 		}
 		return false;  // Target process ID not found in the queue
 	}
+
 
 	void Printlistid() {
 		Node<Process*>* Tfrnt1 = frontPtr;
@@ -335,6 +337,7 @@ public:
 
 
 	}
+
 	Process* getProcessAtPosition(Queue<Process*>& processQueue, int position)
 	{
 		if (position < 1 || position > processQueue.count()) {
@@ -357,6 +360,7 @@ public:
 
 		return process;
 	}
+
 
 
 
@@ -519,7 +523,9 @@ public:
 
 
 	};
-	bool peek(IO_R_D* frntEntry)  const {
+
+	bool peek(IO_R_D*& frntEntry)  const {
+
 
 		if (isEmpty())
 			return false;

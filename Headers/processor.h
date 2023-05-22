@@ -51,6 +51,7 @@ public:
 	virtual Process* getRdyProcess(int id) = 0;
 	virtual int getSizeOfRDYList() = 0;
 	virtual LinkedList<Process*> getRDYList() = 0;
+
 	
 
 

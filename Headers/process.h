@@ -23,6 +23,7 @@ private:
     //LinkedQueue<IO_R_D> IOList;
     int parentid = -1;
 
+
 public:
     Process(Queue<IO_R_D*>& obj);
     Process(int id, int at/*, int rt*/, int ct/*, int tt, int trt, int wt, int twt, LinkedList io_rd*/, Queue<IO_R_D*>& obj);
@@ -52,14 +53,18 @@ public:
     int getremainingtime();
     void decremainingtime();
     void Add_To_IOList(IO_R_D* S);
-    void peekIO(IO_R_D* S);
+
+    void peekIO(IO_R_D*& S);
+
     void DequeueIO(IO_R_D* S);
 
     // Khaled added 
     int getNOIO();
     void setNOIO(int NIO);
+
     int getparentid();
     void setparentid(int id);
+
 
 };
 

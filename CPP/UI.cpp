@@ -4,18 +4,22 @@
 #include "../Headers/Schedular.h"
 #include"../Headers/UI.h"
 #include "../Headers/ProSJB.h"
+
 #include <chrono>
 #include <thread> 
 #include <fstream>
 
   void UI::FirstMode(/*Schedular* schedular*/) {
+
         Queue<Process*> trmList = PS->getTRMList();
         Queue<Process*> blkList = PS->getBLKList();
         processor** processorList = PS->getProcessorList();
         int nFCFS = PS->getnFCFS();
         int nSJF = PS->getnSJF();
         int nRR = PS->getnRR();
+
         int npr = PS->getnprocess();
+
 
 
         cout << "the current Timestep  " << timestep;
@@ -71,6 +75,7 @@
             blkList.Printlistid();
         //}
 
+
             cout << "------------------------------------------------------------------------------------------------------" << endl;
 
 
@@ -107,3 +112,4 @@
 
       std::cout << "Information written to file." << std::endl;
   }
+

@@ -52,8 +52,10 @@ public:
 	bool IsInRUN(int id) override;
 	string getType() override;
 	Process* getRdyProcess(int id) override;
+
 	int getSizeOfRDYList();
 	LinkedList<Process*> getRDYList();
+
 
 
 
