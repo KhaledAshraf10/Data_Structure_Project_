@@ -35,6 +35,12 @@ void Schedular::load()
 	*/
 	//sss
 
+
+	IO_R_D* arr = new IO_R_D[nProcess];
+	
+	int* x = new int;
+	
+
 	for (int i = 0; i < nProcess ; i++)
 	{
 		
@@ -43,7 +49,7 @@ void Schedular::load()
 
 		// if i put Process id in New list or process 
 		Queue<IO_R_D* > Q1;
-		Process* P = new Process(AT, PID, CT,Q1); // it should contain NIO
+		Process* P = new Process(AT, PID, CT,*arr[i]); // it should contain NIO
 		NEW.enqueue(P);
 		
 	}
