@@ -45,8 +45,10 @@ void ProFCFS::ScheduleAlgo()
 
 
 			}
-			pS->GoToShortestRDY(RUNLIST);
-			RUNLIST = nullptr;
+			if (RUNLIST) {
+				pS->GoToShortestRDY(RUNLIST);
+				RUNLIST = nullptr;
+			}
 			return;
 
 		}
@@ -75,16 +77,20 @@ void ProFCFS::ScheduleAlgo()
 			int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
 			bool flag = false;
 			IO_R_D* temp = nullptr;
-			RUNLIST->peekIO(temp);
-			if (totalexecutiontime == temp->IO_R) {
-				pS->Add_To_BLK(RUNLIST);
-				RUNLIST = nullptr;
-				return;
+			if (!RUNLIST->IOIsEmpty()) {
+				RUNLIST->peekIO(temp);
+				if (totalexecutiontime == temp->IO_R) {
+					pS->Add_To_BLK(RUNLIST);
+					RUNLIST = nullptr;
+					return;
 
 
+
+
+
+				}
 			}
-
-			else {
+			
 				RUNLIST->decremainingtime();   //actual processing
 				srand(time(0));
 				int F = 1 + (rand() % 100);  //forkprobability
@@ -92,7 +98,7 @@ void ProFCFS::ScheduleAlgo()
 					this->forkingrequest(RUNLIST);
 				return;
 
-			}
+			
 
 
 
