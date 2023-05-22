@@ -397,10 +397,7 @@ void Schedular::BLKToRDY()
 		
 	}
 }
-void Schedular::Fork(Process* p)
-{
-	PicksShortRDY()->add_process(p);
-}
+
 
 
 
@@ -473,6 +470,8 @@ void Schedular::KillOrphanProcesses()
 			// Kill the orphan process and move it to TRM list
 			if (isParentTerminated) {
 				Add_To_TRM(runningProcess);
+				currentProcessor->setRUNNull();
+
 				//arr_Processor[i]->setRUNlist(); // Clear the RUNLIST by setting it to nullptr
 			}
 		}
@@ -489,6 +488,9 @@ void Schedular::KillOrphanProcesses()
 				// Kill the orphan process and move it to TRM list
 				if (isParentTerminated) {
 					Add_To_TRM(currentProcessor->getRDYList().getProcessByPosition(j));
+					//check
+					currentProcessor->deleteNode(currentProcessor->getRDYList().getProcessByPosition(j));
+					currentProcessor->decNoop();
 					 // Clear the RUNLIST by setting it to nullptr
 				}
 

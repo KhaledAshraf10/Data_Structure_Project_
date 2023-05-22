@@ -29,27 +29,28 @@ void ProFCFS::ScheduleAlgo()
 			return;
 		}
 		this->overheatingcounter++;
-	return; }
+		return;
+	}
 	else {
 		srand(time(0));
-	int x = 1 + (rand() % 100);
+		int x = 1 + (rand() % 100);
 
 
-	if (x <5 ) {
-		this->setIsHeated();
-		for (int i = 0; i < Plist.size(); i++) {
-			Process* temp;
-			Plist.getbeg(temp);
-			//pS->addtoshortest;
-			
+		if (x < 5) {
+			this->setIsHeated();
+			for (int i = 0; i < Plist.size(); i++) {
+				Process* temp;
+				Plist.getbeg(temp);
+				//pS->addtoshortest;
 
+
+
+			}
+			//pS->addtoshortest(RUNLIST)
+			RUNLIST = nullptr;
+			return;
 
 		}
-//pS->addtoshortest(RUNLIST)
-			RUNLIST = nullptr;
-		return;
-
-	}
 
 
 
@@ -57,12 +58,12 @@ void ProFCFS::ScheduleAlgo()
 
 
 
-		}*/
-	
-	
-		overheatingcounter++;
-		this->timer = 0;
-		return;
+
+
+
+	overheatingcounter++;
+	this->timer = 0;
+	return;
 
 
 
@@ -75,43 +76,44 @@ void ProFCFS::ScheduleAlgo()
 			noP--;
 
 		}
-	}else
+	}
+	else
 		if (RUNLIST->getremainingtime() != 0) {
-			
+
 
 			int totalexecutiontime = RUNLIST->getCpuTime() - RUNLIST->getremainingtime();
 			bool flag = false;
-			IO_R_D* temp=nullptr;
+			IO_R_D* temp = nullptr;
 			RUNLIST->peekIO(temp);
-				if (totalexecutiontime == temp->IO_R) {
-					pS->Add_To_BLK(RUNLIST);
-					RUNLIST = nullptr;
-					return;
-					
-
-				}
-
-				else {
-					RUNLIST->decremainingtime();   //actual processing
-					srand(time(0));
-					int F = 1 + (rand() % 100);  //forkprobability
-					if (F == 5/*forkpropality*/)
-						this->forkingrequest(RUNLIST);
-					return;
-
-				}
+			if (totalexecutiontime == temp->IO_R) {
+				pS->Add_To_BLK(RUNLIST);
+				RUNLIST = nullptr;
+				return;
 
 
-		//
+			}
 
-		//	RUNLIST->decremainingtime();
-		//	return;
-		//	
+			else {
+				RUNLIST->decremainingtime();   //actual processing
+				srand(time(0));
+				int F = 1 + (rand() % 100);  //forkprobability
+				if (F == 5/*forkpropality*/)
+					this->forkingrequest(RUNLIST);
+				return;
+
+			}
+
+
+			//
+
+			//	RUNLIST->decremainingtime();
+			//	return;
+			//	
 
 
 
-		//}
-		//else 
+			//}
+			//else 
 			if (RUNLIST->getremainingtime() == 0) {
 
 				pS->Add_To_TRM(RUNLIST);
@@ -124,6 +126,7 @@ void ProFCFS::ScheduleAlgo()
 
 
 
+		}
 }
 
 void ProFCFS::forkingrequest(Process* p)
@@ -213,7 +216,6 @@ void ProFCFS::KillSig()
 					KillSigList.dequeue(tempp);//arr_Processor[i]->KillProcess(s1.ID);
 					pS->Add_To_TRM(arr_Processor[i]->getRUNList());
 					arr_Processor[i]->setRUNNull();
-					arr_Processor[i]->deleteNode(getRdyProcess(s1.ID));
 					arr_Processor[i]->decNoop();
 
 				}
@@ -258,8 +260,8 @@ Process* ProFCFS::getProcessWithValidParent()
 		if (parentID != -1) {
 			return process;
 		}
-  }
-
+	}
+}
 bool ProFCFS::IsInRDY(int id)
 {
 	return Plist.Check(id);
@@ -296,11 +298,11 @@ return "ProFCFS";
 }
 
 
-		current = current->getNext();
+	/*	current = current->getNext();
 	}
 
 	return nullptr;
-}
+}*/
 int ProFCFS::getSizeOfRDYList()
 {
 	int count = 0;
