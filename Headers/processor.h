@@ -19,8 +19,8 @@ protected:
 	int overheatmaltime; //timesteps for the processor to regain activation after overheating (taken from the input file)
 	bool isHeated; //flag to indicate whether the precssor is currently wrokin or not
 	int overheatingcounter;  //counter to process the ovrheating time
-	int Busytime;
-	int IDLEtime;
+	int Busytime = 0;
+	int IDLEtime = 0;
 
 
 public:
