@@ -189,7 +189,7 @@ void ProFCFS::KillSig()
 	int TimeStep = pS->getTimeStep();
 	int nFCFS = pS->getnFCFS();
 	processor** arr_Processor = pS->getProcessorList();
-	pS->LoadSigKillList();
+	//pS->LoadSigKillList();
 	KillSigList.peek(s1);
 	if (s1.KillTime != TimeStep)
 	{
