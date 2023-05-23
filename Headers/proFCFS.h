@@ -50,7 +50,7 @@ public:
 			 return nullptr;
 		 }
 	 }
-	 void KillSig();
+	 void KillSig() override;
 	 static void EnqueuEelements(const MyStruct& element);
 	 static Queue<MyStruct> KillSigList;
 

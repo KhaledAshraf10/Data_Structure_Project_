@@ -345,7 +345,7 @@ public:
 			{
 				result = curptr->getItem();
 			}
-			curptr->getNext();
+			curptr = curptr->getNext();
 		}
 		return result;
 	}
