@@ -114,6 +114,10 @@ void Schedular::Add_To_arr_Processor()
 
 void Schedular::Phase_1_Simulation()
 {
+
+	if (TRM.count() == nProcess) {
+		cout << "all Processes has been scheduled";
+	}
 	bool isfinished = false;
 	if (TRM.count() != nProcess) {
 		 isfinished = false;
