@@ -261,8 +261,12 @@ void Schedular::Phase_1_Simulation()
 				Process* P;
 				int ArrivalTime;
 				int counter = 0;
-				if (TimeStep == 1) {
+				KillOrphanProcesses();
+				checkBusy();
+				checkIDLE();
 
+				if (TimeStep == 1) {
+					
 					for (int i = 0; i < nProcess; i++)
 					{
 
