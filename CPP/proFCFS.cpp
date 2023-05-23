@@ -94,8 +94,8 @@ void ProFCFS::ScheduleAlgo()
 				RUNLIST->decremainingtime();   //actual processing
 				srand(time(0));
 				int F = 1 + (rand() % 100);  //forkprobability
-				if (F <= pS->getFP())
-					this->forkingrequest(RUNLIST);
+				//if (F <= pS->getFP())
+				//	/*this->forkingrequest(RUNLIST);*/
 				return;
 
 			
