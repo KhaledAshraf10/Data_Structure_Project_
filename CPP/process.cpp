@@ -13,7 +13,7 @@ Process::Process(Queue<IO_R_D*>& Queue):IO_RD(Queue){
   
 
 }
-Process::Process(int id, int at,/* int rt,*/ int ct/*, int tt, int trt, int wt, int twt,LinkedList io_rd*/, Queue<IO_R_D*>& Queue):IO_RD(Queue) {
+Process::Process(int id, int at,/* int rt,*/ int ct,int ED/*, int tt, int trt, int wt, int twt,LinkedList io_rd*/, Queue<IO_R_D*>& Queue):IO_RD(Queue) {
     ID = id;
     AT = at;
     //RT = rt;
@@ -22,7 +22,7 @@ Process::Process(int id, int at,/* int rt,*/ int ct/*, int tt, int trt, int wt, 
     TRT = trt;
     WT = wt;
     TWT = twt;*/
-
+    this->ED = ED;
     //IO_RD = io_rd;
     remainingtime = ct;
  

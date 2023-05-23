@@ -175,10 +175,40 @@ void ProSJB::dectimer(Process* p)
 }
 
 void ProSJB::add_process(Process* p) {
-Plist.enqueueS(p);
-	inctimer(p);
-	
-	nop++;
+	{
+		if (RUNLIST) {
+			if (p->getED() < RUNLIST->getED()) {
+				inctimer(RUNLIST);
+				Plist.enqueueS(RUNLIST);
+				RUNLIST = p;
+				nop++;
+
+				return;
+
+			}
+		}
+
+		Plist.enqueueS(p);
+		nop++;
+		inctimer(p);
+
+
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

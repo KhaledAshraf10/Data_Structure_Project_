@@ -70,6 +70,7 @@ void ProFCFS::ScheduleAlgo()
 
 		}
 	}
+	
 	else
 		if (RUNLIST->getremainingtime() != 0) {
 
@@ -94,8 +95,8 @@ void ProFCFS::ScheduleAlgo()
 				RUNLIST->decremainingtime();   //actual processing
 				srand(time(0));
 				int F = 1 + (rand() % 100);  //forkprobability
-				//if (F <= pS->getFP())
-				//	/*this->forkingrequest(RUNLIST);*/
+				if (F <= pS->getFP())
+					this->forkingrequest(RUNLIST);
 				return;
 
 			
@@ -140,9 +141,22 @@ void ProFCFS::dectimer(Process* p)
 
 void ProFCFS::add_process(Process* p)
 {
-	Plist.InsertEnd(p);
-	noP++;
-	inctimer(p);
+	if (RUNLIST) {
+		if (p->getED() < RUNLIST->getED()) {
+			inctimer(RUNLIST);
+			Plist.InsertEnd(RUNLIST);
+			RUNLIST = p;
+			noP++;
+			
+			return;
+
+		}
+	}
+	 
+		Plist.InsertEnd(p);
+		noP++;
+		inctimer(p);
+	
 
 
 }

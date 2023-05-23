@@ -23,10 +23,10 @@ private:
     //LinkedQueue<IO_R_D> IOList;
     int parentid = -1;
     int BLKcounter =0;
-
+    int ED=10000;
 public:
     Process(Queue<IO_R_D*>& obj);
-    Process(int at,int id, /*, int rt*/ int ct/*, int tt, int trt, int wt, int twt, LinkedList io_rd*/, Queue<IO_R_D*>& obj);
+    Process(int at,int id, /*, int rt*/ int ct,int ED/*, int tt, int trt, int wt, int twt, LinkedList io_rd*/, Queue<IO_R_D*>& obj);
 
     int getId() const;
     int getArrivalTime() const;
@@ -69,6 +69,9 @@ public:
     void incBLK();
     void BLKsetZERO();
     int GetBLKCounter();
+    int getED() {
+        return ED;
+    }
 
 
 };

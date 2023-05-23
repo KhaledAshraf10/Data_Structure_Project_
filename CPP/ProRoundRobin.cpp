@@ -95,8 +95,8 @@ void ProRoundRobin::ScheduleAlgo()
 
 
 		pS->Add_To_TRM(RUNLIST);
-		RUNLIST == nullptr;
-		counter == 0; //to maintain the timeslice for next process
+		RUNLIST = nullptr;
+		counter = 0; //to maintain the timeslice for next process
 		return;
 
 
@@ -110,6 +110,7 @@ void ProRoundRobin::ScheduleAlgo()
 			if (totalexecutiontime == temp->IO_R) {
 				pS->Add_To_BLK(RUNLIST);
 				RUNLIST = nullptr;
+				counter = 0;
 				return;
 
 
@@ -218,9 +219,25 @@ void ProRoundRobin::dectimer(Process *p)
 
 void ProRoundRobin::add_process(Process* p) 
 {
-	inctimer(p);
+	if (RUNLIST) {
+		if (p->getED() < RUNLIST->getED()) {
+			inctimer(RUNLIST);
+			Plist.enqueue(RUNLIST);
+			RUNLIST = p;
+			nop++;
+			counter = 0;
+
+			return;
+
+		}
+	}
+
 	Plist.enqueue(p);
 	nop++;
+	inctimer(p);
+
+
+
 }
 
 
