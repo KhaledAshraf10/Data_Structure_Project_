@@ -46,12 +46,13 @@ void Schedular::load()
 	for (int i = 0; i < nProcess ; i++)
 	{	
 		int AT = 0, PID = 0, CT = 0, NIO = 0, IOR = 0, IOD = 0;
-		inputfile >> AT >> PID >> CT >> NIO;
+		int ED = 10000;
+		inputfile >> AT >> PID >> CT >>ED >> NIO;
 		
 		// if i put Process id in New list or process 
 
 		Queue<IO_R_D*>* arr = new Queue<IO_R_D*>;
-		Process* P = new Process(AT, PID, CT,*arr); // it should contain NIO
+		Process* P = new Process(AT, PID, CT,ED,*arr); // it should contain NIO
 		for (int j = 0; j < NIO; j++)
 		{
 			IO_R_D* struct1 = new IO_R_D;
@@ -117,7 +118,7 @@ void Schedular::Phase_1_Simulation()
 	
 
 	if (TRM.count() == nProcess) {
-		cout << "all Processes has been scheduled";
+		cout<<"all Processes has been scheduled";
 	}
 	bool isfinished = false;
 	if (TRM.count() != nProcess) {
@@ -442,7 +443,7 @@ void Schedular::Fork(Process* p)
 {
 	int AT = TimeStep, PID = nProcess + 1, CT = p->getremainingtime();
 	Queue<IO_R_D*>* arr = new Queue<IO_R_D*>;
-	Process* child = new Process(AT, PID, CT, *arr);
+	Process* child = new Process(AT, PID, CT,10000, *arr);
 	child->setparentid(p->getId());
 	nProcess++;
 	PicksShortRDY()->add_process(child);
