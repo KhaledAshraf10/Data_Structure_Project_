@@ -186,6 +186,7 @@ void Schedular::Phase_1_Simulation()
 				BLKToRDY();
 			}
 			userUI.FirstMode();
+			arr_Processor[0]->KillSig();
 			TimeStep++;
 
 		}
@@ -303,7 +304,7 @@ void Schedular::Phase_1_Simulation()
 				}
 				/*userUI.printProcessIDs(this);*/
 
-
+				
 				TimeStep++;
 			}
 

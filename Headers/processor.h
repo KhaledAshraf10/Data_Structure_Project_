@@ -63,7 +63,7 @@ public:
 	virtual void incrementIDLETime() = 0;
 	virtual	int getBusyTime() = 0;
 	virtual int getIDLETime() = 0;
-
+	virtual void KillSig() = 0;
 
 
 		

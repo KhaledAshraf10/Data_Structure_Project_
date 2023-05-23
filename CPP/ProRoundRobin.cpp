@@ -316,4 +316,8 @@ int ProRoundRobin::getIDLETime()
 	return IDLEtime;
 }
 
+void ProRoundRobin::KillSig()
+{
+}
+
 

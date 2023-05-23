@@ -62,6 +62,7 @@ public:
 	void incrementIDLETime();
 	int getBusyTime();
 	int getIDLETime();
+	void KillSig() override;
 
 
 

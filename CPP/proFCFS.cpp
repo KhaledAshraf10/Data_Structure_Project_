@@ -206,17 +206,19 @@ void ProFCFS::KillSig()
 					KillSigList.dequeue(tempp);//arr_Processor[i]->KillProcess(s1.ID);
 					pS->Add_To_TRM(arr_Processor[i]->getRUNList());
 					arr_Processor[i]->setRUNNull();
-					
-
+					return;
 				}
 				else if (arr_Processor[i]->IsInRDY(s1.ID) && arr_Processor[i]->getType() == "ProFCFS")
 				{
-					KillSigList.dequeue(tempp);
-					pS->Add_To_TRM(arr_Processor[i]->getRdyProcess(s1.ID));
-					arr_Processor[i]->dectimer(getRdyProcess(s1.ID));
-					arr_Processor[i]->deleteNode(getRdyProcess(s1.ID));
-					arr_Processor[i]->decNoop();
 
+					KillSigList.dequeue(tempp);
+					Process* s = arr_Processor[i]->getRdyProcess(s1.ID);
+					arr_Processor[i]->dectimer(s);
+					pS->Add_To_TRM(s);
+					
+					arr_Processor[i]->deleteNode(s);
+					arr_Processor[i]->decNoop();
+					return;
 					
 				}
 
@@ -299,7 +301,15 @@ int ProFCFS::getIDLETime()
 
 bool ProFCFS::IsInRUN(int id)
 {
-	return RUNLIST->getId() == id;
+	if (RUNLIST == nullptr)
+	{
+		return false;
+	}
+	else
+	{
+		return RUNLIST->getId() == id;
+	}
+	
 }
 
 string ProFCFS::getType()
