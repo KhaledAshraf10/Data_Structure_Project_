@@ -273,6 +273,10 @@ int ProSJB::getIDLETime()
 	return IDLEtime;
 }
 
+void ProSJB::KillSig()
+{
+}
+
 
 Process* ProSJB::getRUNList()
 {
