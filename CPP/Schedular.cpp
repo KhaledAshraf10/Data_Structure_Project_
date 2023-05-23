@@ -67,11 +67,11 @@ void Schedular::load()
 	}
 
 
-
+	LoadSigKillList();
 
 
 	
-	/*inputfile.close();*/
+	inputfile.close();
 	
 	
 }
@@ -114,7 +114,7 @@ void Schedular::Add_To_arr_Processor()
 
 void Schedular::Phase_1_Simulation()
 {
-	LoadSigKillList();
+	
 
 	if (TRM.count() == nProcess) {
 		cout << "all Processes has been scheduled";
